@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMI 계산기 — 키·몸무게로 체질량지수 확인</title>
+<meta name="description" content="키와 몸무게로 BMI(체질량지수)를 계산하고 대한비만학회 기준으로 저체중·정상·과체중·비만을 판정합니다. 정상 체중 범위도 함께.">
+<link rel="canonical" href="https://modutools.vercel.app/bmi.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/age.html">만 나이</a><a href="/reaction.html">반응속도</a></nav></header>
+<main>
+<h1>BMI 계산기</h1>
+<p class="lead">체질량지수(BMI) = 몸무게(kg) ÷ 키(m)²</p>
+<div class="card">
+<div class="row">
+<div><label>키 (cm)</label><input type="number" id="h" placeholder="170"></div>
+<div><label>몸무게 (kg)</label><input type="number" id="w" placeholder="65"></div>
+</div>
+<button id="go">계산하기</button>
+<div class="result" id="out" hidden></div>
+</div>
+<div class="faq">
+<h2>판정 기준 (대한비만학회, 아시아·태평양 기준)</h2>
+<p>저체중 18.5 미만 · 정상 18.5~22.9 · 비만 전단계(과체중) 23~24.9 · 1단계 비만 25~29.9 · 2단계 비만 30~34.9 · 3단계 비만 35 이상. 서양(WHO) 기준은 과체중 25부터로 더 느슨합니다 — 국내 건강검진은 아시아 기준을 씁니다.</p>
+<h2>BMI의 한계</h2>
+<p>근육량이 많으면 체지방이 적어도 BMI가 높게 나옵니다. 운동을 많이 하는 사람이라면 허리둘레·체지방률을 함께 보는 것이 정확합니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/age.html">만 나이</a><a href="/percent.html">퍼센트</a></div><p>ⓒ 모두도구 · 의학적 판단은 전문의와 상담하세요.</p></footer>
+<script>
+document.getElementById('go').onclick=function(){
+var h=+document.getElementById('h').value/100,w=+document.getElementById('w').value;
+if(!h||!w){alert('키와 몸무게를 입력하세요');return}
+var bmi=w/(h*h);
+var g=bmi<18.5?'저체중':bmi<23?'정상':bmi<25?'비만 전단계(과체중)':bmi<30?'1단계 비만':bmi<35?'2단계 비만':'3단계 비만';
+var lo=(18.5*h*h).toFixed(1),hi=(22.9*h*h).toFixed(1);
+var o=document.getElementById('out');o.hidden=false;
+o.innerHTML='BMI <strong>'+bmi.toFixed(1)+'</strong> — '+g+'<br>정상 체중 범위: '+lo+'~'+hi+'kg';
+};
+</script>
+</body>
+</html>

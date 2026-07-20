@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>연봉 실수령액 계산기 2026 — 4대보험·세금 떼고 월급 얼마?</title>
+<meta name="description" content="연봉을 입력하면 국민연금·건강보험·고용보험·소득세를 공제한 월 실수령액을 계산합니다. 2026년 요율 반영, 부양가족·비과세 반영 가능. 무료.">
+<link rel="canonical" href="https://modutools.vercel.app/salary.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/char-count.html">글자수</a><a href="/dday.html">디데이</a><a href="/reaction.html">반응속도</a></nav></header>
+<main>
+<h1>연봉 실수령액 계산기</h1>
+<p class="lead">세전 연봉에서 4대보험과 소득세를 공제한 월 실수령액을 추정합니다. (2026년 요율 기준)</p>
+<div class="card">
+<div class="row">
+<div><label>세전 연봉 (만원)</label><input type="number" id="pay" placeholder="예: 4000" min="0"></div>
+<div><label>비과세액/월 (만원, 식대 등)</label><input type="number" id="taxfree" value="20" min="0"></div>
+</div>
+<div class="row">
+<div><label>본인 포함 부양가족 수</label><input type="number" id="fam" value="1" min="1"></div>
+<div><label>퇴직금</label><select id="sev"><option value="0">별도 (연봉에 미포함)</option><option value="1">포함 (연봉÷13)</option></select></div>
+</div>
+<button id="go">계산하기</button>
+<div class="result" id="out" hidden></div>
+<table id="detail" hidden>
+<tr><th>국민연금 (4.75%)</th><td id="d1"></td></tr>
+<tr><th>건강보험 (3.545%)</th><td id="d2"></td></tr>
+<tr><th>장기요양 (건보료의 12.95%)</th><td id="d3"></td></tr>
+<tr><th>고용보험 (0.9%)</th><td id="d4"></td></tr>
+<tr><th>소득세 + 지방소득세 (근사)</th><td id="d5"></td></tr>
+<tr><th>월 공제 합계</th><td id="d6"></td></tr>
+</table>
+<p class="note">소득세는 근로소득 간이세액표를 근사한 값으로, 실제 급여명세서와 수만원 단위 차이가 날 수 있습니다. 국민연금은 기준소득월액 상한이 적용됩니다.</p>
+</div>
+<div class="faq">
+<h2>왜 실수령액이 생각보다 적을까요</h2>
+<p>세전 연봉에서 국민연금(본인부담 4.75%, 2026년 인상분 반영), 건강보험(3.545%)과 그에 딸린 장기요양보험, 고용보험(0.9%), 그리고 근로소득세·지방소득세가 매달 원천징수되기 때문입니다. 연봉 구간이 올라갈수록 소득세 누진 구간이 높아져 공제 비율도 커집니다.</p>
+<h2>비과세액은 왜 넣나요</h2>
+<p>식대(월 20만원 한도) 같은 비과세 항목은 세금과 4대보험 산정에서 빠집니다. 같은 연봉이라도 비과세 항목이 많으면 실수령액이 늘어납니다.</p>
+<h2>연말정산과 다른가요</h2>
+<p>이 계산기는 매달 원천징수되는 금액의 추정치입니다. 연말정산에서 카드·의료비·주택 관련 공제가 반영되면 최종 세액은 달라질 수 있습니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/percent.html">퍼센트</a><a href="/age.html">만 나이</a><a href="/char-count.html">글자수</a></div><p>ⓒ 모두도구 · 본 계산은 참고용 추정치이며 실제 급여와 다를 수 있습니다.</p></footer>
+<script>
+function tax(annual,fam,pension){ // 연 근로소득 근사 세액 (원)
+var g=annual; // 총급여
+var ded; // 근로소득공제
+if(g<=5000000)ded=g*0.7;
+else if(g<=15000000)ded=3500000+(g-5000000)*0.4;
+else if(g<=45000000)ded=7500000+(g-15000000)*0.15;
+else if(g<=100000000)ded=12000000+(g-45000000)*0.05;
+else ded=14750000+(g-100000000)*0.02;
+var base=Math.max(0,g-ded-1500000*fam-pension);
+var br=[[14000000,0.06,0],[50000000,0.15,1260000],[88000000,0.24,5760000],[150000000,0.35,15440000],[300000000,0.38,19940000],[500000000,0.40,25940000],[1000000000,0.42,35940000],[Infinity,0.45,65940000]];
+var t=0;for(var i=0;i<br.length;i++){if(base<=br[i][0]){t=base*br[i][1]-br[i][2];break}}
+t=Math.max(0,t);
+var credit=t<=1300000?t*0.55:715000+(t-1300000)*0.30;
+var cap=g<=33000000?740000:(g<=70000000?Math.max(660000,740000-(g-33000000)*0.008):(g<=120000000?Math.max(500000,660000-(g-70000000)*0.5):Math.max(200000,500000-(g-120000000)*0.5)));
+credit=Math.min(credit,cap);
+return Math.max(0,t-credit);
+}
+document.getElementById('go').onclick=function(){
+var pm=+document.getElementById('pay').value;if(!pm){alert('연봉을 입력하세요');return}
+var annual=pm*10000;
+if(document.getElementById('sev').value==='1')annual=annual*12/13;
+var tf=+document.getElementById('taxfree').value*10000;
+var fam=+document.getElementById('fam').value||1;
+var mGross=annual/12;
+var mTaxable=Math.max(0,mGross-tf);
+var pensionBase=Math.min(mTaxable,6370000); // 기준소득월액 상한 근사
+var np=Math.floor(pensionBase*0.0475);
+var hi=Math.floor(mTaxable*0.03545);
+var lt=Math.floor(hi*0.1295);
+var ei=Math.floor(mTaxable*0.009);
+var it=Math.floor(tax(mTaxable*12,fam,np*12)/12);
+var localTax=Math.floor(it*0.1);
+var dedSum=np+hi+lt+ei+it+localTax;
+var net=Math.round(mGross-dedSum);
+var f=function(n){return Math.round(n).toLocaleString()+'원'};
+document.getElementById('out').hidden=false;
+document.getElementById('out').innerHTML='월 실수령액 (추정) <strong>'+f(net)+'</strong><br>월 세전 '+f(mGross)+' − 공제 '+f(dedSum);
+document.getElementById('detail').hidden=false;
+document.getElementById('d1').textContent=f(np);
+document.getElementById('d2').textContent=f(hi);
+document.getElementById('d3').textContent=f(lt);
+document.getElementById('d4').textContent=f(ei);
+document.getElementById('d5').textContent=f(it+localTax);
+document.getElementById('d6').textContent=f(dedSum);
+};
+</script>
+</body>
+</html>

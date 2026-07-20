@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>글자수 세기 — 공백 포함/제외·바이트 계산 (자소서 글자수)</title>
+<meta name="description" content="자기소개서·리포트 글자수를 실시간으로 셉니다. 공백 포함, 공백 제외, 바이트(한글 2byte), 줄 수까지 한 번에. 회원가입 없는 무료 글자수 세기.">
+<link rel="canonical" href="https://modutools.vercel.app/char-count.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html">연봉계산</a><a href="/dday.html">디데이</a><a href="/reaction.html">반응속도</a></nav></header>
+<main>
+<h1>글자수 세기</h1>
+<p class="lead">입력하는 즉시 공백 포함·제외 글자수와 바이트를 셉니다. 내용은 저장되지 않습니다.</p>
+<div class="card">
+<textarea id="txt" placeholder="여기에 글을 붙여넣거나 입력하세요" autofocus></textarea>
+<table>
+<tr><th>공백 포함</th><td id="c1">0자</td></tr>
+<tr><th>공백 제외</th><td id="c2">0자</td></tr>
+<tr><th>바이트 (한글 2byte 기준)</th><td id="c3">0byte</td></tr>
+<tr><th>바이트 (UTF-8, 한글 3byte)</th><td id="c4">0byte</td></tr>
+<tr><th>단어 수 / 줄 수</th><td id="c5">0 / 0</td></tr>
+</table>
+<button class="ghost" id="clear">지우기</button>
+</div>
+<div class="faq">
+<h2>자소서 글자수는 어떤 기준으로 세나요</h2>
+<p>대부분의 채용 사이트(잡코리아·사람인 등)는 공백 포함 글자수를 기준으로 합니다. 일부 공공기관·금융권 서식은 바이트 기준을 쓰는데, 이때는 통상 한글 1자 = 2byte, 영문·숫자·공백 = 1byte로 계산합니다. 위 표의 "바이트 (한글 2byte)"가 그 기준입니다.</p>
+<h2>UTF-8 바이트는 언제 쓰나요</h2>
+<p>웹 폼이나 데이터베이스의 입력 제한은 UTF-8 인코딩(한글 1자 = 3byte) 기준인 경우가 많습니다. 개발·업로드 용도라면 이 값을 참고하세요.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/salary.html">연봉 실수령액</a><a href="/age.html">만 나이</a><a href="/dday.html">디데이</a><a href="/percent.html">퍼센트</a></div><p>ⓒ 모두도구</p></footer>
+<script>
+var t=document.getElementById('txt');
+function cnt(){var v=t.value;
+document.getElementById('c1').textContent=v.length.toLocaleString()+'자';
+document.getElementById('c2').textContent=v.replace(/\s/g,'').length.toLocaleString()+'자';
+var b2=0;for(var ch of v){b2+=ch.charCodeAt(0)>127?2:1}
+document.getElementById('c3').textContent=b2.toLocaleString()+'byte';
+document.getElementById('c4').textContent=new Blob([v]).size.toLocaleString()+'byte';
+var w=v.trim()?v.trim().split(/\s+/).length:0;var l=v?v.split('\n').length:0;
+document.getElementById('c5').textContent=w.toLocaleString()+' / '+l.toLocaleString();}
+t.addEventListener('input',cnt);
+document.getElementById('clear').onclick=function(){t.value='';cnt();t.focus();};
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>유튜브 썸네일 추출 — 영상 주소로 고화질 썸네일 다운로드</title>
+<meta name="description" content="유튜브 영상 URL만 붙여넣으면 최대 화질(1280×720) 썸네일 이미지를 바로 추출합니다. 설치·가입 없는 무료 도구.">
+<link rel="canonical" href="https://modutools.vercel.app/youtube-thumbnail.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/image-compress.html">이미지 압축</a><a href="/char-count.html">글자수</a></nav></header>
+<main>
+<h1>유튜브 썸네일 추출</h1>
+<p class="lead">영상 주소를 붙여넣으면 화질별 썸네일을 보여줍니다.</p>
+<div class="card">
+<label>유튜브 영상 URL</label>
+<input type="url" id="url" placeholder="https://www.youtube.com/watch?v=... 또는 youtu.be/...">
+<button id="go">썸네일 가져오기</button>
+<div class="thumbs" id="out"></div>
+<p class="note">이미지를 길게 누르거나(모바일) 우클릭(PC)해서 저장하세요. 타인의 썸네일은 저작권이 있으므로 참고·백업 용도로만 사용하세요.</p>
+</div>
+<div class="faq">
+<h2>최대 화질이 안 나와요</h2>
+<p>1280×720(maxresdefault) 썸네일은 업로더가 고화질 썸네일을 등록한 영상에만 존재합니다. 없는 경우 640×480(sddefault)이나 480×360(hqdefault)을 사용하면 됩니다. 아래에 존재하는 화질만 표시됩니다.</p>
+<h2>쇼츠(Shorts)도 되나요</h2>
+<p>네. youtube.com/shorts/영상ID 형태의 주소도 인식합니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/image-compress.html">이미지 압축</a></div><p>ⓒ 모두도구</p></footer>
+<script>
+function vid(u){
+var m=u.match(/(?:youtube\.com\/(?:watch\?.*v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+return m?m[1]:null;
+}
+document.getElementById('go').onclick=function(){
+var id=vid(document.getElementById('url').value.trim());
+var o=document.getElementById('out');
+if(!id){alert('유튜브 영상 주소를 확인해주세요');return}
+var sizes=[['maxresdefault','1280×720 (최대)'],['sddefault','640×480'],['hqdefault','480×360'],['mqdefault','320×180']];
+o.innerHTML='';
+sizes.forEach(function(s){
+var img=new Image();
+var wrap=document.createElement('div');
+img.src='https://img.youtube.com/vi/'+id+'/'+s[0]+'.jpg';
+img.onload=function(){
+if(img.naturalWidth<=120)return; // 존재하지 않는 화질은 120x90 placeholder
+var cap=document.createElement('div');cap.className='note';cap.textContent=s[1];
+wrap.appendChild(img);wrap.appendChild(cap);o.appendChild(wrap);
+};
+});
+};
+</script>
+</body>
+</html>

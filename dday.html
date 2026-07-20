@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>디데이 계산기 — 남은 날짜·날짜 사이 일수·날짜 더하기</title>
+<meta name="description" content="시험·전역·기념일까지 며칠 남았는지, 두 날짜 사이가 며칠인지, 특정 날짜에서 N일 후가 언제인지 계산합니다. 무료 디데이 계산기.">
+<link rel="canonical" href="https://modutools.vercel.app/dday.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/age.html">만 나이</a><a href="/salary.html">연봉계산</a><a href="/reaction.html">반응속도</a></nav></header>
+<main>
+<h1>디데이 계산기</h1>
+<p class="lead">목표일까지 남은 날짜, 두 날짜 사이 일수, 날짜 더하기·빼기.</p>
+<div class="card"><b>1. 디데이 (오늘부터 목표일까지)</b>
+<label>목표일</label><input type="date" id="d1">
+<div class="result" id="r1">—</div></div>
+<div class="card"><b>2. 두 날짜 사이 일수</b>
+<div class="row"><div><label>시작일</label><input type="date" id="d2a"></div><div><label>종료일</label><input type="date" id="d2b"></div></div>
+<div class="result" id="r2">—</div></div>
+<div class="card"><b>3. 날짜 더하기 / 빼기</b>
+<div class="row"><div><label>기준일</label><input type="date" id="d3"></div><div><label>더할 일수 (음수 = 빼기)</label><input type="number" id="d3n" value="100"></div></div>
+<div class="result" id="r3">—</div></div>
+<div class="faq">
+<h2>백일·기념일 계산 팁</h2>
+<p>사귄 날을 1일로 치는 커플 기념일 문화 기준이라면, 100일은 시작일에 99일을 더한 날입니다. 3번 계산기에 시작일과 99를 넣으면 됩니다. 반대로 순수하게 "100일 후"는 100을 넣으세요.</p>
+<h2>전역일·시험일 계산</h2>
+<p>1번에 전역일이나 시험일을 넣으면 오늘 기준 D-숫자가 나옵니다. 지난 날짜를 넣으면 D+로 표시됩니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/age.html">만 나이</a><a href="/char-count.html">글자수</a></div><p>ⓒ 모두도구</p></footer>
+<script>
+var DAY=86400000;
+function mid(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function fmt(d){return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+['일','월','화','수','목','금','토'][d.getDay()]+')'}
+document.getElementById('d1').addEventListener('input',function(){
+var v=this.valueAsDate;if(!v)return;
+var diff=Math.round((mid(v)-mid(new Date()))/DAY);
+document.getElementById('r1').innerHTML=diff>0?'<strong>D-'+diff+'</strong> ('+diff+'일 남음)':diff===0?'<strong>D-Day</strong> 오늘입니다':'<strong>D+'+(-diff)+'</strong> ('+(-diff)+'일 지남)';
+});
+function two(){var a=document.getElementById('d2a').valueAsDate,b=document.getElementById('d2b').valueAsDate;
+if(a&&b){var d=Math.round((mid(b)-mid(a))/DAY);
+document.getElementById('r2').innerHTML='<strong>'+Math.abs(d)+'일</strong>'+(d>=0?'':' (종료일이 더 이전)')+' · 시작일 포함 시 '+(Math.abs(d)+1)+'일';}}
+document.getElementById('d2a').addEventListener('input',two);
+document.getElementById('d2b').addEventListener('input',two);
+function add(){var a=document.getElementById('d3').valueAsDate,nv=parseInt(document.getElementById('d3n').value);
+if(a&&!isNaN(nv)){var r=new Date(mid(a).getTime()+nv*DAY);
+document.getElementById('r3').innerHTML='<strong>'+fmt(r)+'</strong>';}}
+document.getElementById('d3').addEventListener('input',add);
+document.getElementById('d3n').addEventListener('input',add);
+</script>
+</body>
+</html>

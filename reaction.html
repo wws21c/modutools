@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>반응속도 테스트 — 나의 평균 반응속도는 몇 ms?</title>
+<meta name="description" content="초록색으로 바뀌는 순간 클릭! 5회 평균 반응속도를 측정하고 등급을 확인하세요. 친구에게 기록 공유 가능. 무료 반응속도 게임.">
+<link rel="canonical" href="https://modutools.vercel.app/reaction.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/lotto.html">로또</a><a href="/dday.html">디데이</a></nav></header>
+<main>
+<h1>반응속도 테스트</h1>
+<p class="lead">빨간 화면이 초록으로 바뀌는 순간 최대한 빨리 클릭하세요. 5회 평균으로 등급을 매깁니다.</p>
+<div class="card">
+<div class="stage" id="stage" style="background:#3b82f6;color:#fff">클릭해서 시작</div>
+<div class="result" id="out" hidden></div>
+</div>
+<div class="faq">
+<h2>평균 반응속도는 얼마인가요</h2>
+<p>시각 자극에 대한 인간 평균은 대략 250ms 전후입니다. 200ms 이하면 상위권, 170ms 이하는 프로게이머급으로 봅니다. 모니터 주사율과 마우스 지연에 따라 20~30ms 정도 차이가 날 수 있어, 같은 기기에서의 기록 비교가 더 정확합니다.</p>
+<h2>반응속도를 올릴 수 있나요</h2>
+<p>수면과 컨디션의 영향이 가장 큽니다. 반복 연습으로 10~20ms 정도는 단축된다는 보고가 있지만, 타고난 신경 전달 속도의 영향이 큽니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/lotto.html">로또</a><a href="/bmi.html">BMI</a></div><p>ⓒ 모두도구</p></footer>
+<script>
+var st=document.getElementById('stage'),out=document.getElementById('out');
+var state='idle',times=[],t0=0,timer=null,ROUNDS=5;
+function set(bg,txt){st.style.background=bg;st.textContent=txt}
+function grade(a){return a<170?'프로게이머급':a<200?'상위권':a<250?'평균 이상':a<300?'평균':'느긋한 편'}
+function wait(){state='wait';set('#dc2626','초록색이 되면 클릭!');
+timer=setTimeout(function(){state='go';t0=performance.now();set('#16a34a','지금 클릭!')},1000+Math.random()*2500)}
+st.addEventListener('pointerdown',function(){
+if(state==='idle'){times=[];out.hidden=true;wait()}
+else if(state==='wait'){clearTimeout(timer);state='idle';set('#f59e0b','너무 빨랐어요! 클릭해서 다시 시작')}
+else if(state==='go'){
+var t=Math.round(performance.now()-t0);times.push(t);
+if(times.length<ROUNDS){set('#3b82f6',t+'ms! ('+times.length+'/'+ROUNDS+') 클릭해서 계속');state='next'}
+else{state='idle';
+var avg=Math.round(times.reduce(function(a,b){return a+b})/times.length);
+var best=Math.min.apply(null,times);
+set('#3b82f6','클릭해서 다시 도전');
+out.hidden=false;
+out.innerHTML='평균 <strong>'+avg+'ms</strong> · 최고 '+best+'ms — '+grade(avg)+'<br>기록: '+times.join(', ')+'ms<br><button id="share">기록 공유하기</button><span id="ok" class="copy-ok" hidden>복사됨!</span>';
+document.getElementById('share').onclick=function(){
+var msg='내 반응속도 평균 '+avg+'ms ('+grade(avg)+') — 너도 해봐: '+location.href;
+if(navigator.share){navigator.share({text:msg}).catch(function(){})}
+else{navigator.clipboard.writeText(msg);document.getElementById('ok').hidden=false}
+};
+}}
+else if(state==='next'){wait()}
+});
+</script>
+</body>
+</html>

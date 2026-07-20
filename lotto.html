@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>로또 번호 생성기 — 무작위 조합 무료 뽑기</title>
+<meta name="description" content="1~45 중 6개, 완전 무작위 로또 번호를 원하는 게임 수만큼 생성합니다. 고정수·제외수 설정 가능. 무료, 광고 클릭 유도 없음.">
+<link rel="canonical" href="https://modutools.vercel.app/lotto.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html">반응속도</a><a href="/dday.html">디데이</a></nav></header>
+<main>
+<h1>로또 번호 생성기</h1>
+<p class="lead">암호학적 난수(crypto.getRandomValues)로 뽑는 완전 무작위 조합입니다.</p>
+<div class="card">
+<div class="row">
+<div><label>게임 수</label><input type="number" id="games" value="5" min="1" max="20"></div>
+<div><label>고정수 (쉼표 구분, 선택)</label><input type="text" id="fix" placeholder="예: 7, 21"></div>
+<div><label>제외수 (쉼표 구분, 선택)</label><input type="text" id="exc" placeholder="예: 4, 44"></div>
+</div>
+<button id="go">번호 뽑기</button>
+<div class="result" id="out" hidden style="line-height:2.2"></div>
+</div>
+<div class="faq">
+<h2>자주 나온 번호를 고르면 유리한가요</h2>
+<p>아니요. 로또 추첨은 매회 독립 사건이라 과거에 많이 나온 번호가 앞으로 더 나올 확률은 없습니다. "잘 나오는 번호" 마케팅은 통계적 근거가 없습니다. 이 생성기는 그런 가공 없이 순수 난수만 씁니다.</p>
+<h2>1등 확률은</h2>
+<p>8,145,060분의 1입니다. 어떤 조합을 고르든 동일합니다. 재미로만 이용하세요.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/reaction.html">반응속도</a></div><p>ⓒ 모두도구 · 과도한 구매는 가정 경제에 해롭습니다.</p></footer>
+<script>
+function parseNums(id){return document.getElementById(id).value.split(',').map(function(s){return parseInt(s.trim())}).filter(function(n){return n>=1&&n<=45})}
+function rand(n){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n}
+document.getElementById('go').onclick=function(){
+var g=Math.min(20,+document.getElementById('games').value||5);
+var fix=parseNums('fix'),exc=parseNums('exc');
+if(fix.length>6){alert('고정수는 6개 이하');return}
+var html='';
+for(var i=0;i<g;i++){
+var set=fix.slice();
+var pool=[];for(var n=1;n<=45;n++)if(set.indexOf(n)<0&&exc.indexOf(n)<0)pool.push(n);
+while(set.length<6&&pool.length)set.push(pool.splice(rand(pool.length),1)[0]);
+set.sort(function(a,b){return a-b});
+html+=String.fromCharCode(65+i)+'조: '+set.map(function(n){var c=n<=10?'#fbc400':n<=20?'#69c8f2':n<=30?'#ff7272':n<=40?'#aaa':'#b0d840';return '<span style="display:inline-block;width:34px;height:34px;line-height:34px;border-radius:50%;background:'+c+';color:#fff;text-align:center;font-weight:700;margin:0 3px">'+n+'</span>'}).join('')+'<br>';
+}
+var o=document.getElementById('out');o.hidden=false;o.innerHTML=html;
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이미지 용량 줄이기 — 업로드 없이 브라우저에서 사진 압축</title>
+<meta name="description" content="사진을 서버에 올리지 않고 브라우저 안에서 바로 압축합니다. 품질·크기 조절, JPG/WebP 변환, 즉시 다운로드. 개인정보 걱정 없는 무료 이미지 압축.">
+<link rel="canonical" href="https://modutools.vercel.app/image-compress.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/youtube-thumbnail.html">유튜브 썸네일</a><a href="/char-count.html">글자수</a></nav></header>
+<main>
+<h1>이미지 용량 줄이기</h1>
+<p class="lead">사진이 서버로 전송되지 않습니다 — 압축은 전부 이 브라우저 안에서 처리됩니다.</p>
+<div class="card">
+<label>이미지 선택 (JPG·PNG·WebP)</label>
+<input type="file" id="file" accept="image/*">
+<div class="row">
+<div><label>품질 (<span id="qv">75</span>%)</label><input type="range" id="q" min="10" max="100" value="75" style="width:100%"></div>
+<div><label>최대 가로 크기 (px)</label><input type="number" id="maxw" value="1600" min="100"></div>
+</div>
+<div class="row">
+<div><label>출력 형식</label><select id="fmt"><option value="image/jpeg">JPG</option><option value="image/webp">WebP (더 작음)</option></select></div>
+</div>
+<button id="go">압축하기</button>
+<div class="result" id="out" hidden></div>
+<p class="note">이력서 사진, 게시판 첨부, 카톡 프로필 등 용량 제한이 있는 곳에 쓰기 좋습니다. 원본은 그대로 남습니다.</p>
+</div>
+<div class="faq">
+<h2>정말 서버로 안 올라가나요</h2>
+<p>네. 이 페이지는 HTML5 캔버스 기능으로 사용자의 기기 안에서만 이미지를 다시 그려 압축합니다. 네트워크 탭을 열어봐도 이미지 전송 요청이 없습니다. 신분증·계약서처럼 민감한 이미지도 외부 유출 걱정 없이 줄일 수 있습니다.</p>
+<h2>품질은 얼마로 해야 하나요</h2>
+<p>화면용은 70~80%면 육안 차이가 거의 없이 용량이 크게 줄어듭니다. 인쇄용이라면 90% 이상을 권합니다. WebP를 선택하면 같은 품질에서 JPG보다 대체로 20~30% 더 작아집니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/youtube-thumbnail.html">유튜브 썸네일</a><a href="/percent.html">퍼센트</a></div><p>ⓒ 모두도구</p></footer>
+<script>
+document.getElementById('q').addEventListener('input',function(){document.getElementById('qv').textContent=this.value});
+document.getElementById('go').onclick=function(){
+var f=document.getElementById('file').files[0];
+if(!f){alert('이미지를 선택하세요');return}
+var img=new Image();
+img.onload=function(){
+var maxw=+document.getElementById('maxw').value||1600;
+var scale=Math.min(1,maxw/img.width);
+var cv=document.createElement('canvas');
+cv.width=Math.round(img.width*scale);cv.height=Math.round(img.height*scale);
+var cx=cv.getContext('2d');
+cx.drawImage(img,0,0,cv.width,cv.height);
+var fmt=document.getElementById('fmt').value;
+var q=(+document.getElementById('q').value)/100;
+cv.toBlob(function(b){
+if(!b){alert('압축 실패 — 다른 형식을 시도해보세요');return}
+var url=URL.createObjectURL(b);
+var name=f.name.replace(/\.[^.]+$/,'')+(fmt==='image/webp'?'_compressed.webp':'_compressed.jpg');
+var pct=Math.round((1-b.size/f.size)*100);
+var o=document.getElementById('out');o.hidden=false;
+o.innerHTML='원본 '+(f.size/1024).toFixed(0)+'KB → <strong>'+(b.size/1024).toFixed(0)+'KB</strong> ('+(pct>0?pct+'% 감소':'변화 없음')+') · '+cv.width+'×'+cv.height+'px<br><a class="btn" download="'+name+'" href="'+url+'">다운로드</a>';
+},fmt,q);
+URL.revokeObjectURL(img.src);
+};
+img.src=URL.createObjectURL(f);
+};
+</script>
+</body>
+</html>
