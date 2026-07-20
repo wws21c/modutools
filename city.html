@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>미니시티 — 브라우저 도시 건설 게임 (무료 심시티 라이트)</title>
+<meta name="description" content="설치 없이 브라우저에서 즐기는 미니 도시 건설 게임. 주택·상가·공장·공원을 배치해 파산하지 않고 인구를 키우세요. 공장 옆 주택은 불행해집니다.">
+<link rel="canonical" href="https://modutools.vercel.app/city.html">
+<meta property="og:title" content="미니시티 — 나의 도시 인구는 몇 명?">
+<meta property="og:description" content="브라우저에서 바로 하는 도시 건설 게임. 배치가 곧 전략.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<style>
+#hud{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.stat{flex:1;min-width:100px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;text-align:center}
+.stat .v{font-weight:800;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.stat .k{font-size:.72rem;color:var(--sub)}
+#pal{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+#pal button{margin:0;padding:9px 12px;font-size:.85rem;background:var(--card);color:var(--ink);border:2px solid var(--line)}
+#pal button.on{border-color:var(--brand);color:var(--brand)}
+#board{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;background:var(--line);border:2px solid var(--line);border-radius:10px;overflow:hidden;touch-action:manipulation}
+.cell{aspect-ratio:1;background:#dcead2;position:relative;cursor:pointer}
+@media(prefers-color-scheme:dark){.cell{background:#25301f}}
+.cell svg{position:absolute;inset:8%;width:84%;height:84%}
+.cell.warn::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 2px #dc2626;border-radius:2px}
+#log{font-size:.83rem;color:var(--sub);min-height:1.4em;margin-top:10px}
+#ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#over{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:9}
+#over .card{max-width:340px;text-align:center}
+</style>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
+<main>
+<h1>미니시티</h1>
+<p class="lead">파산하지 않고 도시를 키우세요. 배치가 전략입니다 — 공장 옆 주택은 불행해지고, 공원 옆 주택은 행복해집니다.</p>
+<div class="card">
+<div id="hud">
+<div class="stat"><div class="v" id="hMoney">₩30,000</div><div class="k">자금</div></div>
+<div class="stat"><div class="v" id="hPop">0</div><div class="k">인구</div></div>
+<div class="stat"><div class="v" id="hJob">0</div><div class="k">일자리</div></div>
+<div class="stat"><div class="v" id="hHap">–</div><div class="k">행복도</div></div>
+<div class="stat"><div class="v" id="hMon">1년 1월</div><div class="k">시간</div></div>
+</div>
+<div id="pal">
+<button data-t="h" class="on">주택 ₩1,000</button>
+<button data-t="s">상가 ₩2,500</button>
+<button data-t="f">공장 ₩5,000</button>
+<button data-t="p">공원 ₩1,500</button>
+<button data-t="x">철거 ₩300</button>
+</div>
+<div id="board"></div>
+<div id="ctrl">
+<button id="pause" class="ghost">일시정지</button>
+<button id="reset" class="ghost">새 도시</button>
+<span id="log">주택을 지어 시작하세요. 3초마다 한 달이 지나갑니다.</span>
+</div>
+</div>
+<div class="faq">
+<h2>게임 규칙</h2>
+<p>주택은 인구를 4명씩 수용합니다. 인구는 일자리(상가 5명·공장 12명)와 행복도가 받쳐줄 때만 늘어납니다. 세수는 인구와 취업자에게서 나오고, 상가·공장·공원은 매달 유지비가 나갑니다. 자금이 바닥나면 파산입니다.</p>
+<h2>배치 전략</h2>
+<p>공장은 세수가 크지만 인접한 주택의 행복도를 떨어뜨립니다. 공원은 인접 주택의 행복도를 올리지만 유지비만 나가는 시설입니다. 공장 지대와 주거 지대를 분리하고 그 사이를 상가로 완충하는 것 — 실제 도시계획의 용도지역 개념이 이 게임의 핵심 전략입니다.</p>
+<h2>행복도가 떨어지면</h2>
+<p>행복도 30 미만이면 인구가 도시를 떠나기 시작합니다. 인구가 줄면 세수가 줄고, 유지비를 감당 못 해 파산으로 이어집니다. 공원을 아끼지 마세요.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></div><p>ⓒ 모두도구</p></footer>
+<div id="over"><div class="card"><h2 id="ovT">파산</h2><p id="ovB" style="margin:10px 0"></p><button id="share">결과 공유</button> <button id="again" class="ghost">다시 하기</button></div></div>
+<script>
+var N=12,grid=Array(N*N).fill(null);
+var money=30000,pop=0,month=0,happy=50,tool='h',paused=false,best=0,gameOver=false;
+var COST={h:1000,s:2500,f:5000,p:1500,x:300};
+var ICON={
+h:'<svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z" fill="#e07a3f"/><path d="M3 11 12 4l9 7" fill="none" stroke="#9a4f22" stroke-width="2"/><rect x="10" y="13" width="4" height="7" fill="#7c3d18"/></svg>',
+s:'<svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" fill="#3b82f6"/><rect x="4" y="5" width="16" height="4" fill="#1d4ed8"/><rect x="7" y="12" width="4" height="4" fill="#dbeafe"/><rect x="13" y="12" width="4" height="8" fill="#dbeafe"/></svg>',
+f:'<svg viewBox="0 0 24 24"><rect x="3" y="12" width="18" height="8" fill="#6b7280"/><path d="M3 12v-2l5 3v-3l5 3v-3l8 4" fill="#4b5563"/><rect x="5" y="4" width="3" height="8" fill="#374151"/><circle cx="6.5" cy="3" r="2" fill="#d1d5db"/></svg>',
+p:'<svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6" fill="#16a34a"/><circle cx="8" cy="12" r="4" fill="#22c55e"/><circle cx="16" cy="12" r="4" fill="#15803d"/><rect x="11" y="13" width="2" height="7" fill="#7c3d18"/></svg>'
+};
+var board=document.getElementById('board');
+for(var i=0;i<N*N;i++){var c=document.createElement('div');c.className='cell';c.dataset.i=i;board.appendChild(c)}
+board.addEventListener('pointerdown',function(e){
+if(gameOver)return;
+var el=e.target.closest('.cell');if(!el)return;
+var i=+el.dataset.i;
+if(tool==='x'){if(grid[i]&&money>=COST.x){money-=COST.x;grid[i]=null;draw()}return}
+if(grid[i]){say('이미 건물이 있습니다. 철거 후 지으세요.');return}
+if(money<COST[tool]){say('자금이 부족합니다.');return}
+money-=COST[tool];grid[i]={t:tool};draw();
+});
+document.querySelectorAll('#pal button').forEach(function(b){
+b.onclick=function(){tool=b.dataset.t;document.querySelectorAll('#pal button').forEach(function(x){x.classList.remove('on')});b.classList.add('on')}
+});
+function nbrs(i){var r=Math.floor(i/N),c=i%N,out=[];
+[[r-1,c],[r+1,c],[r,c-1],[r,c+1]].forEach(function(p){if(p[0]>=0&&p[0]<N&&p[1]>=0&&p[1]<N)out.push(p[0]*N+p[1])});return out}
+function count(t){return grid.filter(function(g){return g&&g.t===t}).length}
+function calcHappy(){
+var houses=[],sum=0;
+grid.forEach(function(g,i){if(g&&g.t==='h')houses.push(i)});
+if(!houses.length)return 50;
+houses.forEach(function(i){var b=0;
+nbrs(i).forEach(function(j){var g=grid[j];if(!g)return;
+if(g.t==='p')b+=14;if(g.t==='f')b-=18;if(g.t==='s')b+=3});
+sum+=Math.max(-30,Math.min(30,b))});
+var density=pop>0?Math.min(12,Math.floor(pop/60)):0;
+return Math.max(0,Math.min(100,50+sum/houses.length-density));
+}
+function tick(){
+if(paused||gameOver)return;
+month++;
+var cap=count('h')*4,jobs=count('s')*5+count('f')*12;
+happy=Math.round(calcHappy());
+if(happy>=40&&pop<cap){var demand=Math.min(cap,Math.round(jobs*1.5)+4);
+if(pop<demand)pop+=Math.max(1,Math.round((demand-pop)*0.2))}
+if(happy<30&&pop>0)pop=Math.max(0,pop-Math.max(1,Math.round(pop*0.06)));
+pop=Math.min(pop,cap);
+var employed=Math.min(pop,jobs);
+var income=pop*10+employed*15;
+var upkeep=count('s')*60+count('f')*180+count('p')*40;
+money+=income-upkeep;
+best=Math.max(best,pop);
+if(month%8===0&&pop>0){var ev=[[
+'관광객이 몰려왔습니다! 보너스 ₩'+(pop*20).toLocaleString(),pop*20],
+['폭우로 도로 보수비가 나갔습니다. −₩1,500',-1500],
+['지역 축제가 열렸습니다. 보너스 ₩2,000',2000]][Math.floor(Math.random()*3)];
+money+=ev[1];say(ev[0]);}
+if(money<0){end(false);return}
+draw();
+}
+function draw(){
+document.getElementById('hMoney').textContent='₩'+money.toLocaleString();
+document.getElementById('hPop').textContent=pop.toLocaleString()+' / '+(count('h')*4).toLocaleString();
+document.getElementById('hJob').textContent=(count('s')*5+count('f')*12).toLocaleString();
+var hh=document.getElementById('hHap');hh.textContent=happy;
+hh.style.color=happy<30?'#dc2626':happy>65?'#16a34a':'';
+document.getElementById('hMon').textContent=(Math.floor(month/12)+1)+'년 '+(month%12+1)+'월';
+document.querySelectorAll('.cell').forEach(function(el,i){
+var g=grid[i];el.innerHTML=g?ICON[g.t]:'';
+el.classList.toggle('warn',!!(g&&g.t==='h'&&nbrs(i).some(function(j){return grid[j]&&grid[j].t==='f'})));
+});
+}
+function say(m){document.getElementById('log').textContent=m}
+function end(win){gameOver=true;
+document.getElementById('ovT').textContent=win?'대도시 달성!':'파산했습니다';
+document.getElementById('ovB').textContent='최고 인구 '+best.toLocaleString()+'명 · '+(Math.floor(month/12)+1)+'년 '+(month%12+1)+'월 생존';
+document.getElementById('over').style.display='flex';}
+document.getElementById('share').onclick=function(){
+var msg='미니시티에서 인구 '+best.toLocaleString()+'명 도시를 만들었어요 ('+(Math.floor(month/12)+1)+'년 생존) — 도전: https://modutools.vercel.app/city.html';
+if(navigator.share){navigator.share({text:msg}).catch(function(){})}else{navigator.clipboard.writeText(msg);this.textContent='복사됨!'}
+};
+document.getElementById('again').onclick=function(){location.reload()};
+document.getElementById('reset').onclick=function(){if(confirm('새 도시를 시작할까요?'))location.reload()};
+document.getElementById('pause').onclick=function(){paused=!paused;this.textContent=paused?'계속하기':'일시정지'};
+setInterval(tick,3000);
+draw();
+</script>
+</body>
+</html>
