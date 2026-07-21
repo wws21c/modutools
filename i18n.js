@@ -7,11 +7,17 @@
   var LANGS = { ko: "KO", en: "EN", ja: "日本語", zh: "中文" };
   var COMMON = {
     en: { site_name_prefix:"Modu", site_name_suffix:"Tools", footer_note:"ⓒ ModuTools · Everything runs in your browser. We never store what you enter.",
-      nav_games:"Games", nav_tools:"Tools" },
+      nav_games:"Games", nav_tools:"Tools", links_all:"All tools",
+      c_apt_t:"Home Price Guess", c_map_t:"Where Is This?", c_archi_t:"Daily Architecture", c_space_t:"Space Test", c_scale_t:"Journey of Heights", c_city_t:"Mini City",
+      c_char_t:"Characters", c_salary_t:"Take-home Pay", c_pct_t:"Percent", c_img_t:"Image Compress", c_react_t:"Reaction", c_age_t:"Age", c_dday_t:"D-day", c_bmi_t:"BMI", c_lotto_t:"Lotto", c_yt_t:"YT Thumbnail" },
     ja: { site_name_prefix:"モドゥ", site_name_suffix:"ツール", footer_note:"ⓒ モドゥツール · すべての処理はブラウザ内で完結し、入力内容は保存されません。",
-      nav_games:"ゲーム", nav_tools:"ツール" },
+      nav_games:"ゲーム", nav_tools:"ツール", links_all:"全ツール",
+      c_apt_t:"住宅価格当て", c_map_t:"ここはどこ？", c_archi_t:"今日の建築", c_space_t:"空間タイプ診断", c_scale_t:"高さの旅", c_city_t:"ミニシティ",
+      c_char_t:"文字数", c_salary_t:"手取り計算", c_pct_t:"パーセント", c_img_t:"画像圧縮", c_react_t:"反応速度", c_age_t:"満年齢", c_dday_t:"Dデー", c_bmi_t:"BMI", c_lotto_t:"ロト", c_yt_t:"サムネイル" },
     zh: { site_name_prefix:"全民", site_name_suffix:"工具", footer_note:"ⓒ 全民工具 · 所有计算均在浏览器内完成，不会保存您输入的内容。",
-      nav_games:"游戏", nav_tools:"工具" }
+      nav_games:"游戏", nav_tools:"工具", links_all:"全部工具",
+      c_apt_t:"猜房价", c_map_t:"这是哪里？", c_archi_t:"今日建筑", c_space_t:"空间测试", c_scale_t:"高度之旅", c_city_t:"迷你城市",
+      c_char_t:"字数统计", c_salary_t:"到手工资", c_pct_t:"百分比", c_img_t:"图片压缩", c_react_t:"反应速度", c_age_t:"周岁", c_dday_t:"倒数日", c_bmi_t:"BMI", c_lotto_t:"乐透", c_yt_t:"缩略图" }
   };
   var saved = {};
   function dict(lang) {
