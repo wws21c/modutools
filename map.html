@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>여기 어디? — 실루엣 지도 퀴즈 (매일 한 문제, 시·군·구 맞히기)</title>
+<meta name="description" content="대한민국 시·군·구의 실루엣만 보고 지역 이름을 맞히는 데일리 퀴즈 게임. 매일 새 문제 6번의 기회, 거리·방향 힌트, 스포일러 없는 결과 공유. 자유 모드 무제한.">
+<link rel="canonical" href="https://modutools.vercel.app/map.html">
+<meta property="og:title" content="여기 어디? — 실루엣 지도 퀴즈">
+<meta property="og:description" content="지역 실루엣만 보고 어디인지 맞혀보세요. 매일 한 문제, 6번의 기회.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<style>
+#sil{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:14px}
+#sil svg{display:block;width:100%;height:auto;max-height:44vh}
+#sil path{fill:var(--brand);stroke:var(--ink);stroke-width:.4;stroke-linejoin:round}
+#guesses{display:flex;flex-direction:column;gap:6px;margin:6px 0 12px}
+.grow{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:.95rem}
+.grow .nm{flex:1;font-weight:700}
+.grow .dist{font-variant-numeric:tabular-nums;color:var(--sub);font-size:.85rem}
+.grow .arw{font-size:1.15rem;line-height:1}
+.grow .pct{font-weight:800;font-variant-numeric:tabular-nums;min-width:3.2em;text-align:right}
+.grow.hit{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.grow.hit .pct{color:var(--ok)}
+#slots{display:flex;gap:5px;margin-bottom:10px}
+.slot{flex:1;height:8px;border-radius:5px;background:var(--line)}
+#inputwrap{display:flex;gap:8px}
+#inputwrap input{flex:1;margin:0}
+#inputwrap button{margin:0;white-space:nowrap}
+#msg{font-size:.88rem;color:var(--sub);min-height:1.3em;margin:10px 0 4px}
+#done{display:none;text-align:center;padding:6px 0}
+#done .big2{font-size:1.25rem;font-weight:800;margin:4px 0}
+#emoji{font-size:1.5rem;letter-spacing:2px;margin:12px 0;line-height:1.5}
+.statrow{display:flex;gap:8px;margin:14px 0 4px}
+.statrow .st{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}
+.statrow .st .v{font-weight:800;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.statrow .st .k{font-size:.72rem;color:var(--sub)}
+#modes{display:flex;gap:8px;margin-bottom:14px}
+#modes button{margin:0;flex:1;background:var(--card);color:var(--ink);border:2px solid var(--line);font-size:.9rem;padding:9px}
+#modes button.on{border-color:var(--brand);color:var(--brand)}
+.sharerow{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.sharerow button{margin:0}
+.revealed{color:var(--brand);font-weight:800}
+</style>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
+<main>
+<h1>여기 어디? — 실루엣 지도 퀴즈</h1>
+<p class="lead">대한민국 시·군·구의 윤곽선만 보고 어디인지 맞혀보세요. 매일 한 문제, 6번의 기회. 틀리면 정답까지의 거리와 방향을 알려드립니다.</p>
+<div class="card">
+<div id="modes">
+<button id="mDaily" class="on">오늘의 문제</button>
+<button id="mFree">자유 모드</button>
+</div>
+<div id="sil"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><path id="silPath" d=""/></svg></div>
+<div id="slots"></div>
+<div id="guesses"></div>
+<div id="inputwrap">
+<input type="text" id="guess" list="regions" placeholder="시·군·구 이름 입력 (예: 강남구)" autocomplete="off" enterkeyhint="go">
+<button id="submit">제출</button>
+</div>
+<datalist id="regions"></datalist>
+<div id="msg"></div>
+<div id="done">
+<div class="big2" id="doneT"></div>
+<div id="emoji"></div>
+<div class="sharerow">
+<button id="share">결과 공유</button>
+<button id="copy" class="ghost">링크 복사</button>
+<button id="next" class="ghost" style="display:none">다음 문제</button>
+</div>
+</div>
+<div class="statrow">
+<div class="st"><div class="v" id="sPlay">0</div><div class="k">플레이</div></div>
+<div class="st"><div class="v" id="sWin">0%</div><div class="k">정답률</div></div>
+<div class="st"><div class="v" id="sStreak">0</div><div class="k">연속 정답</div></div>
+<div class="st"><div class="v" id="sMax">0</div><div class="k">최고 연속</div></div>
+</div>
+</div>
+<div class="faq">
+<h2>게임 방법</h2>
+<p>화면에 표시된 실루엣은 대한민국의 어느 시·군·구 경계입니다. 이름을 입력해 제출하세요. 6번 안에 맞히면 됩니다. 틀릴 때마다 정답 지역의 중심점까지 남은 거리(km), 그쪽을 가리키는 방향 화살표, 그리고 얼마나 가까운지를 나타내는 근접도(%)가 표시됩니다.</p>
+<h2>근접도는 어떻게 계산하나요</h2>
+<p>두 지역 중심점의 위경도로 하버사인(haversine) 거리를 구한 뒤, 국토 대각선 길이를 기준으로 환산합니다. 100%면 정답, 가까울수록 높아집니다. 방향 화살표는 8방위로, 정답이 있는 쪽을 가리킵니다.</p>
+<h2>오늘의 문제와 자유 모드</h2>
+<p>‘오늘의 문제’는 한국 시각(KST) 날짜를 기준으로 전국 모든 사람에게 같은 문제가 나옵니다. 하루 한 번 도전하고 결과를 이모지로 공유해 보세요. 정답은 가려져 있어 스포일러가 되지 않습니다. ‘자유 모드’는 무작위로 무제한 즐길 수 있습니다.</p>
+<h2>데이터 출처</h2>
+<p>행정경계 데이터는 통계청(KOSTAT) 자료를 Team POPONG이 편집·배포한 southkorea-maps(CC BY 4.0)를 사용했습니다. 실루엣은 인식 가능한 최소 좌표로 단순화했으며, 모든 계산은 브라우저 안에서만 이루어집니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></div><p>ⓒ 모두도구 · 지도 데이터 southkorea-maps (KOSTAT / Team POPONG, CC BY 4.0)</p></footer>
+<script src="/map-data.js"></script>
+<script>
+(function(){
+var D=window.MAP_DATA||[];
+var MAX=6, R=6371;
+var byName={}; D.forEach(function(d){byName[d.n]=d;});
+
+// datalist
+var dl=document.getElementById('regions');
+D.forEach(function(d){var o=document.createElement('option');o.value=d.n;dl.appendChild(o);});
+
+// national diagonal (for proximity normalization): max centroid distance
+var MAXDIST=(function(){
+  var lo=[Infinity,Infinity],hi=[-Infinity,-Infinity];
+  D.forEach(function(d){var c=d.c;
+    if(c[0]<lo[0])lo[0]=c[0]; if(c[1]<lo[1])lo[1]=c[1];
+    if(c[0]>hi[0])hi[0]=c[0]; if(c[1]>hi[1])hi[1]=c[1];});
+  return hav(lo[1],lo[0],hi[1],hi[0]);
+})();
+
+function hav(la1,lo1,la2,lo2){
+  var toR=Math.PI/180;
+  var dLa=(la2-la1)*toR, dLo=(lo2-lo1)*toR;
+  var a=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(la1*toR)*Math.cos(la2*toR)*Math.sin(dLo/2)*Math.sin(dLo/2);
+  return 2*R*Math.asin(Math.min(1,Math.sqrt(a)));
+}
+function bearing(la1,lo1,la2,lo2){
+  var toR=Math.PI/180;
+  var y=Math.sin((lo2-lo1)*toR)*Math.cos(la2*toR);
+  var x=Math.cos(la1*toR)*Math.sin(la2*toR)-Math.sin(la1*toR)*Math.cos(la2*toR)*Math.cos((lo2-lo1)*toR);
+  return (Math.atan2(y,x)*180/Math.PI+360)%360;
+}
+var ARROWS=['⬆️','↗️','➡️','↘️','⬇️','↙️','⬅️','↖️'];
+function arrow(brg){return ARROWS[Math.round(brg/45)%8];}
+function proximity(dist){ // Worldle-style: 1 - dist/maxdist
+  var p=Math.max(0,1-dist/MAXDIST); return Math.round(p*100);
+}
+function gauge(pct){ // 5-cell 🟩🟨⬜ ladder
+  var filled=pct/100*5, out='';
+  for(var i=0;i<5;i++){
+    if(i+1<=Math.floor(filled)) out+= pct>=95?'🟩':(pct>=70?'🟩':'🟨');
+    else if(i<filled) out+= pct>=70?'🟨':'🟨';
+    else out+='⬜';
+  }
+  return out;
+}
+function distGauge(pct){ // per-guess row: 5 cells green/yellow/white by proximity
+  var f=Math.round(pct/20), out='';
+  for(var i=0;i<5;i++) out+= i<f ? (pct>=90?'🟩':'🟨') : '⬜';
+  return pct>=100?'🟩🟩🟩🟩🟩':out;
+}
+
+// --- daily seed (KST) ---
+function kstDateStr(){
+  var now=new Date();
+  var kst=new Date(now.getTime()+ (now.getTimezoneOffset()+540)*60000);
+  return kst.getFullYear()+'-'+String(kst.getMonth()+1).padStart(2,'0')+'-'+String(kst.getDate()).padStart(2,'0');
+}
+function hashStr(s){var h=2166136261>>>0;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h>>>0;}
+function dailyIndex(){return hashStr('map-quiz-'+kstDateStr())%D.length;}
+
+// --- state ---
+var mode='daily', answer=null, guesses=[], over=false;
+var el={sil:document.getElementById('silPath'),slots:document.getElementById('slots'),
+  gs:document.getElementById('guesses'),msg:document.getElementById('msg'),
+  input:document.getElementById('guess'),done:document.getElementById('done'),
+  doneT:document.getElementById('doneT'),emoji:document.getElementById('emoji'),
+  next:document.getElementById('next')};
+
+function buildSlots(){el.slots.innerHTML='';for(var i=0;i<MAX;i++){var s=document.createElement('div');s.className='slot';el.slots.appendChild(s);}}
+function paintSlots(){
+  var kids=el.slots.children;
+  for(var i=0;i<MAX;i++){
+    var g=guesses[i];
+    kids[i].style.background = g? (g.correct?'var(--ok)': (g.pct>=70?'#eab308':'var(--brand)')) : 'var(--line)';
+    kids[i].style.opacity = g? (g.correct?1: .35+g.pct/100*.55) : 1;
+  }
+}
+
+function newRound(){
+  guesses=[];over=false;
+  el.done.style.display='none';el.gs.innerHTML='';el.msg.textContent='';
+  el.input.value='';el.input.disabled=false;document.getElementById('submit').disabled=false;
+  var idx = mode==='daily' ? dailyIndex() : Math.floor(Math.random()*D.length);
+  answer=D[idx];
+  el.sil.setAttribute('d',answer.p);
+  buildSlots();paintSlots();
+  if(mode==='daily'){ var saved=loadDaily(); if(saved) restore(saved); }
+  el.input.focus();
+}
+
+function addGuess(name){
+  if(over)return;
+  var g=byName[name];
+  if(!g){el.msg.textContent='목록에 없는 지역입니다. 자동완성에서 골라주세요.';return;}
+  if(guesses.some(function(x){return x.n===name;})){el.msg.textContent='이미 시도한 지역입니다.';return;}
+  var correct = name===answer.n;
+  var dist = correct?0: hav(g.c[1],g.c[0],answer.c[1],answer.c[0]);
+  var pct = correct?100:proximity(dist);
+  var brg = correct?0:bearing(g.c[1],g.c[0],answer.c[1],answer.c[0]);
+  var rec={n:name,correct:correct,dist:Math.round(dist),pct:pct,arw:correct?'🎯':arrow(brg)};
+  guesses.push(rec);
+  renderGuesses();paintSlots();el.msg.textContent='';el.input.value='';
+  if(mode==='daily')saveDaily();
+  if(correct){finish(true);}
+  else if(guesses.length>=MAX){finish(false);}
+  else{el.input.focus();}
+}
+function renderGuesses(){
+  el.gs.innerHTML='';
+  guesses.forEach(function(g){
+    var row=document.createElement('div');row.className='grow'+(g.correct?' hit':'');
+    row.innerHTML='<span class="nm">'+g.n+'</span>'+
+      (g.correct?'<span class="dist">정답!</span>':'<span class="dist">'+g.dist+'km</span>')+
+      '<span class="arw">'+g.arw+'</span><span class="pct">'+g.pct+'%</span>';
+    el.gs.appendChild(row);
+  });
+}
+
+function finish(win){
+  over=true;el.input.disabled=true;document.getElementById('submit').disabled=true;
+  el.done.style.display='block';
+  el.doneT.innerHTML = win
+    ? '정답! <span class="revealed">'+answer.n+'</span> — '+guesses.length+'/'+MAX
+    : '아쉬워요. 정답은 <span class="revealed">'+answer.n+'</span>';
+  el.emoji.textContent=buildEmoji(win);
+  el.next.style.display = mode==='free' ? 'inline-block':'none';
+  if(mode==='daily'){recordStat(win);saveDaily();}
+  renderStats();
+}
+
+function buildEmoji(win){
+  var head = (mode==='daily'? '여기 어디? '+kstDateStr()+' ' : '여기 어디? 자유 ')+(win?guesses.length:'X')+'/'+MAX+'\n';
+  var body = guesses.map(function(g){return distGauge(g.pct);}).join('\n');
+  return head+'\n'+body;
+}
+
+// --- share ---
+document.getElementById('share').onclick=function(){
+  var url='https://modutools.vercel.app/map.html';
+  var txt=el.emoji.textContent+'\n'+url;
+  if(navigator.share){navigator.share({text:txt}).catch(function(){});}
+  else{navigator.clipboard.writeText(txt);this.textContent='복사됨!';var b=this;setTimeout(function(){b.textContent='결과 공유';},1500);}
+};
+document.getElementById('copy').onclick=function(){
+  navigator.clipboard.writeText('https://modutools.vercel.app/map.html');
+  this.textContent='복사됨!';var b=this;setTimeout(function(){b.textContent='링크 복사';},1500);
+};
+el.next.onclick=function(){newRound();};
+
+// --- input ---
+document.getElementById('submit').onclick=function(){addGuess(el.input.value.trim());};
+el.input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();addGuess(el.input.value.trim());}});
+
+// --- modes ---
+document.getElementById('mDaily').onclick=function(){setMode('daily');};
+document.getElementById('mFree').onclick=function(){setMode('free');};
+function setMode(m){
+  mode=m;
+  document.getElementById('mDaily').classList.toggle('on',m==='daily');
+  document.getElementById('mFree').classList.toggle('on',m==='free');
+  renderStats();newRound();
+}
+
+// --- persistence: daily progress ---
+function saveDaily(){
+  try{localStorage.setItem('mapquiz-daily',JSON.stringify({date:kstDateStr(),guesses:guesses,over:over}));}catch(e){}
+}
+function loadDaily(){
+  try{var s=JSON.parse(localStorage.getItem('mapquiz-daily')||'null');
+    if(s&&s.date===kstDateStr())return s;}catch(e){}
+  return null;
+}
+function restore(s){
+  guesses=s.guesses||[];renderGuesses();paintSlots();
+  if(s.over){over=true;el.input.disabled=true;document.getElementById('submit').disabled=true;
+    var win=guesses.length&&guesses[guesses.length-1].correct;
+    el.done.style.display='block';
+    el.doneT.innerHTML=win?'정답! <span class="revealed">'+answer.n+'</span> — '+guesses.length+'/'+MAX
+      :'아쉬워요. 정답은 <span class="revealed">'+answer.n+'</span>';
+    el.emoji.textContent=buildEmoji(win);
+    el.msg.textContent='오늘 문제는 이미 완료했어요. 자유 모드로 더 즐겨보세요.';
+  }
+}
+
+// --- persistence: stats ---
+function getStats(){try{return JSON.parse(localStorage.getItem('mapquiz-stats')||'null')||{play:0,win:0,streak:0,max:0,last:''};}catch(e){return{play:0,win:0,streak:0,max:0,last:''};}}
+function recordStat(win){
+  var d=kstDateStr(),s=getStats();
+  if(s.last===d)return; // one daily record per day
+  s.play++; if(win){s.win++;s.streak++;if(s.streak>s.max)s.max=s.streak;} else {s.streak=0;}
+  s.last=d;
+  try{localStorage.setItem('mapquiz-stats',JSON.stringify(s));}catch(e){}
+}
+function renderStats(){
+  var s=getStats();
+  document.getElementById('sPlay').textContent=s.play;
+  document.getElementById('sWin').textContent=(s.play?Math.round(s.win/s.play*100):0)+'%';
+  document.getElementById('sStreak').textContent=s.streak;
+  document.getElementById('sMax').textContent=s.max;
+}
+
+// init
+renderStats();
+newRound();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>높이 여행 — 하늘 끝에서 심해까지 스크롤로 내려가는 스케일 여행</title>
+<meta name="description" content="여객기 순항고도 10,668m에서 마리아나 해구 −10,935m까지. 스크롤을 내리면 고도계가 실시간으로 변합니다. 부르즈 할리파·롯데월드타워·에펠탑·피라미드·심해까지, 인간이 지은 것과 자연의 깊이를 한눈에.">
+<link rel="canonical" href="https://modutools.vercel.app/scale.html">
+<meta property="og:title" content="높이 여행 — 하늘 끝에서 심해까지">
+<meta property="og:description" content="스크롤로 내려가는 수직 스케일 여행. 고도계 숫자가 실시간으로 변합니다.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<style>
+/* 이 페이지는 배경 그라데이션이 주인공 — 섹션 배경은 자체 색 사용 */
+html{scroll-behavior:smooth}
+main{max-width:820px}
+.lead{margin-bottom:6px}
+.hint{font-size:.82rem;color:var(--sub);margin:0 0 14px}
+
+/* 고도계: 좌측(모바일은 상단) 고정 */
+#alti{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:20;
+  background:rgba(15,18,24,.82);color:#fff;border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:10px 12px;min-width:118px;text-align:center;
+  backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,.35);pointer-events:none}
+#alti .num{font-weight:800;font-size:1.35rem;font-variant-numeric:tabular-nums;line-height:1.05;letter-spacing:-.02em}
+#alti .unit{font-size:.7rem;opacity:.75;margin-top:2px}
+#alti .zone{font-size:.72rem;margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,.15);opacity:.9}
+@media(max-width:640px){
+  #alti{left:50%;top:8px;transform:translateX(-50%);min-width:0;display:flex;gap:10px;align-items:center;padding:7px 12px}
+  #alti .zone{margin-top:0;padding-top:0;border-top:0;border-left:1px solid rgba(255,255,255,.15);padding-left:10px}
+  #alti .unit{display:inline;margin:0 0 0 3px}
+}
+
+/* 진행 배경 레일 */
+#trip{position:relative;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);isolation:isolate}
+.seg{position:relative;padding:26px 16px 26px 74px;color:#0d1017;
+  border-bottom:1px solid rgba(0,0,0,.06);transition:none}
+@media(max-width:640px){.seg{padding:22px 12px 22px 12px;padding-top:56px}}
+.seg .svgbox{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:48px;height:56px;display:flex;align-items:center;justify-content:center}
+@media(max-width:640px){.seg .svgbox{left:12px;top:12px;transform:none;width:40px;height:34px}}
+.seg svg{width:100%;height:100%;display:block;overflow:visible}
+.seg .name{font-weight:800;font-size:1.02rem;line-height:1.25}
+.seg .val{font-weight:800;font-variant-numeric:tabular-nums;font-size:.92rem;opacity:.85;margin-left:4px}
+.seg .cmt{font-size:.85rem;opacity:.8;margin-top:3px;line-height:1.4}
+.seg.dark{color:#f2f5fb;border-bottom-color:rgba(255,255,255,.08)}
+.seg.dark .cmt{opacity:.78}
+
+/* 이스터에그(체감) 밴드 */
+.easter{padding:18px 16px 18px 74px;font-size:.9rem;line-height:1.5;
+  background:rgba(255,214,0,.14);border-top:1px dashed rgba(0,0,0,.18);border-bottom:1px dashed rgba(0,0,0,.18)}
+@media(max-width:640px){.easter{padding-left:16px}}
+.easter b{font-weight:800}
+.seg.dark + .easter,.easter.dark{background:rgba(120,180,255,.14);color:#eaf1ff;
+  border-color:rgba(255,255,255,.2)}
+
+/* 지면(0m) 마커 */
+.ground{padding:14px 16px;text-align:center;font-weight:800;letter-spacing:.04em;
+  background:#3a2c1a;color:#ffe6b3;border-top:3px solid #6b4f2a;border-bottom:3px solid #1c130a}
+
+/* 도착 배지 */
+#done{margin:22px 0 4px;text-align:center}
+#done .badge{display:inline-block;background:var(--card);border:2px solid var(--brand);
+  border-radius:16px;padding:20px 22px;max-width:420px}
+#done h2{margin:0 0 6px}
+#done p{margin:0 0 12px;color:var(--sub);font-size:.92rem}
+#share{margin:0}
+.src{font-size:.76rem;color:var(--sub);line-height:1.6;margin-top:8px}
+.src summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a></nav></header>
+<main>
+<h1>높이 여행</h1>
+<p class="lead">여객기가 나는 하늘 끝에서 지구에서 가장 깊은 바다까지, 스크롤 한 번으로 21km를 내려갑니다.</p>
+<p class="hint">아래로 스크롤하세요. 왼쪽 고도계 숫자가 지금 내가 있는 높이입니다. 모두 실제 측정값입니다.</p>
+
+<div id="alti" aria-hidden="true">
+  <div><span class="num" id="altiNum">10,668</span><span class="unit">m</span></div>
+  <div class="zone" id="altiZone">성층권 언저리</div>
+</div>
+
+<div id="trip"></div>
+
+<div id="done">
+  <div class="badge">
+    <h2>🌊 도착: 챌린저 해연</h2>
+    <p>해발 10,668m에서 수심 −10,935m까지, 총 21,603m를 내려왔습니다. 지구에서 더 깊이 내려갈 곳은 없습니다.</p>
+    <button id="share">여행 기록 공유</button>
+  </div>
+</div>
+
+<div class="faq">
+<h2>이게 뭔가요</h2>
+<p>인간이 지은 가장 높은 구조물부터 자연이 파낸 가장 깊은 바다까지, 높이·깊이를 하나의 수직선 위에 올려놓은 스케일 장난감입니다. 롯데월드타워가 에펠탑보다 얼마나 높은지, 마리아나 해구가 부르즈 할리파를 몇 개나 삼키는지 — 숫자로만 보면 안 와닿던 스케일을 스크롤로 몸에 새겨봅니다.</p>
+<h2>수치는 정확한가요</h2>
+<p>모든 높이·깊이는 실제 측정값입니다. 건물은 첨탑 포함 공식 높이, 자연 지형은 최신 측량값을 썼습니다. 근거가 불확실한 항목은 넣지 않았습니다. 출처는 페이지 맨 아래에 정리해 두었습니다.</p>
+<h2>왜 우주까지 안 가나요</h2>
+<p>이 여행의 주인공은 "인간이 지은 것"과 "인간이 닿은 깊이"입니다. 위로는 여객기 순항고도에서 시작하고, 아래로는 사람이 실제로 잠수정을 타고 내려간 지구의 바닥에서 끝납니다.</p>
+</div>
+
+<details class="src">
+<summary>수치 출처</summary>
+<p>여객기 순항고도 35,000ft≈10,668m(항공위키·KARI) · 부르즈 할리파 828m·상하이타워 632m·롯데월드타워 555m·메르데카118 678.9m(Wikipedia List of tallest buildings) · 에펠탑 330m·63빌딩 249m·남산서울타워 탑높이 236.7m(ko.wikipedia) · 자유의 여신상 93m·구세주 그리스도상 38m·첨성대 9.17m(Wikipedia) · 세종대왕 동상 6.2m·기단 포함 9.5m(문화포털·아시아경제) · 기자 피라미드 현재 138.5m/원래 146.6m(Wikipedia Great Pyramid) · 부산 3호선 만덕역 지하 76m·서울 8호선 산성역 55.79m·6호선 버티고개역 49.3m(노컷뉴스) · 파리 카타콤 지하 20m(나무위키) · 음퐁엔 금광 약 4,000m·콜라 초심층 시추공 12,262m(Wikipedia) · 광합성층(유광층) 200m·박광층(twilight zone) 1,000m(NOAA) · 타이타닉 잔해 3,800m·향유고래 잠수 1,000m+(Wikipedia·NCBI) · 챌린저 해연 10,935±6m(Wikipedia Challenger Deep). 2026-07 확인.</p>
+</details>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a></div><p>ⓒ 모두도구</p></footer>
+
+<script src="/scale-data.js"></script>
+<script>
+(function(){
+var D=window.SCALE_DATA;
+var trip=document.getElementById('trip');
+var altiNum=document.getElementById('altiNum');
+var altiZone=document.getElementById('altiZone');
+
+// 배경 그라데이션 색상 정지점 (고도 m -> rgb). 위=하늘, 0=지상, 아래=암반->심해->칠흑
+var STOPS=[
+  [11000,[64,110,190]],   // 성층권 짙은 파랑
+  [3000, [122,170,225]],  // 고고도 하늘
+  [400,  [176,208,238]],  // 저공 하늘
+  [30,   [205,225,240]],  // 지표 근처
+  [0,    [150,120,80]],   // 지면(흙)
+  [-60,  [96,74,52]],     // 얕은 지하/암반
+  [-1000,[40,58,86]],     // 얕은 바다
+  [-3000,[22,38,64]],     // 심해
+  [-6000,[12,22,40]],     // 초심해
+  [-11000,[4,8,16]]       // 해구 바닥, 칠흑
+];
+function lerp(a,b,t){return a+(b-a)*t}
+function bg(m){
+  if(m>=STOPS[0][0])return STOPS[0][1];
+  var last=STOPS[STOPS.length-1];
+  if(m<=last[0])return last[1];
+  for(var i=0;i<STOPS.length-1;i++){
+    var hi=STOPS[i],lo=STOPS[i+1];
+    if(m<=hi[0]&&m>=lo[0]){
+      var t=(hi[0]-m)/(hi[0]-lo[0]);
+      return [Math.round(lerp(hi[1][0],lo[1][0],t)),
+              Math.round(lerp(hi[1][1],lo[1][1],t)),
+              Math.round(lerp(hi[1][2],lo[1][2],t))];
+    }
+  }
+  return last[1];
+}
+function isDark(m){var c=bg(m);return (c[0]*299+c[1]*587+c[2]*114)/1000 < 128;}
+
+// 세그먼트 렌더
+var html='';
+D.forEach(function(it){
+  if(it.ground){html+='<div class="ground">━━━  지면 · 해발 0m  ━━━</div>';return;}
+  if(it.easter){
+    html+='<div class="easter'+(isDark(it.m)?' dark':'')+'" data-m="'+it.m+'">'+it.easter+'</div>';
+    return;
+  }
+  var dark=isDark(it.m)?' dark':'';
+  var v=it.m>=0? it.m.toLocaleString()+'m' : '−'+Math.abs(it.m).toLocaleString()+'m';
+  html+='<div class="seg'+dark+'" data-m="'+it.m+'">'
+    +'<div class="svgbox">'+it.svg+'</div>'
+    +'<div class="name">'+it.name+'<span class="val">'+v+'</span></div>'
+    +'<div class="cmt">'+it.cmt+'</div></div>';
+});
+trip.innerHTML=html;
+
+// data-m 가진 노드 목록 (위->아래 = 고도 내림차순)
+var nodes=[].slice.call(trip.querySelectorAll('[data-m]'));
+
+// 배경: 각 세그먼트에 자기 고도색 칠하고, 아래 세그먼트로 자연 그라데이션
+nodes.forEach(function(el){
+  var m=+el.getAttribute('data-m');
+  var c=bg(m);
+  el.style.background='rgb('+c[0]+','+c[1]+','+c[2]+')';
+});
+
+// 고도계 라이브 업데이트: 현재 뷰포트 중앙에 걸린 두 세그먼트 사이를 보간
+function zoneLabel(m){
+  if(m>9000)return '성층권 언저리';
+  if(m>2000)return '고고도 · 여기서 비행운';
+  if(m>200)return '고층 · 하늘';
+  if(m>1)return '지상 · 사람의 눈높이';
+  if(m>-0.5)return '지면 · 해발 0';
+  if(m>-60)return '지하 · 암반';
+  if(m>-200)return '얕은 바다 · 유광층';
+  if(m>-1000)return '박광층 · 빛의 끝';
+  if(m>-4000)return '심해 · 칠흑';
+  if(m>-6000)return '초심해대';
+  return '해구 바닥';
+}
+var raf=null;
+function update(){
+  raf=null;
+  var mid=window.innerHeight*0.5;
+  // 뷰포트 중앙선을 기준으로, 그 위/아래에 걸친 두 노드의 고도를 픽셀비율로 보간
+  var above=null,below=null;
+  for(var i=0;i<nodes.length;i++){
+    var r=nodes[i].getBoundingClientRect();
+    if(r.top<=mid){above={m:+nodes[i].getAttribute('data-m'),top:r.top,bottom:r.bottom};}
+    if(r.top>mid){below={m:+nodes[i].getAttribute('data-m'),top:r.top};break;}
+  }
+  var m;
+  if(!above){m=+nodes[0].getAttribute('data-m');}
+  else if(!below){m=+nodes[nodes.length-1].getAttribute('data-m');}
+  else{
+    var t=(mid-above.top)/(below.top-above.top);
+    t=Math.max(0,Math.min(1,t));
+    m=above.m+(below.m-above.m)*t;
+  }
+  var shown=Math.abs(m)>=10? Math.round(m) : Math.round(m*10)/10;
+  var txt=shown>=0? shown.toLocaleString() : '−'+Math.abs(shown).toLocaleString();
+  altiNum.textContent=txt;
+  altiZone.textContent=zoneLabel(m);
+  // 페이지 전체 배경도 현재 고도색으로(고도계 대비용 + 여백 채움)
+  var c=bg(m);
+  document.body.style.background='rgb('+c[0]+','+c[1]+','+c[2]+')';
+}
+function onScroll(){if(raf===null)raf=requestAnimationFrame(update);}
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',onScroll,{passive:true});
+update();
+
+// 공유
+document.getElementById('share').onclick=function(){
+  var msg='하늘 끝(10,668m)에서 마리아나 해구(−10,935m)까지 21km를 스크롤로 내려왔어요 🌊 — 높이 여행: https://modutools.vercel.app/scale.html';
+  if(navigator.share){navigator.share({text:msg}).catch(function(){});}
+  else{navigator.clipboard.writeText(msg);this.textContent='복사됨!';}
+};
+})();
+</script>
+</body>
+</html>
