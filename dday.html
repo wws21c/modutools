@@ -9,42 +9,100 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"D-day Counter", lead:"Days left until a target date, days between two dates, and adding or subtracting days.",
+ c1_h:"1. D-day (from today to a target date)", lbl_target:"Target date",
+ c2_h:"2. Days between two dates", lbl_start:"Start date", lbl_end:"End date",
+ c3_h:"3. Add / subtract days", lbl_base:"Base date", lbl_days:"Days to add (negative = subtract)",
+ faq_h1:"Tips for 100-day and anniversary counts",
+ faq_p1:"By the Korean couples' custom of counting the first day as day 1, the 100th day is the start date plus 99 days — enter the start date and 99 in calculator 3. For a plain \"100 days later,\" enter 100.",
+ faq_h2:"Discharge date & exam date",
+ faq_p2:"Enter a military discharge or exam date in calculator 1 to see D-minus from today. A past date shows as D-plus.",
+ r_left:"<strong>D-{n}</strong> ({n} days left)", r_today:"<strong>D-Day</strong> — that's today",
+ r_past:"<strong>D+{n}</strong> ({n} days ago)",
+ r_between:"<strong>{n} days</strong>", r_end_earlier:" (end date is earlier)", r_incl:" · {n} days if start is included",
+ links_all:"All tools",
+ wd_sun:"Sun", wd_mon:"Mon", wd_tue:"Tue", wd_wed:"Wed", wd_thu:"Thu", wd_fri:"Fri", wd_sat:"Sat",
+ dfmt:"{y} / {m} / {d} ({w})"
+},
+ja:{
+ h1:"Dデーカウンター", lead:"目標日までの残り日数、2つの日付の間の日数、日付の足し引き。",
+ c1_h:"1. Dデー（今日から目標日まで）", lbl_target:"目標日",
+ c2_h:"2. 2つの日付の間の日数", lbl_start:"開始日", lbl_end:"終了日",
+ c3_h:"3. 日付の足し算 / 引き算", lbl_base:"基準日", lbl_days:"足す日数（マイナス = 引く）",
+ faq_h1:"100日・記念日の計算のヒント",
+ faq_p1:"付き合った日を1日目とする韓国のカップル記念日の慣習では、100日は開始日に99日を足した日です。計算機3に開始日と99を入れてください。単純な「100日後」は100を入れます。",
+ faq_h2:"除隊日・試験日の計算",
+ faq_p2:"計算機1に除隊日や試験日を入れると、今日を基準にDマイナスの数字が出ます。過去の日付を入れるとDプラスで表示されます。",
+ r_left:"<strong>D-{n}</strong>（残り{n}日）", r_today:"<strong>D-Day</strong> 本日です",
+ r_past:"<strong>D+{n}</strong>（{n}日経過）",
+ r_between:"<strong>{n}日</strong>", r_end_earlier:"（終了日の方が前）", r_incl:" · 開始日を含めると{n}日",
+ links_all:"すべてのツール",
+ wd_sun:"日", wd_mon:"月", wd_tue:"火", wd_wed:"水", wd_thu:"木", wd_fri:"金", wd_sat:"土",
+ dfmt:"{y}年 {m}月 {d}日（{w}）"
+},
+zh:{
+ h1:"倒数日", lead:"距目标日的剩余天数、两个日期之间的天数，以及日期加减。",
+ c1_h:"1. 倒数日（从今天到目标日）", lbl_target:"目标日",
+ c2_h:"2. 两个日期之间的天数", lbl_start:"开始日", lbl_end:"结束日",
+ c3_h:"3. 日期加 / 减", lbl_base:"基准日", lbl_days:"要加的天数（负数 = 减）",
+ faq_h1:"百日、纪念日计算小贴士",
+ faq_p1:"按照把在一起的第一天算作第1天的韩国情侣纪念日习俗，第100天是开始日加99天，在计算器3中输入开始日和99即可。若单纯要「100天后」，则输入100。",
+ faq_h2:"退伍日、考试日计算",
+ faq_p2:"在计算器1中输入退伍日或考试日，即可看到以今天为准的 D- 数字。输入过去的日期则显示为 D+。",
+ r_left:"<strong>D-{n}</strong>（还剩{n}天）", r_today:"<strong>D-Day</strong> 就是今天",
+ r_past:"<strong>D+{n}</strong>（已过{n}天）",
+ r_between:"<strong>{n}天</strong>", r_end_earlier:"（结束日更早）", r_incl:" · 含开始日则为{n}天",
+ links_all:"全部工具",
+ wd_sun:"日", wd_mon:"一", wd_tue:"二", wd_wed:"三", wd_thu:"四", wd_fri:"五", wd_sat:"六",
+ dfmt:"{y}年 {m}月 {d}日（周{w}）"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/age.html">만 나이</a><a href="/salary.html">연봉계산</a><a href="/reaction.html">반응속도</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/age.html" data-i18n="c_age_t">만 나이</a><a href="/salary.html" data-i18n="c_salary_t">연봉계산</a><a href="/reaction.html" data-i18n="c_react_t">반응속도</a></nav></header>
 <main>
-<h1>디데이 계산기</h1>
-<p class="lead">목표일까지 남은 날짜, 두 날짜 사이 일수, 날짜 더하기·빼기.</p>
-<div class="card"><b>1. 디데이 (오늘부터 목표일까지)</b>
-<label>목표일</label><input type="date" id="d1">
+<h1 data-i18n="h1">디데이 계산기</h1>
+<p class="lead" data-i18n="lead">목표일까지 남은 날짜, 두 날짜 사이 일수, 날짜 더하기·빼기.</p>
+<div class="card"><b data-i18n="c1_h">1. 디데이 (오늘부터 목표일까지)</b>
+<label data-i18n="lbl_target">목표일</label><input type="date" id="d1">
 <div class="result" id="r1">—</div></div>
-<div class="card"><b>2. 두 날짜 사이 일수</b>
-<div class="row"><div><label>시작일</label><input type="date" id="d2a"></div><div><label>종료일</label><input type="date" id="d2b"></div></div>
+<div class="card"><b data-i18n="c2_h">2. 두 날짜 사이 일수</b>
+<div class="row"><div><label data-i18n="lbl_start">시작일</label><input type="date" id="d2a"></div><div><label data-i18n="lbl_end">종료일</label><input type="date" id="d2b"></div></div>
 <div class="result" id="r2">—</div></div>
-<div class="card"><b>3. 날짜 더하기 / 빼기</b>
-<div class="row"><div><label>기준일</label><input type="date" id="d3"></div><div><label>더할 일수 (음수 = 빼기)</label><input type="number" id="d3n" value="100"></div></div>
+<div class="card"><b data-i18n="c3_h">3. 날짜 더하기 / 빼기</b>
+<div class="row"><div><label data-i18n="lbl_base">기준일</label><input type="date" id="d3"></div><div><label data-i18n="lbl_days">더할 일수 (음수 = 빼기)</label><input type="number" id="d3n" value="100"></div></div>
 <div class="result" id="r3">—</div></div>
 <div class="faq">
-<h2>백일·기념일 계산 팁</h2>
-<p>사귄 날을 1일로 치는 커플 기념일 문화 기준이라면, 100일은 시작일에 99일을 더한 날입니다. 3번 계산기에 시작일과 99를 넣으면 됩니다. 반대로 순수하게 "100일 후"는 100을 넣으세요.</p>
-<h2>전역일·시험일 계산</h2>
-<p>1번에 전역일이나 시험일을 넣으면 오늘 기준 D-숫자가 나옵니다. 지난 날짜를 넣으면 D+로 표시됩니다.</p>
+<h2 data-i18n="faq_h1">백일·기념일 계산 팁</h2>
+<p data-i18n="faq_p1">사귄 날을 1일로 치는 커플 기념일 문화 기준이라면, 100일은 시작일에 99일을 더한 날입니다. 3번 계산기에 시작일과 99를 넣으면 됩니다. 반대로 순수하게 "100일 후"는 100을 넣으세요.</p>
+<h2 data-i18n="faq_h2">전역일·시험일 계산</h2>
+<p data-i18n="faq_p2">1번에 전역일이나 시험일을 넣으면 오늘 기준 D-숫자가 나옵니다. 지난 날짜를 넣으면 D+로 표시됩니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/age.html">만 나이</a><a href="/char-count.html">글자수</a></div><p>ⓒ 모두도구</p></footer>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/age.html" data-i18n="c_age_t">만 나이</a><a href="/char-count.html" data-i18n="c_char_t">글자수</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
 <script>
 var DAY=86400000;
+function T(k,ko){return window.t?window.t(k,ko):ko}
+function sub(s,n){return s.split('{n}').join(n)}
 function mid(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
-function fmt(d){return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 ('+['일','월','화','수','목','금','토'][d.getDay()]+')'}
-document.getElementById('d1').addEventListener('input',function(){
-var v=this.valueAsDate;if(!v)return;
+var WD=['wd_sun','wd_mon','wd_tue','wd_wed','wd_thu','wd_fri','wd_sat'];
+var WDKO=['일','월','화','수','목','금','토'];
+function fmt(d){var w=T(WD[d.getDay()],WDKO[d.getDay()]);
+return T('dfmt','{y}년 {m}월 {d}일 ({w})').split('{y}').join(d.getFullYear()).split('{m}').join(d.getMonth()+1).split('{d}').join(d.getDate()).split('{w}').join(w);}
+function one(){var v=document.getElementById('d1').valueAsDate;if(!v)return;
 var diff=Math.round((mid(v)-mid(new Date()))/DAY);
-document.getElementById('r1').innerHTML=diff>0?'<strong>D-'+diff+'</strong> ('+diff+'일 남음)':diff===0?'<strong>D-Day</strong> 오늘입니다':'<strong>D+'+(-diff)+'</strong> ('+(-diff)+'일 지남)';
-});
+document.getElementById('r1').innerHTML=diff>0?sub(T('r_left','<strong>D-{n}</strong> ({n}일 남음)'),diff):diff===0?T('r_today','<strong>D-Day</strong> 오늘입니다'):sub(T('r_past','<strong>D+{n}</strong> ({n}일 지남)'),-diff);
+}
+document.getElementById('d1').addEventListener('input',one);
 function two(){var a=document.getElementById('d2a').valueAsDate,b=document.getElementById('d2b').valueAsDate;
 if(a&&b){var d=Math.round((mid(b)-mid(a))/DAY);
-document.getElementById('r2').innerHTML='<strong>'+Math.abs(d)+'일</strong>'+(d>=0?'':' (종료일이 더 이전)')+' · 시작일 포함 시 '+(Math.abs(d)+1)+'일';}}
+document.getElementById('r2').innerHTML=sub(T('r_between','<strong>{n}일</strong>'),Math.abs(d))+(d>=0?'':T('r_end_earlier',' (종료일이 더 이전)'))+sub(T('r_incl',' · 시작일 포함 시 {n}일'),Math.abs(d)+1);}}
 document.getElementById('d2a').addEventListener('input',two);
 document.getElementById('d2b').addEventListener('input',two);
 function add(){var a=document.getElementById('d3').valueAsDate,nv=parseInt(document.getElementById('d3n').value);
@@ -52,6 +110,7 @@ if(a&&!isNaN(nv)){var r=new Date(mid(a).getTime()+nv*DAY);
 document.getElementById('r3').innerHTML='<strong>'+fmt(r)+'</strong>';}}
 document.getElementById('d3').addEventListener('input',add);
 document.getElementById('d3n').addEventListener('input',add);
+document.addEventListener('mt:lang',function(){one();two();add();});
 </script>
 </body>
 </html>

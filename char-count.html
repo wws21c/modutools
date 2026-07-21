@@ -9,44 +9,91 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ title_meta:"Character Counter — with/without spaces, byte count",
+ h1:"Character Counter", lead:"Counts characters with and without spaces, plus bytes, the moment you type. Nothing you enter is stored.",
+ ph_txt:"Paste or type your text here",
+ th1:"With spaces", th2:"Without spaces", th3:"Bytes (Korean = 2 bytes)", th4:"Bytes (UTF-8, Korean = 3 bytes)", th5:"Words / Lines",
+ clear:"Clear",
+ unit_char:" chars", unit_byte:" bytes",
+ faq_h1:"Which count do résumés and cover letters use?",
+ faq_p1:"Most job sites count characters including spaces. Some public-sector and financial forms use a byte limit, typically counting a Korean character as 2 bytes and Latin letters, digits and spaces as 1 byte each — that is the \"Bytes (Korean = 2 bytes)\" row above.",
+ faq_h2:"When do I need UTF-8 bytes?",
+ faq_p2:"Input limits on web forms and databases are often based on UTF-8 encoding (a Korean character = 3 bytes). Use this value for development or upload purposes.",
+ links_all:"All tools"
+},
+ja:{
+ title_meta:"文字数カウント — 空白込み/抜き・バイト数",
+ h1:"文字数カウント", lead:"入力した瞬間に空白込み・抜きの文字数とバイト数を数えます。入力内容は保存されません。",
+ ph_txt:"ここに文章を貼り付けるか入力してください",
+ th1:"空白込み", th2:"空白抜き", th3:"バイト数（韓国語 = 2バイト）", th4:"バイト数（UTF-8、韓国語 = 3バイト）", th5:"単語数 / 行数",
+ clear:"クリア",
+ unit_char:"字", unit_byte:"バイト",
+ faq_h1:"履歴書・自己PRの文字数はどの基準で数えますか",
+ faq_p1:"多くの求人サイトは空白込みの文字数を基準にしています。一部の公的機関・金融系の書式ではバイト基準を用い、通常は韓国語1文字＝2バイト、英数字・空白＝1バイトで計算します。上の表の「バイト数（韓国語 = 2バイト）」がその基準です。",
+ faq_h2:"UTF-8バイトはいつ使いますか",
+ faq_p2:"ウェブフォームやデータベースの入力制限は、UTF-8エンコード（韓国語1文字＝3バイト）を基準とする場合が多いです。開発・アップロード用途ではこの値をご参照ください。",
+ links_all:"すべてのツール"
+},
+zh:{
+ title_meta:"字数统计 — 含/不含空格·字节数",
+ h1:"字数统计", lead:"输入的瞬间即统计含空格与不含空格的字数以及字节数。您输入的内容不会被保存。",
+ ph_txt:"在此粘贴或输入文本",
+ th1:"含空格", th2:"不含空格", th3:"字节（韩文 = 2字节）", th4:"字节（UTF-8，韩文 = 3字节）", th5:"词数 / 行数",
+ clear:"清空",
+ unit_char:"字", unit_byte:"字节",
+ faq_h1:"简历、自我介绍的字数按什么标准统计？",
+ faq_p1:"大多数招聘网站以含空格的字数为准。部分公共机构、金融机构的表格采用字节标准，通常韩文1个字=2字节，英文、数字、空格各=1字节，即上表中的「字节（韩文 = 2字节）」一栏。",
+ faq_h2:"什么时候需要用 UTF-8 字节？",
+ faq_p2:"网页表单和数据库的输入限制常以 UTF-8 编码（韩文1个字=3字节）为准。用于开发或上传时请参考该数值。",
+ links_all:"全部工具"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html">연봉계산</a><a href="/dday.html">디데이</a><a href="/reaction.html">반응속도</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html" data-i18n="c_salary_t">연봉계산</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/reaction.html" data-i18n="c_react_t">반응속도</a></nav></header>
 <main>
-<h1>글자수 세기</h1>
-<p class="lead">입력하는 즉시 공백 포함·제외 글자수와 바이트를 셉니다. 내용은 저장되지 않습니다.</p>
+<h1 data-i18n="h1">글자수 세기</h1>
+<p class="lead" data-i18n="lead">입력하는 즉시 공백 포함·제외 글자수와 바이트를 셉니다. 내용은 저장되지 않습니다.</p>
 <div class="card">
-<textarea id="txt" placeholder="여기에 글을 붙여넣거나 입력하세요" autofocus></textarea>
+<textarea id="txt" placeholder="여기에 글을 붙여넣거나 입력하세요" data-i18n-ph="ph_txt" autofocus></textarea>
 <table>
-<tr><th>공백 포함</th><td id="c1">0자</td></tr>
-<tr><th>공백 제외</th><td id="c2">0자</td></tr>
-<tr><th>바이트 (한글 2byte 기준)</th><td id="c3">0byte</td></tr>
-<tr><th>바이트 (UTF-8, 한글 3byte)</th><td id="c4">0byte</td></tr>
-<tr><th>단어 수 / 줄 수</th><td id="c5">0 / 0</td></tr>
+<tr><th data-i18n="th1">공백 포함</th><td id="c1">0자</td></tr>
+<tr><th data-i18n="th2">공백 제외</th><td id="c2">0자</td></tr>
+<tr><th data-i18n="th3">바이트 (한글 2byte 기준)</th><td id="c3">0byte</td></tr>
+<tr><th data-i18n="th4">바이트 (UTF-8, 한글 3byte)</th><td id="c4">0byte</td></tr>
+<tr><th data-i18n="th5">단어 수 / 줄 수</th><td id="c5">0 / 0</td></tr>
 </table>
-<button class="ghost" id="clear">지우기</button>
+<button class="ghost" id="clear" data-i18n="clear">지우기</button>
 </div>
 <div class="faq">
-<h2>자소서 글자수는 어떤 기준으로 세나요</h2>
-<p>대부분의 채용 사이트(잡코리아·사람인 등)는 공백 포함 글자수를 기준으로 합니다. 일부 공공기관·금융권 서식은 바이트 기준을 쓰는데, 이때는 통상 한글 1자 = 2byte, 영문·숫자·공백 = 1byte로 계산합니다. 위 표의 "바이트 (한글 2byte)"가 그 기준입니다.</p>
-<h2>UTF-8 바이트는 언제 쓰나요</h2>
-<p>웹 폼이나 데이터베이스의 입력 제한은 UTF-8 인코딩(한글 1자 = 3byte) 기준인 경우가 많습니다. 개발·업로드 용도라면 이 값을 참고하세요.</p>
+<h2 data-i18n="faq_h1">자소서 글자수는 어떤 기준으로 세나요</h2>
+<p data-i18n="faq_p1">대부분의 채용 사이트(잡코리아·사람인 등)는 공백 포함 글자수를 기준으로 합니다. 일부 공공기관·금융권 서식은 바이트 기준을 쓰는데, 이때는 통상 한글 1자 = 2byte, 영문·숫자·공백 = 1byte로 계산합니다. 위 표의 "바이트 (한글 2byte)"가 그 기준입니다.</p>
+<h2 data-i18n="faq_h2">UTF-8 바이트는 언제 쓰나요</h2>
+<p data-i18n="faq_p2">웹 폼이나 데이터베이스의 입력 제한은 UTF-8 인코딩(한글 1자 = 3byte) 기준인 경우가 많습니다. 개발·업로드 용도라면 이 값을 참고하세요.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/salary.html">연봉 실수령액</a><a href="/age.html">만 나이</a><a href="/dday.html">디데이</a><a href="/percent.html">퍼센트</a></div><p>ⓒ 모두도구</p></footer>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/salary.html" data-i18n="c_salary_t">연봉 실수령액</a><a href="/age.html" data-i18n="c_age_t">만 나이</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/percent.html" data-i18n="c_pct_t">퍼센트</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
 <script>
 var t=document.getElementById('txt');
+function uChar(){return window.t?window.t('unit_char','자'):'자';}
+function uByte(){return window.t?window.t('unit_byte','byte'):'byte';}
 function cnt(){var v=t.value;
-document.getElementById('c1').textContent=v.length.toLocaleString()+'자';
-document.getElementById('c2').textContent=v.replace(/\s/g,'').length.toLocaleString()+'자';
+document.getElementById('c1').textContent=v.length.toLocaleString()+uChar();
+document.getElementById('c2').textContent=v.replace(/\s/g,'').length.toLocaleString()+uChar();
 var b2=0;for(var ch of v){b2+=ch.charCodeAt(0)>127?2:1}
-document.getElementById('c3').textContent=b2.toLocaleString()+'byte';
-document.getElementById('c4').textContent=new Blob([v]).size.toLocaleString()+'byte';
+document.getElementById('c3').textContent=b2.toLocaleString()+uByte();
+document.getElementById('c4').textContent=new Blob([v]).size.toLocaleString()+uByte();
 var w=v.trim()?v.trim().split(/\s+/).length:0;var l=v?v.split('\n').length:0;
 document.getElementById('c5').textContent=w.toLocaleString()+' / '+l.toLocaleString();}
 t.addEventListener('input',cnt);
 document.getElementById('clear').onclick=function(){t.value='';cnt();t.focus();};
+document.addEventListener('mt:lang',cnt);
 </script>
 </body>
 </html>

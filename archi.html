@@ -12,6 +12,74 @@
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
 <script src="/archi-data.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"Daily Architecture", lead:"One famous building from around the world or Korea is featured each day. Six hints open in sequence — the fewer hints you use, the higher your score.",
+ mode_daily:"Today's puzzle", mode_free:"Free mode",
+ guess_ph:"Enter the building's name", btn_submit:"Guess",
+ btn_share:"Share result", btn_copy:"Copy URL", btn_next:"Next puzzle",
+ stat_played:"Played", stat_win:"Win rate", stat_streak:"Current streak", stat_best:"Best streak",
+ faq_h1:"How to play", faq_p1:"Every midnight (Korea time) one building is chosen. The first hint gives the era and structure/material, then continent·country, use, scale, architect and city in order. After each hint you may guess once; a wrong guess opens the next hint. Solve it within six tries to win — the earlier you solve, the higher the score.",
+ faq_h2:"How do I enter the name?", faq_p2:"Tap the input box and the full list of answer candidates appears as autocomplete. Korean official names, English names and common nicknames (e.g. DDP = Dongdaemun Design Plaza) are all recognized, so pick whichever is easiest.",
+ faq_h3:"Sharing results", faq_p3:"The share image never reveals the answer. 🟥 marks wrong hints and 🟩 marks when you solved it, shown only as emoji, so you can pass the challenge to friends without spoilers.",
+ faq_h4:"About accuracy", faq_p4:"Completion years and architect credits (including joint designs) were cross-checked against public sources. Some buildings are recorded with differing years depending on completion·opening criteria or reconstruction, so those criteria are noted within the hint text.",
+ footer_note:"ⓒ ModuTools · Building information was compiled by cross-checking public sources.",
+ nav_city:"Mini City", nav_reaction:"Reaction", nav_lotto:"Lotto", nav_all:"All tools",
+ hint_lang_note:"Hints in English",
+ hint_label:"Hint", hint_locked:"Still locked",
+ hlabel_era:"Era · Structure/Material", hlabel_region:"Continent · Country", hlabel_use:"Use", hlabel_scale:"Scale", hlabel_arch:"Architect", hlabel_city:"City",
+ row_arch:"Architect", row_loc:"City · Country", row_year:"Completed", row_use:"Use", row_feat:"Feature",
+ fb_wrong_suffix:"— wrong. The next hint opens.", fb_notfound:"That building isn't on the list. Try picking from the autocomplete.",
+ fb_win:"Correct! Solved with {n} hint(s) (score {s}).", fb_lose:"So close. The answer is below.",
+ share_head:"Daily Architecture ({d})", share_win:"Solved with {n} hints · score {s}", share_lose:"Failed", share_free:"Free",
+ copied:"Copied!", err_load:"Failed to load data.", year_suffix:""
+},
+ja:{
+ h1:"今日の建築", lead:"世界と韓国の名建築が毎日1件出題されます。6つのヒントが順番に開きます — 少ないヒントで当てるほど高得点です。",
+ mode_daily:"今日の問題", mode_free:"フリーモード",
+ guess_ph:"建築物の名前を入力", btn_submit:"推測",
+ btn_share:"結果を共有", btn_copy:"URLをコピー", btn_next:"次の問題",
+ stat_played:"プレイ", stat_win:"正解率", stat_streak:"連続正解", stat_best:"最高連続",
+ faq_h1:"遊び方", faq_p1:"毎日0時（韓国時間）に建築物が1つ決まります。最初のヒントは竣工年代と構造・材料、続いて大陸・国、用途、規模、建築家、都市の順で開きます。各ヒントを見た後に一度推測でき、外れると次のヒントが開きます。6回以内に当てれば成功、早く当てるほど高得点です。",
+ faq_h2:"名前はどう入力しますか", faq_p2:"入力欄をタップすると正解候補の一覧が自動補完で表示されます。韓国語の正式名称・英語・通称（例：DDP = 東大門デザインプラザ）すべて認識するので、好きな名前で選んでください。",
+ faq_h3:"結果の共有", faq_p3:"共有画像には正解が現れません。🟥は外したヒント数、🟩は正解した時点を示す絵文字だけで表示され、ネタバレの心配なく友達に挑戦を渡せます。",
+ faq_h4:"正確性について", faq_p4:"竣工年と建築家表記（共同設計を含む）は公開資料を照合して整理しました。ただし竣工・開館の基準や再建の有無によって年が異なる場合があるため、その基準をヒント文に併記しています。",
+ footer_note:"ⓒ モドゥツール · 建築物情報は公開資料を照合して整理しています。",
+ nav_city:"ミニシティ", nav_reaction:"反応速度", nav_lotto:"ロト", nav_all:"全ツール",
+ hint_lang_note:"ヒントは英語表示",
+ hint_label:"ヒント", hint_locked:"まだロックされています",
+ hlabel_era:"年代・構造/材料", hlabel_region:"大陸・国", hlabel_use:"用途", hlabel_scale:"規模", hlabel_arch:"建築家", hlabel_city:"都市",
+ row_arch:"建築家", row_loc:"都市・国", row_year:"竣工", row_use:"用途", row_feat:"特徴",
+ fb_wrong_suffix:"— 不正解。次のヒントが開きます。", fb_notfound:"リストにない建築物です。自動補完から選んでください。",
+ fb_win:"正解！ヒント{n}個で当てました（スコア{s}）。", fb_lose:"惜しい。正解は下にあります。",
+ share_head:"今日の建築（{d}）", share_win:"ヒント{n}個で成功 · スコア{s}", share_lose:"失敗", share_free:"フリー",
+ copied:"コピーしました！", err_load:"データを読み込めませんでした。", year_suffix:"年"
+},
+zh:{
+ h1:"今日建筑", lead:"每天出题一座世界或韩国名建筑。6条提示依次开启 — 用越少提示猜中，得分越高。",
+ mode_daily:"今日题目", mode_free:"自由模式",
+ guess_ph:"输入建筑名称", btn_submit:"猜测",
+ btn_share:"分享结果", btn_copy:"复制链接", btn_next:"下一题",
+ stat_played:"游玩", stat_win:"正确率", stat_streak:"连续正确", stat_best:"最高连续",
+ faq_h1:"怎么玩", faq_p1:"每天午夜（韩国时间）确定一座建筑。第一条提示给出竣工年代与结构·材料，接着依次是大洲·国家、用途、规模、建筑师、城市。每看一条提示可猜一次，猜错则开启下一条提示。六次之内猜中即成功，越早猜中得分越高。",
+ faq_h2:"名字怎么输入", faq_p2:"点击输入框，会自动补全显示全部答案候选。韩语正式名称、英文、通称（例如 DDP = 东大门设计广场）都能识别，选择顺手的名字即可。",
+ faq_h3:"分享结果", faq_p3:"分享图片不会泄露答案。🟥表示猜错的提示数，🟩表示猜中的时点，仅以表情符号显示，可放心把挑战传给朋友。",
+ faq_h4:"关于准确性", faq_p4:"竣工年份与建筑师标注（含合作设计）均经公开资料交叉核对整理。但部分建筑因竣工·开放标准或重建情况，年份记载不一，故在提示文中一并注明其标准。",
+ footer_note:"ⓒ 全民工具 · 建筑信息经交叉核对公开资料整理。",
+ nav_city:"迷你城市", nav_reaction:"反应速度", nav_lotto:"乐透", nav_all:"全部工具",
+ hint_lang_note:"提示为英文",
+ hint_label:"提示", hint_locked:"尚未解锁",
+ hlabel_era:"年代 · 结构/材料", hlabel_region:"大洲 · 国家", hlabel_use:"用途", hlabel_scale:"规模", hlabel_arch:"建筑师", hlabel_city:"城市",
+ row_arch:"建筑师", row_loc:"城市 · 国家", row_year:"竣工", row_use:"用途", row_feat:"特点",
+ fb_wrong_suffix:"— 猜错了。下一条提示开启。", fb_notfound:"列表里没有这座建筑。请从自动补全中选择。",
+ fb_win:"正确！用{n}条提示猜中（得分{s}）。", fb_lose:"很接近。答案在下方。",
+ share_head:"今日建筑（{d}）", share_win:"用{n}条提示成功 · 得分{s}", share_lose:"失败", share_free:"自由",
+ copied:"已复制！", err_load:"数据加载失败。", year_suffix:"年"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 <style>
 #modes{display:flex;gap:8px;margin-bottom:14px}
 #modes button{margin:0;padding:8px 14px;font-size:.85rem;background:var(--card);color:var(--ink);border:2px solid var(--line)}
@@ -55,20 +123,21 @@
 </style>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html" data-i18n="nav_city">미니시티</a><a href="/reaction.html" data-i18n="nav_reaction">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></nav></header>
 <main>
-<h1>오늘의 건축물</h1>
-<p class="lead">세계와 한국의 유명 건축물 하나가 매일 출제됩니다. 힌트 6개가 순서대로 열려요 — 적은 힌트로 맞힐수록 고득점입니다.</p>
+<h1 data-i18n="h1">오늘의 건축물</h1>
+<p class="lead" data-i18n="lead">세계와 한국의 유명 건축물 하나가 매일 출제됩니다. 힌트 6개가 순서대로 열려요 — 적은 힌트로 맞힐수록 고득점입니다.</p>
 <div class="card">
 <div id="modes">
-<button id="mDaily" class="on">오늘의 문제</button>
-<button id="mFree">자유 모드</button>
+<button id="mDaily" class="on" data-i18n="mode_daily">오늘의 문제</button>
+<button id="mFree" data-i18n="mode_free">자유 모드</button>
 </div>
+<p id="hintLangNote" style="display:none;font-size:.72rem;color:var(--sub);margin:0 0 8px" data-i18n="hint_lang_note">Hints in English</p>
 <div id="progress"></div>
 <div id="hintlist"></div>
 <div id="guessrow">
-<input type="text" id="guess" list="answers" placeholder="건축물 이름을 입력하세요" autocomplete="off">
-<button id="submit">추측</button>
+<input type="text" id="guess" list="answers" placeholder="건축물 이름을 입력하세요" data-i18n-ph="guess_ph" autocomplete="off">
+<button id="submit" data-i18n="btn_submit">추측</button>
 </div>
 <datalist id="answers"></datalist>
 <p id="feedback"></p>
@@ -78,35 +147,43 @@
 <table><tbody id="aBody"></tbody></table>
 <div id="emoji"></div>
 <div id="sharerow">
-<button id="share">결과 공유</button>
-<button id="copy" class="ghost">URL 복사</button>
-<button id="next" class="ghost" style="display:none">다음 문제</button>
+<button id="share" data-i18n="btn_share">결과 공유</button>
+<button id="copy" class="ghost" data-i18n="btn_copy">URL 복사</button>
+<button id="next" class="ghost" style="display:none" data-i18n="btn_next">다음 문제</button>
 </div>
 </div>
 <div id="stats">
-<div class="stat"><div class="v" id="sPlayed">0</div><div class="k">플레이</div></div>
-<div class="stat"><div class="v" id="sWin">0</div><div class="k">정답률</div></div>
-<div class="stat"><div class="v" id="sStreak">0</div><div class="k">연속 정답</div></div>
-<div class="stat"><div class="v" id="sBest">0</div><div class="k">최고 연속</div></div>
+<div class="stat"><div class="v" id="sPlayed">0</div><div class="k" data-i18n="stat_played">플레이</div></div>
+<div class="stat"><div class="v" id="sWin">0</div><div class="k" data-i18n="stat_win">정답률</div></div>
+<div class="stat"><div class="v" id="sStreak">0</div><div class="k" data-i18n="stat_streak">연속 정답</div></div>
+<div class="stat"><div class="v" id="sBest">0</div><div class="k" data-i18n="stat_best">최고 연속</div></div>
 </div>
 </div>
 <div class="faq">
-<h2>어떻게 하나요</h2>
-<p>매일 자정(한국 시간)에 건축물 하나가 정해집니다. 첫 힌트는 준공 연대와 구조·재료, 이어서 대륙·국가, 용도, 규모, 건축가, 도시 순으로 열립니다. 각 힌트를 본 뒤 한 번 추측할 수 있고, 틀리면 다음 힌트가 열립니다. 여섯 번 안에 맞히면 성공이며, 일찍 맞힐수록 점수가 높습니다.</p>
-<h2>이름은 어떻게 입력하나요</h2>
-<p>입력창을 누르면 전체 정답 후보 목록이 자동완성으로 뜹니다. 한글 정식 명칭·영문·통칭(예: DDP = 동대문디자인플라자) 모두 인식하니 편한 이름으로 고르세요.</p>
-<h2>결과 공유</h2>
-<p>공유 이미지에는 정답이 드러나지 않습니다. 🟥는 틀린 힌트 수, 🟩는 맞힌 시점을 나타내는 이모지로만 표시돼 스포일러 걱정 없이 친구에게 도전을 넘길 수 있습니다.</p>
-<h2>정확성에 대하여</h2>
-<p>준공 연도와 건축가 표기(공동 설계 포함)는 공개 자료를 교차 확인해 정리했습니다. 다만 준공·개관 기준이나 재건 여부에 따라 연도가 달리 기록되는 건물이 있어, 힌트 문안에 그 기준을 함께 밝혀 두었습니다.</p>
+<h2 data-i18n="faq_h1">어떻게 하나요</h2>
+<p data-i18n="faq_p1">매일 자정(한국 시간)에 건축물 하나가 정해집니다. 첫 힌트는 준공 연대와 구조·재료, 이어서 대륙·국가, 용도, 규모, 건축가, 도시 순으로 열립니다. 각 힌트를 본 뒤 한 번 추측할 수 있고, 틀리면 다음 힌트가 열립니다. 여섯 번 안에 맞히면 성공이며, 일찍 맞힐수록 점수가 높습니다.</p>
+<h2 data-i18n="faq_h2">이름은 어떻게 입력하나요</h2>
+<p data-i18n="faq_p2">입력창을 누르면 전체 정답 후보 목록이 자동완성으로 뜹니다. 한글 정식 명칭·영문·통칭(예: DDP = 동대문디자인플라자) 모두 인식하니 편한 이름으로 고르세요.</p>
+<h2 data-i18n="faq_h3">결과 공유</h2>
+<p data-i18n="faq_p3">공유 이미지에는 정답이 드러나지 않습니다. 🟥는 틀린 힌트 수, 🟩는 맞힌 시점을 나타내는 이모지로만 표시돼 스포일러 걱정 없이 친구에게 도전을 넘길 수 있습니다.</p>
+<h2 data-i18n="faq_h4">정확성에 대하여</h2>
+<p data-i18n="faq_p4">준공 연도와 건축가 표기(공동 설계 포함)는 공개 자료를 교차 확인해 정리했습니다. 다만 준공·개관 기준이나 재건 여부에 따라 연도가 달리 기록되는 건물이 있어, 힌트 문안에 그 기준을 함께 밝혀 두었습니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></div><p>ⓒ 모두도구 · 건축물 정보는 공개 자료를 교차 확인해 정리했습니다.</p></footer>
+<footer><div class="links"><a href="/" data-i18n="nav_all">전체 도구</a><a href="/city.html" data-i18n="nav_city">미니시티</a><a href="/reaction.html" data-i18n="nav_reaction">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 건축물 정보는 공개 자료를 교차 확인해 정리했습니다.</p></footer>
 <script>
 (function(){
 var DATA=window.ARCHI_DATA||[];
-var LABELS=["준공 연대·구조/재료","대륙·국가","용도","규모","건축가","도시"];
+var LABEL_KEYS=["hlabel_era","hlabel_region","hlabel_use","hlabel_scale","hlabel_arch","hlabel_city"];
+var LABEL_KO=["준공 연대·구조/재료","대륙·국가","용도","규모","건축가","도시"];
+function label(i){return window.t(LABEL_KEYS[i],LABEL_KO[i]);}
+// 힌트 언어 선택 — KO면 hints, 그 외엔 hints_en 폴백
+function hintsFor(b){
+var lang=window.MT_LANG||"ko";
+if(lang==="ko"||!b.hints_en) return b.hints;
+return b.hints_en;
+}
 var ICONS=[
 // 연대/재료 = 벽돌
 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 10h18M3 14h18M9 5v5M15 10v4M9 14v5"/></svg>',
@@ -122,11 +199,21 @@ var ICONS=[
 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V10l4-2v13M9 21V6l5-3v18M18 21V9l3 2v10M2 21h20"/></svg>'
 ];
 
-// ---- 정답 후보 목록 (datalist) ----
+// ---- 표시 이름 (언어별) ----
+function guessName(b){
+var lang=window.MT_LANG||"ko";
+return (lang!=="ko"&&b.en)?b.en:b.name;
+}
+
+// ---- 정답 후보 목록 (datalist) — 언어별로 표시명 갱신 ----
 var dl=document.getElementById("answers");
+function buildDatalist(){
+dl.innerHTML="";
 DATA.forEach(function(b){
-var o=document.createElement("option");o.value=b.name;dl.appendChild(o);
+var o=document.createElement("option");o.value=guessName(b);dl.appendChild(o);
 });
+}
+buildDatalist();
 
 // ---- 이름 매칭 (관대) ----
 function norm(s){return (s||"").toLowerCase().replace(/[\s\.\-·(),']/g,"");}
@@ -194,13 +281,19 @@ progEl.appendChild(d);
 if(over&&won){progEl.children[step-1].className="dot hit";}
 
 hintEl.innerHTML="";
+var hs=hintsFor(target);
+var hlbl=window.t("hint_label","힌트");
+var lockedTxt=window.t("hint_locked","아직 잠겨 있습니다");
 for(var j=0;j<6;j++){
 var open = j<=step || over;
 var h=document.createElement("div");h.className="hint"+(open?"":" locked");
-h.innerHTML='<div class="ic">'+ICONS[j]+'</div><div class="txt"><span class="lbl">힌트 '+(j+1)+' · '+LABELS[j]+'</span><span class="body">'+
-(open?target.hints[j]:"아직 잠겨 있습니다")+'</span></div>';
+h.innerHTML='<div class="ic">'+ICONS[j]+'</div><div class="txt"><span class="lbl">'+hlbl+' '+(j+1)+' · '+label(j)+'</span><span class="body">'+
+(open?hs[j]:lockedTxt)+'</span></div>';
 hintEl.appendChild(h);
 }
+// JA/ZH는 힌트가 영어 폴백 — 안내 표기
+var note=document.getElementById("hintLangNote");
+if(note){var lang=window.MT_LANG||"ko";note.style.display=(lang!=="ko"&&target.hints_en)?"block":"none";}
 }
 
 function startGame(){
@@ -242,7 +335,8 @@ return;
 }
 // 오답
 fb.className="wrong";
-fb.textContent=g?("‘"+g.name+"’ — 오답입니다. 다음 힌트가 열립니다."):"목록에 없는 건축물이에요. 자동완성에서 골라 보세요.";
+var gname=g?guessName(g):"";
+fb.textContent=g?("‘"+gname+"’ "+window.t("fb_wrong_suffix","— 오답입니다. 다음 힌트가 열립니다.")):window.t("fb_notfound","목록에 없는 건축물이에요. 자동완성에서 골라 보세요.");
 if(g){step++; if(step>=6){over=true;won=false;finish(false);} }
 document.getElementById("guess").value="";
 render();
@@ -274,14 +368,15 @@ over=true;
 render();
 document.querySelector(".card").classList.add("done");
 // 정답 카드
-document.getElementById("aName").textContent=target.name;
+document.getElementById("aName").textContent=guessName(target);
 document.getElementById("aEn").textContent=target.en+" · "+target.city+", "+target.country;
+var ysuf=window.t("year_suffix","년");
 var rows=[
-["건축가",target.arch],
-["도시·국가",target.city+", "+target.country],
-["준공",target.year+"년"],
-["용도",target.type],
-["특징",target.feat]
+[window.t("row_arch","건축가"),target.arch],
+[window.t("row_loc","도시·국가"),target.city+", "+target.country],
+[window.t("row_year","준공"),target.year+ysuf],
+[window.t("row_use","용도"),target.type],
+[window.t("row_feat","특징"),target.feat]
 ];
 document.getElementById("aBody").innerHTML=rows.map(function(r){
 return "<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>";
@@ -293,8 +388,8 @@ document.getElementById("answer").classList.add("show");
 document.getElementById("next").style.display=mode==="free"?"inline-block":"none";
 
 var fb=document.getElementById("feedback");
-if(won){fb.className="right";fb.textContent="정답입니다! 힌트 "+step+"개로 맞혔어요 (점수 "+score()+").";}
-else{fb.className="wrong";fb.textContent="아쉽네요. 정답은 아래에 있습니다.";}
+if(won){fb.className="right";fb.textContent=window.t("fb_win","정답입니다! 힌트 "+step+"개로 맞혔어요 (점수 "+score()+").").replace("{n}",step).replace("{s}",score());}
+else{fb.className="wrong";fb.textContent=window.t("fb_lose","아쉽네요. 정답은 아래에 있습니다.");}
 
 // 통계 기록 (daily는 하루 1회, restoring 시 스킵)
 if(mode==="daily"&&!restoring){
@@ -310,20 +405,21 @@ renderStats();
 
 // ---- 공유 ----
 function shareText(){
-var d=mode==="daily"?kstDateStr():"자유";
-var head="오늘의 건축물 ("+d+")";
+var d=mode==="daily"?kstDateStr():window.t("share_free","자유");
+var head=window.t("share_head","오늘의 건축물 ("+d+")").replace("{d}",d);
 var line=emojiStrip();
-var res=won?("힌트 "+step+"개로 성공 · 점수 "+score()):"실패";
+var res=won?window.t("share_win","힌트 "+step+"개로 성공 · 점수 "+score()).replace("{n}",step).replace("{s}",score()):window.t("share_lose","실패");
 return head+"\n"+line+"\n"+res+"\nhttps://modutools.vercel.app/archi.html";
 }
 document.getElementById("share").onclick=function(){
 var t=shareText();
+var copied=window.t("copied","복사됨!");
 if(navigator.share){navigator.share({text:t}).catch(function(){});}
-else{navigator.clipboard.writeText(t);this.textContent="복사됨!";var b=this;setTimeout(function(){b.textContent="결과 공유"},1500);}
+else{navigator.clipboard.writeText(t);this.textContent=copied;var b=this;setTimeout(function(){b.textContent=window.t("btn_share","결과 공유")},1500);}
 };
 document.getElementById("copy").onclick=function(){
 navigator.clipboard.writeText("https://modutools.vercel.app/archi.html");
-this.textContent="복사됨!";var b=this;setTimeout(function(){b.textContent="URL 복사"},1500);
+this.textContent=window.t("copied","복사됨!");var b=this;setTimeout(function(){b.textContent=window.t("btn_copy","URL 복사")},1500);
 };
 document.getElementById("next").onclick=function(){startGame();};
 
@@ -339,9 +435,19 @@ mode="free";this.classList.add("on");document.getElementById("mDaily").classList
 document.getElementById("submit").onclick=submit;
 document.getElementById("guess").addEventListener("keydown",function(e){if(e.key==="Enter"){submit();}});
 
+// ---- 언어 전환 시 재렌더 ----
+document.addEventListener("mt:lang",function(){
+buildDatalist();
+if(target){
+render();
+// 정답 카드가 열려 있으면 언어에 맞게 다시 채움
+if(over&&document.getElementById("answer").classList.contains("show")){finish(true);}
+}
+});
+
 // ---- 시작 ----
 if(!DATA.length){
-document.querySelector(".card").innerHTML="<p>데이터를 불러오지 못했습니다.</p>";
+document.querySelector(".card").innerHTML="<p>"+window.t("err_load","데이터를 불러오지 못했습니다.")+"</p>";
 }else{
 renderStats();
 startGame();

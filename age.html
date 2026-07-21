@@ -9,34 +9,73 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"Age Calculator", lead:"Shows your international age and Korean \"year age\" as of today's date.",
+ lbl_birth:"Date of birth", lbl_base:"Reference date (default: today)", go:"Calculate",
+ err_birth:"Please enter your date of birth.",
+ res_intl:"International age ", res_intl_u:" yrs", res_year:" · Korean year age ", res_year_u:" yrs", res_next:"Next birthday in ", res_next_u:" days",
+ faq_h1:"How do international age and Korean year age differ?",
+ faq_p1:"International age (\"man-nai\") starts at 0 on the day you are born and adds one year on each birthday — the global standard. Korean \"year age\" is simply the current year minus your birth year, still used in a few laws such as the Military Service Act and the Youth Protection Act. Since the \"Unified Age Act\" took effect in June 2023, ages in Korean contracts and official documents default to international age.",
+ faq_h2:"Is insurance age different again?",
+ faq_p2:"Insurers sometimes use an \"insurance age\": your international age as of the contract date, rounded up by one year once six months have passed since your last birthday. If you are about to sign up, check your \"age-change date\" — enrolling before it can lower your premium.",
+ links_all:"All tools"
+},
+ja:{
+ h1:"満年齢計算", lead:"今日の日付を基準に満年齢と数え年（韓国式の年年齢）をあわせて表示します。",
+ lbl_birth:"生年月日", lbl_base:"基準日（デフォルト：今日）", go:"計算する",
+ err_birth:"生年月日を入力してください。",
+ res_intl:"満年齢 ", res_intl_u:"歳", res_year:" · 年年齢 ", res_year_u:"歳", res_next:"次の誕生日まで ", res_next_u:"日",
+ faq_h1:"満年齢と年年齢の違いは何ですか",
+ faq_p1:"満年齢は生まれた日を0歳とし、誕生日を迎えるたびに1歳加える国際基準です。年年齢は現在の年から生まれた年を引いた値で、兵役法・青少年保護法など一部の法令で用いられます。2023年6月に「満年齢統一法」が施行されて以降、韓国の契約・行政書類の年齢は原則として満年齢です。",
+ faq_h2:"保険年齢はまた別ですか",
+ faq_p2:"保険では契約日基準の満年齢に、直近の誕生日から6か月が過ぎていれば1歳を加える「保険年齢」を用いる場合があります。加入直前なら相齢日（保険年齢が変わる日）を確認すると保険料の面で有利です。",
+ links_all:"すべてのツール"
+},
+zh:{
+ h1:"周岁计算器", lead:"以今天的日期为准，同时显示周岁与韩式虚岁（按年计的年龄）。",
+ lbl_birth:"出生日期", lbl_base:"基准日（默认：今天）", go:"计算",
+ err_birth:"请输入出生日期。",
+ res_intl:"周岁 ", res_intl_u:"岁", res_year:" · 年龄（韩式） ", res_year_u:"岁", res_next:"距下次生日还有 ", res_next_u:"天",
+ faq_h1:"周岁和韩式年龄有什么区别？",
+ faq_p1:"周岁以出生当天为0岁，每过一次生日加一岁，是国际通用标准。韩式「年龄」是用当前年份减去出生年份，仍用于兵役法、青少年保护法等部分法律。自2023年6月「统一年龄法」施行后，韩国合同与行政文件中的年龄原则上采用周岁。",
+ faq_h2:"保险年龄又不一样吗？",
+ faq_p2:"保险有时采用「保险年龄」：以签约日为准的周岁，若距上次生日已满6个月则加一岁。若即将投保，查看相龄日（保险年龄变更日）有助于降低保费。",
+ links_all:"全部工具"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html">연봉계산</a><a href="/dday.html">디데이</a><a href="/reaction.html">반응속도</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html" data-i18n="c_salary_t">연봉계산</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/reaction.html" data-i18n="c_react_t">반응속도</a></nav></header>
 <main>
-<h1>만 나이 계산기</h1>
-<p class="lead">오늘 날짜 기준으로 만 나이와 연 나이를 함께 보여줍니다.</p>
+<h1 data-i18n="h1">만 나이 계산기</h1>
+<p class="lead" data-i18n="lead">오늘 날짜 기준으로 만 나이와 연 나이를 함께 보여줍니다.</p>
 <div class="card">
-<label>생년월일</label>
+<label data-i18n="lbl_birth">생년월일</label>
 <input type="date" id="birth">
-<label>기준일 (기본: 오늘)</label>
+<label data-i18n="lbl_base">기준일 (기본: 오늘)</label>
 <input type="date" id="base">
-<button id="go">계산하기</button>
+<button id="go" data-i18n="go">계산하기</button>
 <div class="result" id="out" hidden></div>
 </div>
 <div class="faq">
-<h2>만 나이와 연 나이는 뭐가 다른가요</h2>
-<p>만 나이는 태어난 날을 0살로 시작해 생일이 지날 때마다 한 살씩 더하는 국제 기준입니다. 연 나이는 현재 연도에서 출생 연도를 뺀 값으로, 병역법·청소년보호법 등 일부 법령에서 씁니다. 2023년 6월 "만 나이 통일법" 시행 이후 계약·행정 문서의 나이는 원칙적으로 만 나이입니다.</p>
-<h2>보험 나이는 또 다른가요</h2>
-<p>보험에서는 계약일 기준 만 나이에서 6개월이 지났으면 한 살을 올리는 "보험 나이"를 쓰는 경우가 있습니다. 가입 직전이라면 상령일(보험 나이가 바뀌는 날)을 확인하는 것이 보험료에 유리합니다.</p>
+<h2 data-i18n="faq_h1">만 나이와 연 나이는 뭐가 다른가요</h2>
+<p data-i18n="faq_p1">만 나이는 태어난 날을 0살로 시작해 생일이 지날 때마다 한 살씩 더하는 국제 기준입니다. 연 나이는 현재 연도에서 출생 연도를 뺀 값으로, 병역법·청소년보호법 등 일부 법령에서 씁니다. 2023년 6월 "만 나이 통일법" 시행 이후 계약·행정 문서의 나이는 원칙적으로 만 나이입니다.</p>
+<h2 data-i18n="faq_h2">보험 나이는 또 다른가요</h2>
+<p data-i18n="faq_p2">보험에서는 계약일 기준 만 나이에서 6개월이 지났으면 한 살을 올리는 "보험 나이"를 쓰는 경우가 있습니다. 가입 직전이라면 상령일(보험 나이가 바뀌는 날)을 확인하는 것이 보험료에 유리합니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/dday.html">디데이</a><a href="/salary.html">연봉 실수령액</a><a href="/bmi.html">BMI</a></div><p>ⓒ 모두도구</p></footer>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/salary.html" data-i18n="c_salary_t">연봉 실수령액</a><a href="/bmi.html" data-i18n="c_bmi_t">BMI</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
 <script>
+function T(k,ko){return window.t?window.t(k,ko):ko}
 document.getElementById('base').valueAsDate=new Date();
-document.getElementById('go').onclick=function(){
+function render(){
 var b=document.getElementById('birth').valueAsDate,d=document.getElementById('base').valueAsDate||new Date();
-if(!b){alert('생년월일을 입력하세요');return}
+if(!b){alert(T('err_birth','생년월일을 입력하세요'));return}
 var age=d.getFullYear()-b.getFullYear();
 var m=d.getMonth()-b.getMonth();
 if(m<0||(m===0&&d.getDate()<b.getDate()))age--;
@@ -45,8 +84,10 @@ var next=new Date(d.getFullYear(),b.getMonth(),b.getDate());
 if(next<=d)next.setFullYear(next.getFullYear()+1);
 var days=Math.ceil((next-d)/86400000);
 var o=document.getElementById('out');o.hidden=false;
-o.innerHTML='만 나이 <strong>'+age+'세</strong> · 연 나이 '+yr+'세<br>다음 생일까지 '+days+'일';
-};
+o.innerHTML=T('res_intl','만 나이 ')+'<strong>'+age+T('res_intl_u','세')+'</strong>'+T('res_year',' · 연 나이 ')+yr+T('res_year_u','세')+'<br>'+T('res_next','다음 생일까지 ')+days+T('res_next_u','일');
+}
+document.getElementById('go').onclick=render;
+document.addEventListener('mt:lang',function(){if(!document.getElementById('out').hidden&&document.getElementById('birth').valueAsDate)render();});
 </script>
 </body>
 </html>

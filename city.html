@@ -11,6 +11,86 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ nav_react:"Reaction Time", nav_lotto:"Lotto", nav_all:"All tools",
+ title:"Mini City", h1:"Mini City",
+ lead:"Grow your city without going bankrupt. Placement is strategy — houses next to a factory turn unhappy, houses next to a park turn happy.",
+ hud_money:"Funds", hud_pop:"Population", hud_job:"Jobs", hud_hap:"Happiness", hud_time:"Time",
+ pal_h:"House ₩1,000", pal_s:"Shop ₩2,500", pal_f:"Factory ₩5,000", pal_p:"Park ₩1,500", pal_x:"Demolish ₩300",
+ btn_pause:"Pause", btn_resume:"Resume", btn_reset:"New city",
+ log_start:"Build a house to start. A month passes every 3 seconds.",
+ log_occupied:"There's already a building here. Demolish it first.",
+ log_nofunds:"Not enough funds.",
+ time_fmt:"Year {y}, Month {m}",
+ ev_tourists:"Tourists flocked in! Bonus ₩{v}",
+ ev_rain:"Heavy rain — road repairs cost you. −₩1,500",
+ ev_festival:"A local festival was held. Bonus ₩2,000",
+ over_win:"Metropolis achieved!", over_lose:"Bankrupt",
+ over_body:"Peak population {pop} · survived to Year {y}, Month {m}",
+ share_btn:"Share result", again_btn:"Play again",
+ share_msg:"I built a city of {pop} people in Mini City (survived {y} years) — try it: https://modutools.vercel.app/city.html",
+ copied:"Copied!",
+ confirm_reset:"Start a new city?",
+ faq_rule_h:"Game rules", faq_rule_p:"Each house holds 4 residents. Population grows only when jobs (shop 5, factory 12) and happiness support it. Tax revenue comes from population and workers; shops, factories and parks cost monthly upkeep. If funds run out, you go bankrupt.",
+ faq_place_h:"Placement strategy", faq_place_p:"Factories bring big tax revenue but lower the happiness of adjacent houses. Parks raise the happiness of adjacent houses but only cost upkeep. Separate factory zones from residential zones and buffer them with shops — the zoning concept of real urban planning is the core strategy of this game.",
+ faq_hap_h:"When happiness drops", faq_hap_p:"Below 30 happiness, residents start leaving the city. Fewer residents means less tax, upkeep becomes unaffordable, and bankruptcy follows. Don't skimp on parks.",
+ footer_note:"ⓒ ModuTools"
+},
+ja:{
+ nav_react:"反応速度", nav_lotto:"ロト", nav_all:"すべてのツール",
+ title:"ミニシティ", h1:"ミニシティ",
+ lead:"破産せずに都市を育てましょう。配置こそ戦略です — 工場の隣の住宅は不幸になり、公園の隣の住宅は幸せになります。",
+ hud_money:"資金", hud_pop:"人口", hud_job:"雇用", hud_hap:"幸福度", hud_time:"時間",
+ pal_h:"住宅 ₩1,000", pal_s:"商店 ₩2,500", pal_f:"工場 ₩5,000", pal_p:"公園 ₩1,500", pal_x:"撤去 ₩300",
+ btn_pause:"一時停止", btn_resume:"再開", btn_reset:"新しい都市",
+ log_start:"住宅を建てて始めましょう。3秒ごとに1か月が過ぎます。",
+ log_occupied:"すでに建物があります。撤去してから建ててください。",
+ log_nofunds:"資金が不足しています。",
+ time_fmt:"{y}年目 {m}月",
+ ev_tourists:"観光客が押し寄せました！ ボーナス ₩{v}",
+ ev_rain:"大雨で道路の補修費がかかりました。−₩1,500",
+ ev_festival:"地域のお祭りが開かれました。ボーナス ₩2,000",
+ over_win:"大都市を達成！", over_lose:"破産しました",
+ over_body:"最高人口 {pop}人 · {y}年目 {m}月まで生存",
+ share_btn:"結果を共有", again_btn:"もう一度",
+ share_msg:"ミニシティで人口{pop}人の都市を作りました（{y}年生存）— 挑戦: https://modutools.vercel.app/city.html",
+ copied:"コピーしました！",
+ confirm_reset:"新しい都市を始めますか？",
+ faq_rule_h:"ゲームのルール", faq_rule_p:"住宅は人口を4人ずつ収容します。人口は雇用（商店5人・工場12人）と幸福度が支えるときだけ増えます。税収は人口と就業者から生まれ、商店・工場・公園は毎月維持費がかかります。資金が底をつくと破産です。",
+ faq_place_h:"配置戦略", faq_place_p:"工場は税収が大きいですが、隣接する住宅の幸福度を下げます。公園は隣接住宅の幸福度を上げますが、維持費だけがかかる施設です。工場地帯と住居地帯を分け、その間を商店で緩衝すること — 実際の都市計画の用途地域の概念が、このゲームの核心戦略です。",
+ faq_hap_h:"幸福度が下がると", faq_hap_p:"幸福度30未満になると人口が都市を離れ始めます。人口が減ると税収が減り、維持費を賄えず破産につながります。公園を惜しまないでください。",
+ footer_note:"ⓒ モドゥツール"
+},
+zh:{
+ nav_react:"反应速度", nav_lotto:"乐透", nav_all:"全部工具",
+ title:"迷你城市", h1:"迷你城市",
+ lead:"不破产地经营你的城市。布局即战略——工厂旁的住宅会变得不幸，公园旁的住宅会变得幸福。",
+ hud_money:"资金", hud_pop:"人口", hud_job:"岗位", hud_hap:"幸福度", hud_time:"时间",
+ pal_h:"住宅 ₩1,000", pal_s:"商铺 ₩2,500", pal_f:"工厂 ₩5,000", pal_p:"公园 ₩1,500", pal_x:"拆除 ₩300",
+ btn_pause:"暂停", btn_resume:"继续", btn_reset:"新城市",
+ log_start:"建一座住宅开始吧。每3秒过去一个月。",
+ log_occupied:"这里已有建筑，请先拆除。",
+ log_nofunds:"资金不足。",
+ time_fmt:"第{y}年 {m}月",
+ ev_tourists:"游客涌入！奖励 ₩{v}",
+ ev_rain:"暴雨导致道路维修支出。−₩1,500",
+ ev_festival:"举办了地区庆典。奖励 ₩2,000",
+ over_win:"达成大都市！", over_lose:"破产了",
+ over_body:"最高人口 {pop}人 · 存活至第{y}年 {m}月",
+ share_btn:"分享结果", again_btn:"再玩一次",
+ share_msg:"我在迷你城市建成了{pop}人的城市（存活{y}年）——来挑战：https://modutools.vercel.app/city.html",
+ copied:"已复制！",
+ confirm_reset:"要开始新城市吗？",
+ faq_rule_h:"游戏规则", faq_rule_p:"每座住宅容纳4名居民。只有当岗位（商铺5人·工厂12人）和幸福度支撑得住时，人口才会增长。税收来自人口和就业者；商铺、工厂、公园每月都有维护费。资金耗尽即破产。",
+ faq_place_h:"布局策略", faq_place_p:"工厂税收可观，但会降低相邻住宅的幸福度。公园能提升相邻住宅的幸福度，但只会产生维护费。把工厂区与住宅区分开，中间用商铺缓冲——真实城市规划中的用途分区概念，正是本游戏的核心策略。",
+ faq_hap_h:"幸福度下降时", faq_hap_p:"幸福度低于30时，居民会开始离开城市。人口减少则税收下降，维护费难以承担，随之破产。不要吝啬修建公园。",
+ footer_note:"ⓒ 全民工具"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 <style>
 #hud{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .stat{flex:1;min-width:100px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;text-align:center}
@@ -31,47 +111,47 @@
 </style>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></nav></header>
 <main>
-<h1>미니시티</h1>
-<p class="lead">파산하지 않고 도시를 키우세요. 배치가 전략입니다 — 공장 옆 주택은 불행해지고, 공원 옆 주택은 행복해집니다.</p>
+<h1 data-i18n="h1">미니시티</h1>
+<p class="lead" data-i18n="lead">파산하지 않고 도시를 키우세요. 배치가 전략입니다 — 공장 옆 주택은 불행해지고, 공원 옆 주택은 행복해집니다.</p>
 <div class="card">
 <div id="hud">
-<div class="stat"><div class="v" id="hMoney">₩30,000</div><div class="k">자금</div></div>
-<div class="stat"><div class="v" id="hPop">0</div><div class="k">인구</div></div>
-<div class="stat"><div class="v" id="hJob">0</div><div class="k">일자리</div></div>
-<div class="stat"><div class="v" id="hHap">–</div><div class="k">행복도</div></div>
-<div class="stat"><div class="v" id="hMon">1년 1월</div><div class="k">시간</div></div>
+<div class="stat"><div class="v" id="hMoney">₩30,000</div><div class="k" data-i18n="hud_money">자금</div></div>
+<div class="stat"><div class="v" id="hPop">0</div><div class="k" data-i18n="hud_pop">인구</div></div>
+<div class="stat"><div class="v" id="hJob">0</div><div class="k" data-i18n="hud_job">일자리</div></div>
+<div class="stat"><div class="v" id="hHap">–</div><div class="k" data-i18n="hud_hap">행복도</div></div>
+<div class="stat"><div class="v" id="hMon">1년 1월</div><div class="k" data-i18n="hud_time">시간</div></div>
 </div>
 <div id="pal">
-<button data-t="h" class="on">주택 ₩1,000</button>
-<button data-t="s">상가 ₩2,500</button>
-<button data-t="f">공장 ₩5,000</button>
-<button data-t="p">공원 ₩1,500</button>
-<button data-t="x">철거 ₩300</button>
+<button data-t="h" class="on" data-i18n="pal_h">주택 ₩1,000</button>
+<button data-t="s" data-i18n="pal_s">상가 ₩2,500</button>
+<button data-t="f" data-i18n="pal_f">공장 ₩5,000</button>
+<button data-t="p" data-i18n="pal_p">공원 ₩1,500</button>
+<button data-t="x" data-i18n="pal_x">철거 ₩300</button>
 </div>
 <div id="board"></div>
 <div id="ctrl">
-<button id="pause" class="ghost">일시정지</button>
-<button id="reset" class="ghost">새 도시</button>
-<span id="log">주택을 지어 시작하세요. 3초마다 한 달이 지나갑니다.</span>
+<button id="pause" class="ghost" data-i18n="btn_pause">일시정지</button>
+<button id="reset" class="ghost" data-i18n="btn_reset">새 도시</button>
+<span id="log" data-i18n="log_start">주택을 지어 시작하세요. 3초마다 한 달이 지나갑니다.</span>
 </div>
 </div>
 <div class="faq">
-<h2>게임 규칙</h2>
-<p>주택은 인구를 4명씩 수용합니다. 인구는 일자리(상가 5명·공장 12명)와 행복도가 받쳐줄 때만 늘어납니다. 세수는 인구와 취업자에게서 나오고, 상가·공장·공원은 매달 유지비가 나갑니다. 자금이 바닥나면 파산입니다.</p>
-<h2>배치 전략</h2>
-<p>공장은 세수가 크지만 인접한 주택의 행복도를 떨어뜨립니다. 공원은 인접 주택의 행복도를 올리지만 유지비만 나가는 시설입니다. 공장 지대와 주거 지대를 분리하고 그 사이를 상가로 완충하는 것 — 실제 도시계획의 용도지역 개념이 이 게임의 핵심 전략입니다.</p>
-<h2>행복도가 떨어지면</h2>
-<p>행복도 30 미만이면 인구가 도시를 떠나기 시작합니다. 인구가 줄면 세수가 줄고, 유지비를 감당 못 해 파산으로 이어집니다. 공원을 아끼지 마세요.</p>
+<h2 data-i18n="faq_rule_h">게임 규칙</h2>
+<p data-i18n="faq_rule_p">주택은 인구를 4명씩 수용합니다. 인구는 일자리(상가 5명·공장 12명)와 행복도가 받쳐줄 때만 늘어납니다. 세수는 인구와 취업자에게서 나오고, 상가·공장·공원은 매달 유지비가 나갑니다. 자금이 바닥나면 파산입니다.</p>
+<h2 data-i18n="faq_place_h">배치 전략</h2>
+<p data-i18n="faq_place_p">공장은 세수가 크지만 인접한 주택의 행복도를 떨어뜨립니다. 공원은 인접 주택의 행복도를 올리지만 유지비만 나가는 시설입니다. 공장 지대와 주거 지대를 분리하고 그 사이를 상가로 완충하는 것 — 실제 도시계획의 용도지역 개념이 이 게임의 핵심 전략입니다.</p>
+<h2 data-i18n="faq_hap_h">행복도가 떨어지면</h2>
+<p data-i18n="faq_hap_p">행복도 30 미만이면 인구가 도시를 떠나기 시작합니다. 인구가 줄면 세수가 줄고, 유지비를 감당 못 해 파산으로 이어집니다. 공원을 아끼지 마세요.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></div><p>ⓒ 모두도구</p></footer>
-<div id="over"><div class="card"><h2 id="ovT">파산</h2><p id="ovB" style="margin:10px 0"></p><button id="share">결과 공유</button> <button id="again" class="ghost">다시 하기</button></div></div>
+<footer><div class="links"><a href="/" data-i18n="nav_all">전체 도구</a><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
+<div id="over"><div class="card"><h2 id="ovT" data-i18n="over_lose">파산</h2><p id="ovB" style="margin:10px 0"></p><button id="share" data-i18n="share_btn">결과 공유</button> <button id="again" class="ghost" data-i18n="again_btn">다시 하기</button></div></div>
 <script>
 var N=12,grid=Array(N*N).fill(null);
-var money=30000,pop=0,month=0,happy=50,tool='h',paused=false,best=0,gameOver=false;
+var money=30000,pop=0,month=0,happy=50,tool='h',paused=false,best=0,gameOver=false,lastWin=false;
 var COST={h:1000,s:2500,f:5000,p:1500,x:300};
 var ICON={
 h:'<svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z" fill="#e07a3f"/><path d="M3 11 12 4l9 7" fill="none" stroke="#9a4f22" stroke-width="2"/><rect x="10" y="13" width="4" height="7" fill="#7c3d18"/></svg>',
@@ -86,8 +166,8 @@ if(gameOver)return;
 var el=e.target.closest('.cell');if(!el)return;
 var i=+el.dataset.i;
 if(tool==='x'){if(grid[i]&&money>=COST.x){money-=COST.x;grid[i]=null;draw()}return}
-if(grid[i]){say('이미 건물이 있습니다. 철거 후 지으세요.');return}
-if(money<COST[tool]){say('자금이 부족합니다.');return}
+if(grid[i]){say(t('log_occupied','이미 건물이 있습니다. 철거 후 지으세요.'));return}
+if(money<COST[tool]){say(t('log_nofunds','자금이 부족합니다.'));return}
 money-=COST[tool];grid[i]={t:tool};draw();
 });
 document.querySelectorAll('#pal button').forEach(function(b){
@@ -122,9 +202,9 @@ var upkeep=count('s')*60+count('f')*180+count('p')*40;
 money+=income-upkeep;
 best=Math.max(best,pop);
 if(month%8===0&&pop>0){var ev=[[
-'관광객이 몰려왔습니다! 보너스 ₩'+(pop*20).toLocaleString(),pop*20],
-['폭우로 도로 보수비가 나갔습니다. −₩1,500',-1500],
-['지역 축제가 열렸습니다. 보너스 ₩2,000',2000]][Math.floor(Math.random()*3)];
+t('ev_tourists','관광객이 몰려왔습니다! 보너스 ₩{v}').replace('{v}',(pop*20).toLocaleString()),pop*20],
+[t('ev_rain','폭우로 도로 보수비가 나갔습니다. −₩1,500'),-1500],
+[t('ev_festival','지역 축제가 열렸습니다. 보너스 ₩2,000'),2000]][Math.floor(Math.random()*3)];
 money+=ev[1];say(ev[0]);}
 if(money<0){end(false);return}
 draw();
@@ -135,26 +215,38 @@ document.getElementById('hPop').textContent=pop.toLocaleString()+' / '+(count('h
 document.getElementById('hJob').textContent=(count('s')*5+count('f')*12).toLocaleString();
 var hh=document.getElementById('hHap');hh.textContent=happy;
 hh.style.color=happy<30?'#dc2626':happy>65?'#16a34a':'';
-document.getElementById('hMon').textContent=(Math.floor(month/12)+1)+'년 '+(month%12+1)+'월';
+document.getElementById('hMon').textContent=fmtTime();
 document.querySelectorAll('.cell').forEach(function(el,i){
 var g=grid[i];el.innerHTML=g?ICON[g.t]:'';
 el.classList.toggle('warn',!!(g&&g.t==='h'&&nbrs(i).some(function(j){return grid[j]&&grid[j].t==='f'})));
 });
 }
 function say(m){document.getElementById('log').textContent=m}
-function end(win){gameOver=true;
-document.getElementById('ovT').textContent=win?'대도시 달성!':'파산했습니다';
-document.getElementById('ovB').textContent='최고 인구 '+best.toLocaleString()+'명 · '+(Math.floor(month/12)+1)+'년 '+(month%12+1)+'월 생존';
+function fmtTime(){return t('time_fmt','{y}년 {m}월').replace('{y}',(Math.floor(month/12)+1)).replace('{m}',(month%12+1));}
+function end(win){gameOver=true;lastWin=win;
+document.getElementById('ovT').textContent=win?t('over_win','대도시 달성!'):t('over_lose','파산했습니다');
+document.getElementById('ovB').textContent=t('over_body','최고 인구 {pop}명 · {y}년 {m}월 생존').replace('{pop}',best.toLocaleString()).replace('{y}',(Math.floor(month/12)+1)).replace('{m}',(month%12+1));
 document.getElementById('over').style.display='flex';}
 document.getElementById('share').onclick=function(){
-var msg='미니시티에서 인구 '+best.toLocaleString()+'명 도시를 만들었어요 ('+(Math.floor(month/12)+1)+'년 생존) — 도전: https://modutools.vercel.app/city.html';
-if(navigator.share){navigator.share({text:msg}).catch(function(){})}else{navigator.clipboard.writeText(msg);this.textContent='복사됨!'}
+var msg=t('share_msg','미니시티에서 인구 {pop}명 도시를 만들었어요 ({y}년 생존) — 도전: https://modutools.vercel.app/city.html').replace('{pop}',best.toLocaleString()).replace('{y}',(Math.floor(month/12)+1));
+if(navigator.share){navigator.share({text:msg}).catch(function(){})}else{navigator.clipboard.writeText(msg);this.textContent=t('copied','복사됨!')}
 };
 document.getElementById('again').onclick=function(){location.reload()};
-document.getElementById('reset').onclick=function(){if(confirm('새 도시를 시작할까요?'))location.reload()};
-document.getElementById('pause').onclick=function(){paused=!paused;this.textContent=paused?'계속하기':'일시정지'};
+document.getElementById('reset').onclick=function(){if(confirm(t('confirm_reset','새 도시를 시작할까요?')))location.reload()};
+document.getElementById('pause').onclick=function(){paused=!paused;this.textContent=paused?t('btn_resume','계속하기'):t('btn_pause','일시정지')};
 setInterval(tick,3000);
 draw();
+
+// re-render dynamic UI on language switch
+document.addEventListener('mt:lang',function(){
+  draw();
+  document.getElementById('pause').textContent=paused?t('btn_resume','계속하기'):t('btn_pause','일시정지');
+  if(gameOver){
+    // re-render game-over panel (win/lose unknown here → infer from title state kept via a flag)
+    document.getElementById('ovT').textContent=lastWin?t('over_win','대도시 달성!'):t('over_lose','파산했습니다');
+    document.getElementById('ovB').textContent=t('over_body','최고 인구 {pop}명 · {y}년 {m}월 생존').replace('{pop}',best.toLocaleString()).replace('{y}',(Math.floor(month/12)+1)).replace('{m}',(month%12+1));
+  }
+});
 </script>
 </body>
 </html>

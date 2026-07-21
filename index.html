@@ -3,44 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>모두도구 — 회원가입 없는 무료 웹도구 모음 (글자수 세기·연봉 계산기·이미지 압축)</title>
-<meta name="description" content="설치도 가입도 없이 바로 쓰는 무료 온라인 도구 모음. 글자수 세기, 연봉 실수령액 계산기, 만 나이 계산기, 디데이 계산, 이미지 용량 줄이기, 반응속도 테스트까지.">
+<title>모두도구 — 회원가입 없는 무료 웹도구·데일리 게임 (글자수 세기·연봉 계산기·집값 맞히기)</title>
+<meta name="description" content="설치도 가입도 없이 바로 쓰는 무료 온라인 도구와 데일리 게임. 글자수 세기, 연봉 실수령액, 만 나이, 이미지 압축부터 집값 맞히기, 실루엣 지도 퀴즈, 오늘의 건축물까지.">
 <link rel="canonical" href="https://modutools.vercel.app/">
-<meta property="og:title" content="모두도구 — 무료 웹도구 모음">
-<meta property="og:description" content="가입 없이 바로 쓰는 계산기·변환기·테스트 도구 모음">
+<meta property="og:title" content="모두도구 — 무료 웹도구·데일리 게임 모음">
+<meta property="og:description" content="가입 없이 바로 쓰는 계산기·변환기와 매일 새 문제가 나오는 데일리 게임">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"Free web tools & daily games", lead:"No sign-up, no install. Everything runs in your browser — nothing you enter is ever sent to a server.",
+ cat_games:"Daily games & play", cat_work:"Work tools", cat_life:"Everyday tools",
+ c_apt_t:"Guess the Home Price (daily)", c_apt_d:"A real Korean apartment sale each day — guess the price in 5 tries",
+ c_map_t:"Where Is This? Silhouette quiz (daily)", c_map_d:"Guess the Korean district from its outline, with distance & direction hints",
+ c_archi_t:"Daily Architecture", c_archi_d:"Guess world & Korean buildings from 6 progressive hints",
+ c_space_t:"Space Personality Test", c_space_d:"12 questions reveal your spatial type — out of 8 architectural characters",
+ c_scale_t:"Journey of Heights", c_scale_d:"One scroll from cruising altitude to the Mariana Trench",
+ c_city_t:"Mini City (game)", c_city_d:"Grow a city without going bankrupt — placement is strategy",
+ c_char_t:"Character Counter", c_char_d:"Essay & report length with/without spaces, plus bytes",
+ c_salary_t:"Korean Take-home Pay", c_salary_d:"Monthly net pay after insurance & income tax",
+ c_pct_t:"Percentage Calculator", c_pct_d:"Discount, increase and ratio — 4 modes at once",
+ c_img_t:"Image Compressor", c_img_d:"Shrink photos in your browser — no upload",
+ c_react_t:"Reaction Time Test", c_react_d:"Measure your average reaction speed and compare",
+ c_age_t:"Age Calculator", c_age_d:"International & Korean age from your birth date",
+ c_dday_t:"D-day Counter", c_dday_d:"Days until exams, discharge, anniversaries",
+ c_bmi_t:"BMI Calculator", c_bmi_d:"Body mass index from height & weight",
+ c_lotto_t:"Lotto Number Generator", c_lotto_d:"Random 1–45 combos, multiple games at once",
+ c_yt_t:"YouTube Thumbnail", c_yt_d:"Paste a video URL, get the HD thumbnail",
+ faq_h:"What is ModuTools?", faq_p:"A collection of tools you find via search, finish your task in 30 seconds, and leave. No sign-up, no data collection — everything is processed in your browser with JavaScript."
+},
+ja:{
+ h1:"無料ウェブツール＆デイリーゲーム", lead:"登録もインストールも不要。すべてブラウザ内で処理され、入力内容はサーバーに送信されません。",
+ cat_games:"デイリーゲーム", cat_work:"仕事ツール", cat_life:"生活ツール",
+ c_apt_t:"住宅価格当て（デイリー）", c_apt_d:"毎日1件、韓国の実際のマンション取引価格を5回以内に当てよう",
+ c_map_t:"ここはどこ？シルエットクイズ", c_map_d:"韓国の市郡区の輪郭から地名を推理。距離と方角のヒント付き",
+ c_archi_t:"今日の建築", c_archi_d:"6つのヒントで世界と韓国の名建築を当てる",
+ c_space_t:"空間タイプ診断", c_space_d:"12の質問であなたの空間タイプを診断 — 全8タイプ",
+ c_scale_t:"高さの旅", c_scale_d:"巡航高度からマリアナ海溝までスクロールひとつ",
+ c_city_t:"ミニシティ（ゲーム）", c_city_d:"破産せずに都市を育てる — 配置こそ戦略",
+ c_char_t:"文字数カウント", c_char_d:"空白込み/抜き・バイト数まで一度に確認",
+ c_salary_t:"韓国の手取り計算", c_salary_d:"保険料と所得税を引いた月の手取り額",
+ c_pct_t:"パーセント計算", c_pct_d:"割引率・増加率・比率を4パターンで",
+ c_img_t:"画像圧縮", c_img_d:"アップロードなし、ブラウザ内で写真を圧縮",
+ c_react_t:"反応速度テスト", c_react_d:"平均反応速度を測定して友達と比較",
+ c_age_t:"満年齢計算", c_age_d:"生年月日から満年齢と韓国式年齢を同時に",
+ c_dday_t:"Dデーカウンター", c_dday_d:"試験・記念日までの残り日数",
+ c_bmi_t:"BMI計算", c_bmi_d:"身長・体重からBMIと肥満度を判定",
+ c_lotto_t:"ロト番号生成", c_lotto_d:"1〜45のランダム組合せを複数ゲーム分",
+ c_yt_t:"YouTubeサムネイル取得", c_yt_d:"動画URLを貼るだけで高画質サムネイル",
+ faq_h:"モドゥツールとは", faq_p:"検索から来て30秒で用事を済ませて帰るツール集です。会員登録もデータ収集もなく、計算・変換・圧縮はすべてブラウザ内のJavaScriptで処理されます。"
+},
+zh:{
+ h1:"免费网页工具与每日游戏", lead:"无需注册、无需安装。所有处理都在浏览器内完成，您输入的内容不会发送到服务器。",
+ cat_games:"每日游戏", cat_work:"职场工具", cat_life:"生活工具",
+ c_apt_t:"猜房价（每日一题）", c_apt_d:"每天一笔韩国真实公寓成交价，5次机会猜中它",
+ c_map_t:"这是哪里？轮廓拼图", c_map_d:"看韩国市郡区轮廓猜地名，附距离与方向提示",
+ c_archi_t:"今日建筑", c_archi_d:"通过6条提示猜出世界与韩国名建筑",
+ c_space_t:"空间性格测试", c_space_d:"12道题测出你的空间类型 — 共8种",
+ c_scale_t:"高度之旅", c_scale_d:"从巡航高度一路滚动到马里亚纳海沟",
+ c_city_t:"迷你城市（游戏）", c_city_d:"不破产地经营城市 — 布局即战略",
+ c_char_t:"字数统计", c_char_d:"含/不含空格字数与字节数一次看全",
+ c_salary_t:"韩国到手工资计算", c_salary_d:"扣除四大保险和所得税后的实际月薪",
+ c_pct_t:"百分比计算器", c_pct_d:"折扣、涨幅、比例，4种模式一次算",
+ c_img_t:"图片压缩", c_img_d:"无需上传，在浏览器内压缩照片",
+ c_react_t:"反应速度测试", c_react_d:"测量平均反应速度并与朋友比较",
+ c_age_t:"周岁计算器", c_age_d:"输入生日同时查看周岁与韩式年龄",
+ c_dday_t:"倒数日", c_dday_d:"距考试、纪念日还有几天",
+ c_bmi_t:"BMI计算器", c_bmi_d:"根据身高体重判断体质指数",
+ c_lotto_t:"乐透号码生成", c_lotto_d:"1~45随机组合，一次多注",
+ c_yt_t:"YouTube缩略图提取", c_yt_d:"粘贴视频链接即可获取高清缩略图",
+ faq_h:"全民工具是什么", faq_p:"一个从搜索进来、30秒办完事就走的工具集。没有注册、没有数据收集，所有计算、转换、压缩都由浏览器内的JavaScript完成。"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html">연봉계산</a><a href="/char-count.html">글자수</a><a href="/dday.html">디데이</a><a href="/reaction.html">반응속도</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/apt.html" data-i18n="c_apt_t">집값 맞히기</a><a href="/salary.html" data-i18n="c_salary_t">연봉계산</a><a href="/char-count.html" data-i18n="c_char_t">글자수</a></nav></header>
 <main>
-<h1>매일 쓰는 무료 웹도구</h1>
-<p class="lead">회원가입도 설치도 없습니다. 모든 처리는 브라우저 안에서 끝나고, 입력한 내용은 서버로 전송되지 않습니다.</p>
+<h1 data-i18n="h1">매일 쓰는 무료 웹도구, 매일 새로운 게임</h1>
+<p class="lead" data-i18n="lead">회원가입도 설치도 없습니다. 모든 처리는 브라우저 안에서 끝나고, 입력한 내용은 서버로 전송되지 않습니다.</p>
+
+<h2 class="cat" data-i18n="cat_games">데일리 게임 · 놀이</h2>
 <div class="grid">
-<a class="tool-card" href="/char-count.html"><div class="t">글자수 세기</div><div class="d">자소서·리포트 글자수, 공백 포함/제외, 바이트까지</div></a>
-<a class="tool-card" href="/salary.html"><div class="t">연봉 실수령액 계산기</div><div class="d">4대보험·소득세 떼고 월에 실제 얼마 받는지</div></a>
-<a class="tool-card" href="/age.html"><div class="t">만 나이 계산기</div><div class="d">생년월일로 만 나이·한국식 나이 동시 확인</div></a>
-<a class="tool-card" href="/dday.html"><div class="t">디데이 계산기</div><div class="d">시험·전역·기념일까지 남은 날, 날짜 더하기</div></a>
-<a class="tool-card" href="/percent.html"><div class="t">퍼센트 계산기</div><div class="d">할인율·인상률·비율 계산 4가지 한 번에</div></a>
-<a class="tool-card" href="/image-compress.html"><div class="t">이미지 용량 줄이기</div><div class="d">서버 업로드 없이 브라우저에서 사진 압축</div></a>
-<a class="tool-card" href="/bmi.html"><div class="t">BMI 계산기</div><div class="d">키·몸무게로 체질량지수와 비만도 판정</div></a>
-<a class="tool-card" href="/lotto.html"><div class="t">로또 번호 생성기</div><div class="d">1~45 무작위 조합, 여러 게임 한 번에</div></a>
-<a class="tool-card" href="/youtube-thumbnail.html"><div class="t">유튜브 썸네일 추출</div><div class="d">영상 주소만 넣으면 고화질 썸네일 이미지</div></a>
-<a class="tool-card" href="/reaction.html"><div class="t">반응속도 테스트</div><div class="d">평균 반응속도 측정하고 친구와 기록 비교</div></a>
-<a class="tool-card" href="/city.html"><div class="t">미니시티 (게임)</div><div class="d">파산 없이 도시 키우기 — 배치가 곧 전략</div></a>
-<a class="tool-card" href="/apt.html"><div class="t">집값 맞히기 (데일리)</div><div class="d">오늘의 실거래 아파트, 가격을 5번 안에 맞혀보세요</div></a>
-<a class="tool-card" href="/map.html"><div class="t">여기 어디? 실루엣 지도 (데일리)</div><div class="d">시·군·구 실루엣 보고 지역 맞히기, 거리·방향 힌트</div></a>
-<a class="tool-card" href="/archi.html"><div class="t">오늘의 건축물 (데일리)</div><div class="d">힌트 6개로 세계·한국 건축물 맞히기</div></a>
-<a class="tool-card" href="/space-test.html"><div class="t">공간 성향 테스트</div><div class="d">12문항으로 알아보는 나의 공간 유형 8가지</div></a>
-<a class="tool-card" href="/scale.html"><div class="t">높이 여행</div><div class="d">여객기 고도에서 마리아나 해구까지 스크롤 한 번</div></a>
+<a class="tool-card" href="/apt.html"><div class="t" data-i18n="c_apt_t">집값 맞히기 (데일리)</div><div class="d" data-i18n="c_apt_d">오늘의 실거래 아파트, 가격을 5번 안에 맞혀보세요</div></a>
+<a class="tool-card" href="/map.html"><div class="t" data-i18n="c_map_t">여기 어디? 실루엣 지도 (데일리)</div><div class="d" data-i18n="c_map_d">시·군·구 실루엣 보고 지역 맞히기, 거리·방향 힌트</div></a>
+<a class="tool-card" href="/archi.html"><div class="t" data-i18n="c_archi_t">오늘의 건축물 (데일리)</div><div class="d" data-i18n="c_archi_d">힌트 6개로 세계·한국 건축물 맞히기</div></a>
+<a class="tool-card" href="/space-test.html"><div class="t" data-i18n="c_space_t">공간 성향 테스트</div><div class="d" data-i18n="c_space_d">12문항으로 알아보는 나의 공간 유형 8가지</div></a>
+<a class="tool-card" href="/scale.html"><div class="t" data-i18n="c_scale_t">높이 여행</div><div class="d" data-i18n="c_scale_d">여객기 고도에서 마리아나 해구까지 스크롤 한 번</div></a>
+<a class="tool-card" href="/city.html"><div class="t" data-i18n="c_city_t">미니시티 (게임)</div><div class="d" data-i18n="c_city_d">파산 없이 도시 키우기 — 배치가 곧 전략</div></a>
 </div>
+
+<h2 class="cat" data-i18n="cat_work">직장인 도구</h2>
+<div class="grid">
+<a class="tool-card" href="/salary.html"><div class="t" data-i18n="c_salary_t">연봉 실수령액 계산기</div><div class="d" data-i18n="c_salary_d">4대보험·소득세 떼고 월에 실제 얼마 받는지</div></a>
+<a class="tool-card" href="/char-count.html"><div class="t" data-i18n="c_char_t">글자수 세기</div><div class="d" data-i18n="c_char_d">자소서·리포트 글자수, 공백 포함/제외, 바이트까지</div></a>
+<a class="tool-card" href="/percent.html"><div class="t" data-i18n="c_pct_t">퍼센트 계산기</div><div class="d" data-i18n="c_pct_d">할인율·인상률·비율 계산 4가지 한 번에</div></a>
+<a class="tool-card" href="/image-compress.html"><div class="t" data-i18n="c_img_t">이미지 용량 줄이기</div><div class="d" data-i18n="c_img_d">서버 업로드 없이 브라우저에서 사진 압축</div></a>
+<a class="tool-card" href="/reaction.html"><div class="t" data-i18n="c_react_t">반응속도 테스트</div><div class="d" data-i18n="c_react_d">평균 반응속도 측정하고 친구와 기록 비교</div></a>
+</div>
+
+<h2 class="cat" data-i18n="cat_life">생활 도구</h2>
+<div class="grid">
+<a class="tool-card" href="/age.html"><div class="t" data-i18n="c_age_t">만 나이 계산기</div><div class="d" data-i18n="c_age_d">생년월일로 만 나이·한국식 나이 동시 확인</div></a>
+<a class="tool-card" href="/dday.html"><div class="t" data-i18n="c_dday_t">디데이 계산기</div><div class="d" data-i18n="c_dday_d">시험·전역·기념일까지 남은 날, 날짜 더하기</div></a>
+<a class="tool-card" href="/bmi.html"><div class="t" data-i18n="c_bmi_t">BMI 계산기</div><div class="d" data-i18n="c_bmi_d">키·몸무게로 체질량지수와 비만도 판정</div></a>
+<a class="tool-card" href="/lotto.html"><div class="t" data-i18n="c_lotto_t">로또 번호 생성기</div><div class="d" data-i18n="c_lotto_d">1~45 무작위 조합, 여러 게임 한 번에</div></a>
+<a class="tool-card" href="/youtube-thumbnail.html"><div class="t" data-i18n="c_yt_t">유튜브 썸네일 추출</div><div class="d" data-i18n="c_yt_d">영상 주소만 넣으면 고화질 썸네일 이미지</div></a>
+</div>
+
 <div class="faq">
-<h2>모두도구는 어떤 사이트인가요</h2>
-<p>검색해서 들어와 30초 만에 볼일을 끝내고 나가는 도구 모음입니다. 광고 외의 어떤 수익장치도, 회원가입도, 데이터 수집도 없습니다. 계산·변환·압축은 전부 사용자의 브라우저 안에서 자바스크립트로 처리됩니다.</p>
+<h2 data-i18n="faq_h">모두도구는 어떤 사이트인가요</h2>
+<p data-i18n="faq_p">검색해서 들어와 30초 만에 볼일을 끝내고 나가는 도구 모음입니다. 광고 외의 어떤 수익장치도, 회원가입도, 데이터 수집도 없습니다. 계산·변환·압축은 전부 사용자의 브라우저 안에서 자바스크립트로 처리됩니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/char-count.html">글자수 세기</a><a href="/salary.html">연봉 실수령액</a><a href="/age.html">만 나이</a><a href="/dday.html">디데이</a><a href="/percent.html">퍼센트</a><a href="/image-compress.html">이미지 압축</a><a href="/bmi.html">BMI</a><a href="/lotto.html">로또</a><a href="/youtube-thumbnail.html">유튜브 썸네일</a><a href="/reaction.html">반응속도</a></div><p>ⓒ 모두도구 · 모든 계산은 브라우저에서만 처리되며 입력값을 저장하지 않습니다.</p></footer>
+<footer><div class="links"><a href="/apt.html" data-i18n="c_apt_t">집값 맞히기</a><a href="/map.html" data-i18n="c_map_t">여기 어디?</a><a href="/archi.html" data-i18n="c_archi_t">오늘의 건축물</a><a href="/space-test.html" data-i18n="c_space_t">공간 성향 테스트</a><a href="/scale.html" data-i18n="c_scale_t">높이 여행</a><a href="/city.html" data-i18n="c_city_t">미니시티</a><a href="/char-count.html" data-i18n="c_char_t">글자수 세기</a><a href="/salary.html" data-i18n="c_salary_t">연봉 실수령액</a><a href="/age.html" data-i18n="c_age_t">만 나이</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/percent.html" data-i18n="c_pct_t">퍼센트</a><a href="/image-compress.html" data-i18n="c_img_t">이미지 압축</a><a href="/bmi.html" data-i18n="c_bmi_t">BMI</a><a href="/lotto.html" data-i18n="c_lotto_t">로또</a><a href="/youtube-thumbnail.html" data-i18n="c_yt_t">유튜브 썸네일</a><a href="/reaction.html" data-i18n="c_react_t">반응속도</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 모든 계산은 브라우저에서만 처리되며 입력값을 저장하지 않습니다.</p></footer>
 </body>
 </html>

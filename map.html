@@ -11,6 +11,77 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ nav_city:"Mini City", nav_react:"Reaction Time", nav_lotto:"Lotto", nav_all:"All tools",
+ title:"Where Is This? — Silhouette Map Quiz", h1:"Where Is This? — Silhouette Map Quiz",
+ lead:"Guess the Korean district from its outline alone. One puzzle a day, 6 chances. Miss and we tell you the distance and direction to the answer.",
+ mode_daily:"Today's puzzle", mode_free:"Free mode",
+ guess_ph:"Type a district name (e.g. Gangnam-gu)", submit:"Submit",
+ st_play:"Plays", st_win:"Win rate", st_streak:"Streak", st_max:"Best streak",
+ share_btn:"Share result", copy_btn:"Copy link", next_btn:"Next puzzle",
+ msg_notfound:"District not in the list. Please pick from autocomplete.",
+ msg_dup:"You already tried that district.",
+ correct_label:"Correct!", km_unit:"{v}km",
+ done_win:'Correct! <span class="revealed">{name}</span> — {n}/{max}',
+ done_lose:'So close. The answer was <span class="revealed">{name}</span>',
+ msg_donetoday:"You've already finished today's puzzle. Enjoy more in Free mode.",
+ copied:"Copied!",
+ emoji_daily_head:"Where Is This? {date} {n}/{max}", emoji_free_head:"Where Is This? Free {n}/{max}",
+ faq_how_h:"How to play", faq_how_p:"The silhouette shown is the boundary of some Korean city/county/district. Type its name and submit. Solve within 6 tries. Each miss shows the remaining distance (km) to the answer's centroid, an arrow pointing toward it, and a proximity (%) of how close you are.",
+ faq_prox_h:"How is proximity calculated?", faq_prox_p:"We compute the haversine distance between the two centroids from their latitude/longitude, then normalize against the national diagonal length. 100% is correct; the closer you are, the higher it goes. The arrow uses 8 compass directions to point toward the answer.",
+ faq_mode_h:"Today's puzzle and Free mode", faq_mode_p:"'Today's puzzle' shows everyone the same question based on the Korean (KST) date. Try once a day and share your result as emoji. The answer stays hidden so it isn't a spoiler. 'Free mode' lets you play unlimited random rounds.",
+ faq_data_h:"Data source", faq_data_p:"Administrative boundary data uses southkorea-maps (CC BY 4.0), edited and distributed by Team POPONG from Statistics Korea (KOSTAT) data. Silhouettes are simplified to the minimum recognizable coordinates, and all calculations run entirely in your browser.",
+ footer_note:"ⓒ ModuTools · Map data: southkorea-maps (KOSTAT / Team POPONG, CC BY 4.0)"
+},
+ja:{
+ nav_city:"ミニシティ", nav_react:"反応速度", nav_lotto:"ロト", nav_all:"すべてのツール",
+ title:"ここはどこ？ — シルエット地図クイズ", h1:"ここはどこ？ — シルエット地図クイズ",
+ lead:"韓国の市郡区の輪郭だけを見てどこか当ててください。1日1問、6回のチャンス。外すと正解までの距離と方角をお知らせします。",
+ mode_daily:"今日の問題", mode_free:"フリーモード",
+ guess_ph:"市郡区名を入力（例：江南区）", submit:"送信",
+ st_play:"プレイ", st_win:"正解率", st_streak:"連続正解", st_max:"最高連続",
+ share_btn:"結果を共有", copy_btn:"リンクをコピー", next_btn:"次の問題",
+ msg_notfound:"リストにない地域です。オートコンプリートから選んでください。",
+ msg_dup:"すでに試した地域です。",
+ correct_label:"正解！", km_unit:"{v}km",
+ done_win:'正解！ <span class="revealed">{name}</span> — {n}/{max}',
+ done_lose:'惜しい。正解は <span class="revealed">{name}</span> でした',
+ msg_donetoday:"今日の問題はすでに完了しました。フリーモードでもっと楽しみましょう。",
+ copied:"コピーしました！",
+ emoji_daily_head:"ここはどこ？ {date} {n}/{max}", emoji_free_head:"ここはどこ？ フリー {n}/{max}",
+ faq_how_h:"遊び方", faq_how_p:"画面に表示されたシルエットは韓国のいずれかの市郡区の境界です。名前を入力して送信してください。6回以内に当てればクリアです。外すたびに、正解地域の中心点までの残り距離（km）、そちらを指す方向矢印、どれだけ近いかを示す近接度（%）が表示されます。",
+ faq_prox_h:"近接度はどう計算しますか", faq_prox_p:"2つの地域の中心点の緯度経度からハバーサイン（haversine）距離を求め、国土の対角線の長さを基準に換算します。100%なら正解、近いほど高くなります。方向矢印は8方位で、正解のある方向を指します。",
+ faq_mode_h:"今日の問題とフリーモード", faq_mode_p:"「今日の問題」は韓国時間（KST）の日付を基準に全国の全員へ同じ問題が出ます。1日1回挑戦して結果を絵文字で共有しましょう。正解は隠されており、ネタバレになりません。「フリーモード」はランダムに無制限で楽しめます。",
+ faq_data_h:"データの出典", faq_data_p:"行政境界データは統計庁（KOSTAT）の資料をTeam POPONGが編集・配布したsouthkorea-maps（CC BY 4.0）を使用しています。シルエットは認識可能な最小座標に単純化しており、すべての計算はブラウザ内でのみ行われます。",
+ footer_note:"ⓒ モドゥツール · 地図データ southkorea-maps (KOSTAT / Team POPONG, CC BY 4.0)"
+},
+zh:{
+ nav_city:"迷你城市", nav_react:"反应速度", nav_lotto:"乐透", nav_all:"全部工具",
+ title:"这是哪里？ — 轮廓地图拼图", h1:"这是哪里？ — 轮廓地图拼图",
+ lead:"仅凭轮廓线猜出这是韩国哪个市郡区。每天一题，6次机会。猜错会告诉你到正确答案的距离和方向。",
+ mode_daily:"每日一题", mode_free:"自由模式",
+ guess_ph:"输入市郡区名（例：江南区）", submit:"提交",
+ st_play:"游玩", st_win:"正确率", st_streak:"连续答对", st_max:"最高连续",
+ share_btn:"分享结果", copy_btn:"复制链接", next_btn:"下一题",
+ msg_notfound:"列表中没有该地区，请从自动补全中选择。",
+ msg_dup:"你已经尝试过该地区。",
+ correct_label:"猜中！", km_unit:"{v}公里",
+ done_win:'猜中！ <span class="revealed">{name}</span> — {n}/{max}',
+ done_lose:'差一点。正确答案是 <span class="revealed">{name}</span>',
+ msg_donetoday:"今天的题目已完成。到自由模式继续畅玩吧。",
+ copied:"已复制！",
+ emoji_daily_head:"这是哪里？ {date} {n}/{max}", emoji_free_head:"这是哪里？ 自由 {n}/{max}",
+ faq_how_h:"游戏玩法", faq_how_p:"画面上显示的轮廓是韩国某个市郡区的边界。输入名称并提交，6次以内猜中即可。每次猜错都会显示到正确地区中心点的剩余距离（公里）、指向它的方向箭头，以及表示你有多接近的近接度（%）。",
+ faq_prox_h:"近接度如何计算", faq_prox_p:"根据两个地区中心点的经纬度求出哈弗辛（haversine）距离，再以国土对角线长度为基准换算。100%即为正确，越近数值越高。方向箭头采用8方位，指向正确答案所在的方向。",
+ faq_mode_h:"每日一题与自由模式", faq_mode_p:"“每日一题”按韩国时间（KST）日期给全国所有人出同一道题。每天挑战一次，用表情符号分享结果吧。答案是隐藏的，不会剧透。“自由模式”可随机无限畅玩。",
+ faq_data_h:"数据来源", faq_data_p:"行政边界数据使用了southkorea-maps（CC BY 4.0），由Team POPONG基于韩国统计厅（KOSTAT）资料编辑并发布。轮廓已简化为可识别的最少坐标，所有计算均在浏览器内完成。",
+ footer_note:"ⓒ 全民工具 · 地图数据 southkorea-maps (KOSTAT / Team POPONG, CC BY 4.0)"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 <style>
 #sil{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:14px}
 #sil svg{display:block;width:100%;height:auto;max-height:44vh}
@@ -45,21 +116,21 @@
 </style>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html" data-i18n="nav_city">미니시티</a><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></nav></header>
 <main>
-<h1>여기 어디? — 실루엣 지도 퀴즈</h1>
-<p class="lead">대한민국 시·군·구의 윤곽선만 보고 어디인지 맞혀보세요. 매일 한 문제, 6번의 기회. 틀리면 정답까지의 거리와 방향을 알려드립니다.</p>
+<h1 data-i18n="h1">여기 어디? — 실루엣 지도 퀴즈</h1>
+<p class="lead" data-i18n="lead">대한민국 시·군·구의 윤곽선만 보고 어디인지 맞혀보세요. 매일 한 문제, 6번의 기회. 틀리면 정답까지의 거리와 방향을 알려드립니다.</p>
 <div class="card">
 <div id="modes">
-<button id="mDaily" class="on">오늘의 문제</button>
-<button id="mFree">자유 모드</button>
+<button id="mDaily" class="on" data-i18n="mode_daily">오늘의 문제</button>
+<button id="mFree" data-i18n="mode_free">자유 모드</button>
 </div>
 <div id="sil"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><path id="silPath" d=""/></svg></div>
 <div id="slots"></div>
 <div id="guesses"></div>
 <div id="inputwrap">
-<input type="text" id="guess" list="regions" placeholder="시·군·구 이름 입력 (예: 강남구)" autocomplete="off" enterkeyhint="go">
-<button id="submit">제출</button>
+<input type="text" id="guess" list="regions" placeholder="시·군·구 이름 입력 (예: 강남구)" data-i18n-ph="guess_ph" autocomplete="off" enterkeyhint="go">
+<button id="submit" data-i18n="submit">제출</button>
 </div>
 <datalist id="regions"></datalist>
 <div id="msg"></div>
@@ -67,31 +138,31 @@
 <div class="big2" id="doneT"></div>
 <div id="emoji"></div>
 <div class="sharerow">
-<button id="share">결과 공유</button>
-<button id="copy" class="ghost">링크 복사</button>
-<button id="next" class="ghost" style="display:none">다음 문제</button>
+<button id="share" data-i18n="share_btn">결과 공유</button>
+<button id="copy" class="ghost" data-i18n="copy_btn">링크 복사</button>
+<button id="next" class="ghost" style="display:none" data-i18n="next_btn">다음 문제</button>
 </div>
 </div>
 <div class="statrow">
-<div class="st"><div class="v" id="sPlay">0</div><div class="k">플레이</div></div>
-<div class="st"><div class="v" id="sWin">0%</div><div class="k">정답률</div></div>
-<div class="st"><div class="v" id="sStreak">0</div><div class="k">연속 정답</div></div>
-<div class="st"><div class="v" id="sMax">0</div><div class="k">최고 연속</div></div>
+<div class="st"><div class="v" id="sPlay">0</div><div class="k" data-i18n="st_play">플레이</div></div>
+<div class="st"><div class="v" id="sWin">0%</div><div class="k" data-i18n="st_win">정답률</div></div>
+<div class="st"><div class="v" id="sStreak">0</div><div class="k" data-i18n="st_streak">연속 정답</div></div>
+<div class="st"><div class="v" id="sMax">0</div><div class="k" data-i18n="st_max">최고 연속</div></div>
 </div>
 </div>
 <div class="faq">
-<h2>게임 방법</h2>
-<p>화면에 표시된 실루엣은 대한민국의 어느 시·군·구 경계입니다. 이름을 입력해 제출하세요. 6번 안에 맞히면 됩니다. 틀릴 때마다 정답 지역의 중심점까지 남은 거리(km), 그쪽을 가리키는 방향 화살표, 그리고 얼마나 가까운지를 나타내는 근접도(%)가 표시됩니다.</p>
-<h2>근접도는 어떻게 계산하나요</h2>
-<p>두 지역 중심점의 위경도로 하버사인(haversine) 거리를 구한 뒤, 국토 대각선 길이를 기준으로 환산합니다. 100%면 정답, 가까울수록 높아집니다. 방향 화살표는 8방위로, 정답이 있는 쪽을 가리킵니다.</p>
-<h2>오늘의 문제와 자유 모드</h2>
-<p>‘오늘의 문제’는 한국 시각(KST) 날짜를 기준으로 전국 모든 사람에게 같은 문제가 나옵니다. 하루 한 번 도전하고 결과를 이모지로 공유해 보세요. 정답은 가려져 있어 스포일러가 되지 않습니다. ‘자유 모드’는 무작위로 무제한 즐길 수 있습니다.</p>
-<h2>데이터 출처</h2>
-<p>행정경계 데이터는 통계청(KOSTAT) 자료를 Team POPONG이 편집·배포한 southkorea-maps(CC BY 4.0)를 사용했습니다. 실루엣은 인식 가능한 최소 좌표로 단순화했으며, 모든 계산은 브라우저 안에서만 이루어집니다.</p>
+<h2 data-i18n="faq_how_h">게임 방법</h2>
+<p data-i18n="faq_how_p">화면에 표시된 실루엣은 대한민국의 어느 시·군·구 경계입니다. 이름을 입력해 제출하세요. 6번 안에 맞히면 됩니다. 틀릴 때마다 정답 지역의 중심점까지 남은 거리(km), 그쪽을 가리키는 방향 화살표, 그리고 얼마나 가까운지를 나타내는 근접도(%)가 표시됩니다.</p>
+<h2 data-i18n="faq_prox_h">근접도는 어떻게 계산하나요</h2>
+<p data-i18n="faq_prox_p">두 지역 중심점의 위경도로 하버사인(haversine) 거리를 구한 뒤, 국토 대각선 길이를 기준으로 환산합니다. 100%면 정답, 가까울수록 높아집니다. 방향 화살표는 8방위로, 정답이 있는 쪽을 가리킵니다.</p>
+<h2 data-i18n="faq_mode_h">오늘의 문제와 자유 모드</h2>
+<p data-i18n="faq_mode_p">‘오늘의 문제’는 한국 시각(KST) 날짜를 기준으로 전국 모든 사람에게 같은 문제가 나옵니다. 하루 한 번 도전하고 결과를 이모지로 공유해 보세요. 정답은 가려져 있어 스포일러가 되지 않습니다. ‘자유 모드’는 무작위로 무제한 즐길 수 있습니다.</p>
+<h2 data-i18n="faq_data_h">데이터 출처</h2>
+<p data-i18n="faq_data_p">행정경계 데이터는 통계청(KOSTAT) 자료를 Team POPONG이 편집·배포한 southkorea-maps(CC BY 4.0)를 사용했습니다. 실루엣은 인식 가능한 최소 좌표로 단순화했으며, 모든 계산은 브라우저 안에서만 이루어집니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></div><p>ⓒ 모두도구 · 지도 데이터 southkorea-maps (KOSTAT / Team POPONG, CC BY 4.0)</p></footer>
+<footer><div class="links"><a href="/" data-i18n="nav_all">전체 도구</a><a href="/city.html" data-i18n="nav_city">미니시티</a><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 지도 데이터 southkorea-maps (KOSTAT / Team POPONG, CC BY 4.0)</p></footer>
 <script src="/map-data.js"></script>
 <script>
 (function(){
@@ -186,8 +257,8 @@ function newRound(){
 function addGuess(name){
   if(over)return;
   var g=byName[name];
-  if(!g){el.msg.textContent='목록에 없는 지역입니다. 자동완성에서 골라주세요.';return;}
-  if(guesses.some(function(x){return x.n===name;})){el.msg.textContent='이미 시도한 지역입니다.';return;}
+  if(!g){el.msg.textContent=t('msg_notfound','목록에 없는 지역입니다. 자동완성에서 골라주세요.');return;}
+  if(guesses.some(function(x){return x.n===name;})){el.msg.textContent=t('msg_dup','이미 시도한 지역입니다.');return;}
   var correct = name===answer.n;
   var dist = correct?0: hav(g.c[1],g.c[0],answer.c[1],answer.c[0]);
   var pct = correct?100:proximity(dist);
@@ -205,7 +276,7 @@ function renderGuesses(){
   guesses.forEach(function(g){
     var row=document.createElement('div');row.className='grow'+(g.correct?' hit':'');
     row.innerHTML='<span class="nm">'+g.n+'</span>'+
-      (g.correct?'<span class="dist">정답!</span>':'<span class="dist">'+g.dist+'km</span>')+
+      (g.correct?'<span class="dist">'+t('correct_label','정답!')+'</span>':'<span class="dist">'+t('km_unit','{v}km').replace('{v}',g.dist)+'</span>')+
       '<span class="arw">'+g.arw+'</span><span class="pct">'+g.pct+'%</span>';
     el.gs.appendChild(row);
   });
@@ -215,8 +286,8 @@ function finish(win){
   over=true;el.input.disabled=true;document.getElementById('submit').disabled=true;
   el.done.style.display='block';
   el.doneT.innerHTML = win
-    ? '정답! <span class="revealed">'+answer.n+'</span> — '+guesses.length+'/'+MAX
-    : '아쉬워요. 정답은 <span class="revealed">'+answer.n+'</span>';
+    ? t('done_win','정답! <span class="revealed">{name}</span> — {n}/{max}').replace('{name}',answer.n).replace('{n}',guesses.length).replace('{max}',MAX)
+    : t('done_lose','아쉬워요. 정답은 <span class="revealed">{name}</span>').replace('{name}',answer.n);
   el.emoji.textContent=buildEmoji(win);
   el.next.style.display = mode==='free' ? 'inline-block':'none';
   if(mode==='daily'){recordStat(win);saveDaily();}
@@ -224,7 +295,11 @@ function finish(win){
 }
 
 function buildEmoji(win){
-  var head = (mode==='daily'? '여기 어디? '+kstDateStr()+' ' : '여기 어디? 자유 ')+(win?guesses.length:'X')+'/'+MAX+'\n';
+  var n = win?guesses.length:'X';
+  var head = (mode==='daily'
+    ? t('emoji_daily_head','여기 어디? {date} {n}/{max}').replace('{date}',kstDateStr())
+    : t('emoji_free_head','여기 어디? 자유 {n}/{max}'))
+    .replace('{n}',n).replace('{max}',MAX)+'\n';
   var body = guesses.map(function(g){return distGauge(g.pct);}).join('\n');
   return head+'\n'+body;
 }
@@ -234,11 +309,11 @@ document.getElementById('share').onclick=function(){
   var url='https://modutools.vercel.app/map.html';
   var txt=el.emoji.textContent+'\n'+url;
   if(navigator.share){navigator.share({text:txt}).catch(function(){});}
-  else{navigator.clipboard.writeText(txt);this.textContent='복사됨!';var b=this;setTimeout(function(){b.textContent='결과 공유';},1500);}
+  else{navigator.clipboard.writeText(txt);this.textContent=t('copied','복사됨!');var b=this;setTimeout(function(){b.textContent=t('share_btn','결과 공유');},1500);}
 };
 document.getElementById('copy').onclick=function(){
   navigator.clipboard.writeText('https://modutools.vercel.app/map.html');
-  this.textContent='복사됨!';var b=this;setTimeout(function(){b.textContent='링크 복사';},1500);
+  this.textContent=t('copied','복사됨!');var b=this;setTimeout(function(){b.textContent=t('copy_btn','링크 복사');},1500);
 };
 el.next.onclick=function(){newRound();};
 
@@ -270,10 +345,10 @@ function restore(s){
   if(s.over){over=true;el.input.disabled=true;document.getElementById('submit').disabled=true;
     var win=guesses.length&&guesses[guesses.length-1].correct;
     el.done.style.display='block';
-    el.doneT.innerHTML=win?'정답! <span class="revealed">'+answer.n+'</span> — '+guesses.length+'/'+MAX
-      :'아쉬워요. 정답은 <span class="revealed">'+answer.n+'</span>';
+    el.doneT.innerHTML=win?t('done_win','정답! <span class="revealed">{name}</span> — {n}/{max}').replace('{name}',answer.n).replace('{n}',guesses.length).replace('{max}',MAX)
+      :t('done_lose','아쉬워요. 정답은 <span class="revealed">{name}</span>').replace('{name}',answer.n);
     el.emoji.textContent=buildEmoji(win);
-    el.msg.textContent='오늘 문제는 이미 완료했어요. 자유 모드로 더 즐겨보세요.';
+    el.msg.textContent=t('msg_donetoday','오늘 문제는 이미 완료했어요. 자유 모드로 더 즐겨보세요.');
   }
 }
 
@@ -293,6 +368,19 @@ function renderStats(){
   document.getElementById('sStreak').textContent=s.streak;
   document.getElementById('sMax').textContent=s.max;
 }
+
+// re-render dynamic UI on language switch
+document.addEventListener('mt:lang',function(){
+  renderStats();
+  renderGuesses();
+  if(over){
+    var win=guesses.length&&guesses[guesses.length-1].correct;
+    el.doneT.innerHTML = win
+      ? t('done_win','정답! <span class="revealed">{name}</span> — {n}/{max}').replace('{name}',answer.n).replace('{n}',guesses.length).replace('{max}',MAX)
+      : t('done_lose','아쉬워요. 정답은 <span class="revealed">{name}</span>').replace('{name}',answer.n);
+    el.emoji.textContent=buildEmoji(win);
+  }
+});
 
 // init
 renderStats();

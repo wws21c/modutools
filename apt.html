@@ -11,6 +11,95 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ nav_city:"Mini City", nav_react:"Reaction Time", nav_lotto:"Lotto", nav_all:"All tools",
+ title:"Guess the Home Price", h1:"Guess the Home Price",
+ lead:"Guess today's Korean apartment sale price in 5 tries. Based on real Ministry of Land transaction data.",
+ mode_daily:"Today's puzzle", mode_free:"Free mode",
+ guess_ph:"e.g. 24.5 (100M KRW)", submit:"Submit",
+ hint:'Enter the actual sale price in <b>units of 100 million KRW</b> (decimals OK). Within ±5% of the real price counts as correct!',
+ tag_area:"Exclusive {v}", tag_floor:"Floor {v}", tag_ym:"Sold {y}/{m}",
+ dir_up:"↑ Higher", dir_dn:"↓ Lower",
+ off_label:"Off by {v}%",
+ msg_input:"Enter a number in units of 100M KRW.",
+ msg_higher:"Higher.", msg_lower:"Lower.", msg_remain:"{n} tries left",
+ correct:"Correct! ", price:"Sale price {v}00M KRW", price_won:"00M KRW",
+ reveal_sub:"{name} exclusive {area} · floor {floor} · sold {ym} · closest miss {best}%",
+ share_btn:"Share result", next_btn:"Next puzzle",
+ st_plays:"Plays", st_rate:"Win rate", st_streak:"Streak", st_max:"Best streak",
+ dist_label:"Try distribution",
+ src_label:"Source: ",
+ share_head_daily:"Guess the Home Price {date}", share_head_free:"Guess the Home Price (Free mode)",
+ share_win:"{n}/{max} solved", share_lose:"Failed {max}/{max}",
+ copy_ok:"Copied!", copy_fail:"Copy failed",
+ no_data:"Failed to load data.",
+ faq_how_h:"How to play", faq_how_p:"You're shown one real apartment transaction (district, complex, exclusive area, floor, sale month) and guess the actual price in units of 100 million KRW. Each try shows ↑ (higher) / ↓ (lower) and a temperature hint. 🔥 means within ±5%, 🌡 within ±15%, ❄️ beyond that. Land within ±5% of the real price to win.",
+ faq_mode_h:"Today's puzzle vs Free mode", faq_mode_p:"'Today's puzzle' gives everyone the same single question based on the date (one per day). Share your result and compete on error rate. 'Free mode' lets you enjoy unlimited random questions.",
+ faq_data_h:"Data source", faq_data_p:"Every question is a real Ministry of Land transaction cited in news articles or public reports. No values are made up, and a source link is shown at the bottom of each result screen. Property prices change over time, so check the sale month too.",
+ disclaimer:"Sale prices are as of the time of press coverage and are for reference only. For the latest and accurate figures, check the Korea Real Estate Transaction Price Disclosure System (rt.molit.go.kr).",
+ footer_note:"ⓒ ModuTools · Sale prices are as of press coverage and for reference only."
+},
+ja:{
+ nav_city:"ミニシティ", nav_react:"反応速度", nav_lotto:"ロト", nav_all:"すべてのツール",
+ title:"住宅価格当て", h1:"住宅価格当て",
+ lead:"今日の韓国マンションの実取引価格を5回以内に当ててください。国土交通部の実取引データに基づいています。",
+ mode_daily:"今日の問題", mode_free:"フリーモード",
+ guess_ph:"例: 24.5（億ウォン）", submit:"送信",
+ hint:'専有の実取引価格を<b>億ウォン単位</b>で入力してください（小数可）。実際価格の±5%以内なら正解です。',
+ tag_area:"専有 {v}", tag_floor:"{v}階", tag_ym:"{y}年{m}月取引",
+ dir_up:"↑ もっと高い", dir_dn:"↓ もっと低い",
+ off_label:"誤差 {v}%",
+ msg_input:"数字を億ウォン単位で入力してください。",
+ msg_higher:"もっと高いです。", msg_lower:"もっと低いです。", msg_remain:"残り{n}回",
+ correct:"正解！ ", price:"実取引価格 {v}億ウォン", price_won:"億ウォン",
+ reveal_sub:"{name} 専有 {area} · {floor}階 · {ym}取引 · 最小誤差 {best}%",
+ share_btn:"結果を共有", next_btn:"次の問題",
+ st_plays:"プレイ", st_rate:"正解率", st_streak:"現在の連続", st_max:"最高連続",
+ dist_label:"試行分布",
+ src_label:"出典: ",
+ share_head_daily:"住宅価格当て {date}", share_head_free:"住宅価格当て（フリーモード）",
+ share_win:"{n}/{max} 成功", share_lose:"失敗 {max}/{max}",
+ copy_ok:"コピーしました！", copy_fail:"コピー失敗",
+ no_data:"データを読み込めませんでした。",
+ faq_how_h:"遊び方", faq_how_p:"提示されたマンションの実取引1件（地域・団地・専有面積・階・取引年月）を見て、実際の取引価格を億ウォン単位で推測します。試行ごとに↑（もっと高い）・↓（もっと低い）の方向と温度ヒントが表示されます。🔥は誤差±5%以内、🌡は±15%以内、❄️はそれ以外です。実際価格の±5%以内で当てれば正解になります。",
+ faq_mode_h:"今日の問題とフリーモード", faq_mode_p:"「今日の問題」は日付を基準に全員へ同じ1問が出題されます（1日1問）。結果を共有して友達と誤差率を競いましょう。「フリーモード」は無制限にランダム問題を楽しめます。",
+ faq_data_h:"データの出典", faq_data_p:"すべての問題はニュース記事や公開報道に明記された実際の国土交通部の実取引です。作り出した値はなく、各問題の結果画面下部に出典リンクが表示されます。不動産価格は時点によって変わるため、取引年月も併せてご確認ください。",
+ disclaimer:"実取引価格は報道時点基準であり参考用です。最新・正確な値は国土交通部の実取引価格公開システム（rt.molit.go.kr）でご確認ください。",
+ footer_note:"ⓒ モドゥツール · 実取引価格は報道時点基準であり参考用です。"
+},
+zh:{
+ nav_city:"迷你城市", nav_react:"反应速度", nav_lotto:"乐透", nav_all:"全部工具",
+ title:"猜房价", h1:"猜房价",
+ lead:"用5次机会猜出今天这套韩国公寓的真实成交价。数据来自韩国国土交通部实际成交记录。",
+ mode_daily:"每日一题", mode_free:"自由模式",
+ guess_ph:"例：24.5（亿韩元）", submit:"提交",
+ hint:'请以<b>亿韩元为单位</b>输入专有面积的成交价（可含小数）。与真实价格相差在±5%以内即算猜中！',
+ tag_area:"专有 {v}", tag_floor:"{v}层", tag_ym:"{y}年{m}月成交",
+ dir_up:"↑ 更高", dir_dn:"↓ 更低",
+ off_label:"误差 {v}%",
+ msg_input:"请以亿韩元为单位输入数字。",
+ msg_higher:"更高。", msg_lower:"更低。", msg_remain:"还剩{n}次",
+ correct:"猜中！ ", price:"成交价 {v}亿韩元", price_won:"亿韩元",
+ reveal_sub:"{name} 专有 {area} · {floor}层 · {ym}成交 · 最小误差 {best}%",
+ share_btn:"分享结果", next_btn:"下一题",
+ st_plays:"游玩", st_rate:"正确率", st_streak:"连胜", st_max:"最高连胜",
+ dist_label:"尝试分布",
+ src_label:"来源：",
+ share_head_daily:"猜房价 {date}", share_head_free:"猜房价（自由模式）",
+ share_win:"{n}/{max} 成功", share_lose:"失败 {max}/{max}",
+ copy_ok:"已复制！", copy_fail:"复制失败",
+ no_data:"未能加载数据。",
+ faq_how_h:"游戏玩法", faq_how_p:"看给出的一笔公寓真实成交（地区·小区·专有面积·楼层·成交年月），以亿韩元为单位推测真实成交价。每次尝试都会显示↑（更高）·↓（更低）的方向和温度提示。🔥表示误差在±5%以内，🌡在±15%以内，❄️在此之外。与真实价格相差在±5%以内即算猜中。",
+ faq_mode_h:"每日一题与自由模式", faq_mode_p:"“每日一题”按日期给所有人出同一道题（每天一题）。分享结果，和朋友比拼误差率吧。“自由模式”可无限畅玩随机题目。",
+ faq_data_h:"数据来源", faq_data_p:"所有题目均为新闻报道或公开资料中载明的韩国国土交通部真实成交，绝无虚构，每道题的结果页底部都会显示来源链接。房价会随时点变化，请一并确认成交年月。",
+ disclaimer:"成交价以报道时点为准，仅供参考。最新、准确的数值请查询韩国国土交通部实际成交价公开系统（rt.molit.go.kr）。",
+ footer_note:"ⓒ 全民工具 · 成交价以报道时点为准，仅供参考。"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 <style>
 #mode{display:flex;gap:8px;margin-bottom:14px}
 #mode button{margin:0;padding:8px 14px;font-size:.85rem;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:10px}
@@ -55,37 +144,38 @@
 </style>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/city.html" data-i18n="nav_city">미니시티</a><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></nav></header>
 <main>
-<h1>집값 맞히기</h1>
-<p class="lead">오늘의 아파트 실거래가를 5번 안에 맞혀보세요. 실제 국토부 실거래가 기반입니다.</p>
+<h1 data-i18n="h1">집값 맞히기</h1>
+<p class="lead" data-i18n="lead">오늘의 아파트 실거래가를 5번 안에 맞혀보세요. 실제 국토부 실거래가 기반입니다.</p>
 <div class="card">
 <div id="mode">
-<button id="mDaily" class="on">오늘의 문제</button>
-<button id="mFree">자유 모드</button>
+<button id="mDaily" class="on" data-i18n="mode_daily">오늘의 문제</button>
+<button id="mFree" data-i18n="mode_free">자유 모드</button>
 </div>
 <div class="q" id="q"></div>
 <div id="slots"></div>
 <div id="guessRow">
-<input type="number" id="guess" inputmode="decimal" step="0.1" placeholder="예: 24.5 (억원)" enterkeyhint="send">
-<button id="submit">제출</button>
+<input type="number" id="guess" inputmode="decimal" step="0.1" placeholder="예: 24.5 (억원)" data-i18n-ph="guess_ph" enterkeyhint="send">
+<button id="submit" data-i18n="submit">제출</button>
 </div>
-<div class="hint">전용 실거래가를 <b>억 단위</b>로 입력 (소수 가능). 실제가의 ±5% 이내면 정답!</div>
+<div class="hint" data-i18n="hint">전용 실거래가를 <b>억 단위</b>로 입력 (소수 가능). 실제가의 ±5% 이내면 정답!</div>
 <div id="tries"></div>
 <div id="msg"></div>
 <div id="reveal"></div>
+<p class="hint" id="disclaimer" data-i18n="disclaimer">실거래가는 언론 보도 기준이며 참고용입니다. 최신·정확한 값은 국토교통부 실거래가 공개시스템을 확인하세요.</p>
 </div>
 <div class="faq">
-<h2>게임 방법</h2>
-<p>제시된 아파트 실거래 1건(지역·단지·전용면적·층·거래 연월)을 보고 실제 거래가를 억 단위로 추측합니다. 매 시도마다 ↑(더 높음)·↓(더 낮음) 방향과 온도 힌트가 나옵니다. 🔥는 오차 ±5% 이내, 🌡는 ±15% 이내, ❄️는 그 밖입니다. 실제가의 ±5% 이내로 맞히면 정답 처리됩니다.</p>
-<h2>오늘의 문제 vs 자유 모드</h2>
-<p>‘오늘의 문제’는 날짜 기반으로 모든 사람에게 같은 한 문제가 출제됩니다(하루 1문제). 결과를 공유해 친구와 오차율을 겨뤄보세요. ‘자유 모드’는 무제한으로 랜덤 문제를 즐길 수 있습니다.</p>
-<h2>데이터 출처</h2>
-<p>모든 문제는 뉴스 기사·공개 보도에 명시된 실제 국토부 실거래가 거래입니다. 지어낸 값은 없으며, 각 문제의 결과 화면 하단에 출처 링크가 표시됩니다. 부동산 가격은 시점에 따라 달라지므로 거래 연월을 함께 확인하세요.</p>
+<h2 data-i18n="faq_how_h">게임 방법</h2>
+<p data-i18n="faq_how_p">제시된 아파트 실거래 1건(지역·단지·전용면적·층·거래 연월)을 보고 실제 거래가를 억 단위로 추측합니다. 매 시도마다 ↑(더 높음)·↓(더 낮음) 방향과 온도 힌트가 나옵니다. 🔥는 오차 ±5% 이내, 🌡는 ±15% 이내, ❄️는 그 밖입니다. 실제가의 ±5% 이내로 맞히면 정답 처리됩니다.</p>
+<h2 data-i18n="faq_mode_h">오늘의 문제 vs 자유 모드</h2>
+<p data-i18n="faq_mode_p">‘오늘의 문제’는 날짜 기반으로 모든 사람에게 같은 한 문제가 출제됩니다(하루 1문제). 결과를 공유해 친구와 오차율을 겨뤄보세요. ‘자유 모드’는 무제한으로 랜덤 문제를 즐길 수 있습니다.</p>
+<h2 data-i18n="faq_data_h">데이터 출처</h2>
+<p data-i18n="faq_data_p">모든 문제는 뉴스 기사·공개 보도에 명시된 실제 국토부 실거래가 거래입니다. 지어낸 값은 없으며, 각 문제의 결과 화면 하단에 출처 링크가 표시됩니다. 부동산 가격은 시점에 따라 달라지므로 거래 연월을 함께 확인하세요.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/city.html">미니시티</a><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></div><p>ⓒ 모두도구 · 실거래가는 보도 시점 기준이며 참고용입니다.</p></footer>
+<footer><div class="links"><a href="/" data-i18n="nav_all">전체 도구</a><a href="/city.html" data-i18n="nav_city">미니시티</a><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/lotto.html" data-i18n="nav_lotto">로또</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 실거래가는 보도 시점 기준이며 참고용입니다.</p></footer>
 <script src="/apt-data.js"></script>
 <script>
 (function(){
@@ -138,14 +228,14 @@ function pick(){
   renderQ(); renderTries(); renderSlots();
 }
 function fmtArea(a){return (Math.round(a*100)/100)+'㎡'}
-function fmtYm(ym){var p=ym.split('-');return p[0]+'년 '+parseInt(p[1],10)+'월 거래'}
+function fmtYm(ym){var p=ym.split('-');return t('tag_ym','{y}년 {m}월 거래').replace('{y}',p[0]).replace('{m}',parseInt(p[1],10));}
 function renderQ(){
   document.getElementById('q').innerHTML=
     '<div class="name">'+cur.name+'</div>'+
     '<div class="meta">'+cur.district+'</div>'+
     '<div class="tags">'+
-      '<span class="tag">전용 '+fmtArea(cur.area)+'</span>'+
-      '<span class="tag">'+cur.floor+'층</span>'+
+      '<span class="tag">'+t('tag_area','전용 {v}').replace('{v}',fmtArea(cur.area))+'</span>'+
+      '<span class="tag">'+t('tag_floor','{v}층').replace('{v}',cur.floor)+'</span>'+
       '<span class="tag">'+fmtYm(cur.ym)+'</span>'+
     '</div>';
 }
@@ -161,10 +251,10 @@ function tempEmoji(off){return off<=WIN?'🔥':off<=WARM?'🌡':'❄️'}
 function renderTries(){
   var h='';
   tries.forEach(function(t){
-    var dir=t.win?'':(t.guess<cur.price?'<span class="dir up">↑ 더 높음</span>':'<span class="dir dn">↓ 더 낮음</span>');
+    var dir=t.win?'':(t.guess<cur.price?'<span class="dir up">'+window.t('dir_up','↑ 더 높음')+'</span>':'<span class="dir dn">'+window.t('dir_dn','↓ 더 낮음')+'</span>');
     h+='<div class="try"><span class="em">'+(t.win?'✅':tempEmoji(t.off))+'</span>'+
-       '<span class="val">'+t.guess+'억</span>'+dir+
-       '<span class="off">오차 '+(t.off*100).toFixed(1)+'%</span></div>';
+       '<span class="val">'+t.guess+window.t('price_won','억')+'</span>'+dir+
+       '<span class="off">'+window.t('off_label','오차 {v}%').replace('{v}',(t.off*100).toFixed(1))+'</span></div>';
   });
   document.getElementById('tries').innerHTML=h;
 }
@@ -173,7 +263,7 @@ function renderTries(){
 function submit(){
   if(done) return;
   var v=parseFloat(document.getElementById('guess').value);
-  if(isNaN(v)||v<=0){document.getElementById('msg').textContent='숫자를 억 단위로 입력하세요.';return}
+  if(isNaN(v)||v<=0){document.getElementById('msg').textContent=t('msg_input','숫자를 억 단위로 입력하세요.');return}
   var off=Math.abs(v-cur.price)/cur.price;
   var win=off<=WIN;
   tries.push({guess:v,off:off,win:win});
@@ -183,31 +273,39 @@ function submit(){
   else if(tries.length>=MAX){finish(false)}
   else{
     var em=tempEmoji(off);
-    document.getElementById('msg').textContent=em+' '+(v<cur.price?'더 높습니다.':'더 낮습니다.')+' 남은 시도 '+(MAX-tries.length)+'회';
+    document.getElementById('msg').textContent=em+' '+(v<cur.price?t('msg_higher','더 높습니다.'):t('msg_lower','더 낮습니다.'))+' '+t('msg_remain','남은 시도 {n}회').replace('{n}',(MAX-tries.length));
   }
 }
 
 // ── finish + reveal ──
 function finish(win){
+  if(mode==='daily') recordResult(win,tries.length);
+  renderReveal(win);
+}
+function renderReveal(win){
   done=true;
   document.getElementById('guess').disabled=true;
   document.getElementById('submit').disabled=true;
   document.getElementById('msg').textContent='';
-  if(mode==='daily') recordResult(win,tries.length);
   var best=Math.min.apply(null,tries.map(function(t){return t.off}));
   var emGrid=tries.map(function(t){return t.win?'✅':tempEmoji(t.off)}).join('');
   var r=document.getElementById('reveal');
   r.className=win?'win':'';
   r.style.display='block';
+  var priceStr = t('price','실거래가 {v}억원').replace('{v}',cur.price);
+  var subStr = t('reveal_sub','{name} 전용 {area} · {floor}층 · {ym} · 최소 오차 {best}%')
+    .replace('{name}',cur.name).replace('{area}',fmtArea(cur.area))
+    .replace('{floor}',cur.floor).replace('{ym}',fmtYm(cur.ym))
+    .replace('{best}',(best*100).toFixed(1));
   r.innerHTML=
-    '<div class="ans">'+(win?'정답! ':'')+'실거래가 '+cur.price+'억원</div>'+
-    '<div class="sub">'+cur.name+' 전용 '+fmtArea(cur.area)+' · '+cur.floor+'층 · '+fmtYm(cur.ym)+' · 최소 오차 '+(best*100).toFixed(1)+'%</div>'+
+    '<div class="ans">'+(win?t('correct','정답! '):'')+priceStr+'</div>'+
+    '<div class="sub">'+subStr+'</div>'+
     '<div class="grid-emo">'+emGrid+'</div>'+
-    '<button id="shareBtn">결과 공유</button> '+
-    (mode==='free'?'<button id="nextBtn" class="ghost">다음 문제</button>':'')+
+    '<button id="shareBtn">'+t('share_btn','결과 공유')+'</button> '+
+    (mode==='free'?'<button id="nextBtn" class="ghost">'+t('next_btn','다음 문제')+'</button>':'')+
     '<span id="copyOk" class="copy-ok"></span>'+
     renderStats()+
-    '<div class="src" style="margin-top:14px">출처: <a href="'+cur.src+'" target="_blank" rel="noopener">'+cur.src+'</a></div>';
+    '<div class="src" style="margin-top:14px">'+t('src_label','출처: ')+'<a href="'+cur.src+'" target="_blank" rel="noopener">'+cur.src+'</a></div>';
   bind();
 }
 function renderStats(){
@@ -215,17 +313,17 @@ function renderStats(){
   var s=Object.assign(defStats(),loadStats());
   var rate=s.plays?Math.round(s.wins/s.plays*100):0;
   var maxD=Math.max(1,Math.max.apply(null,s.dist));
-  var dist='<div id="dist"><div style="color:var(--sub);margin-bottom:4px">시도 분포</div>';
+  var dist='<div id="dist"><div style="color:var(--sub);margin-bottom:4px">'+t('dist_label','시도 분포')+'</div>';
   for(var i=0;i<5;i++){
     var w=Math.round(s.dist[i]/maxD*100);
     dist+='<div class="bar"><span class="n">'+(i+1)+'</span><span class="fill" style="width:'+Math.max(6,w)+'%">'+s.dist[i]+'</span></div>';
   }
   dist+='<div class="bar"><span class="n">✗</span><span class="fill" style="width:'+Math.max(6,Math.round(s.dist[5]/maxD*100))+'%;background:var(--sub)">'+s.dist[5]+'</span></div></div>';
   return '<div id="statsBox">'+
-    '<div class="st"><div class="v">'+s.plays+'</div><div class="k">플레이</div></div>'+
-    '<div class="st"><div class="v">'+rate+'%</div><div class="k">정답률</div></div>'+
-    '<div class="st"><div class="v">'+s.streak+'</div><div class="k">현재 연속</div></div>'+
-    '<div class="st"><div class="v">'+s.maxStreak+'</div><div class="k">최고 연속</div></div>'+
+    '<div class="st"><div class="v">'+s.plays+'</div><div class="k">'+t('st_plays','플레이')+'</div></div>'+
+    '<div class="st"><div class="v">'+rate+'%</div><div class="k">'+t('st_rate','정답률')+'</div></div>'+
+    '<div class="st"><div class="v">'+s.streak+'</div><div class="k">'+t('st_streak','현재 연속')+'</div></div>'+
+    '<div class="st"><div class="v">'+s.maxStreak+'</div><div class="k">'+t('st_max','최고 연속')+'</div></div>'+
     '</div>'+dist;
 }
 function bind(){
@@ -237,13 +335,13 @@ function bind(){
 function share(){
   var emGrid=tries.map(function(t){return t.win?'✅':tempEmoji(t.off)}).join('');
   var won=tries.length&&tries[tries.length-1].win;
-  var head=mode==='daily'?('집값 맞히기 '+kstDateStr()):'집값 맞히기 (자유 모드)';
-  var line=won?(tries.length+'/'+MAX+' 성공'):('실패 '+MAX+'/'+MAX);
+  var head=mode==='daily'?t('share_head_daily','집값 맞히기 {date}').replace('{date}',kstDateStr()):t('share_head_free','집값 맞히기 (자유 모드)');
+  var line=won?t('share_win','{n}/{max} 성공').replace('{n}',tries.length).replace('{max}',MAX):t('share_lose','실패 {max}/{max}').replace(/\{max\}/g,MAX);
   var msg=head+' '+line+'\n'+emGrid+'\nhttps://modutools.vercel.app/apt.html';
   if(navigator.share){navigator.share({text:msg}).catch(function(){})}
   else{navigator.clipboard.writeText(msg).then(function(){
-    document.getElementById('copyOk').textContent='복사됨!';
-  }).catch(function(){document.getElementById('copyOk').textContent='복사 실패';})}
+    document.getElementById('copyOk').textContent=t('copy_ok','복사됨!');
+  }).catch(function(){document.getElementById('copyOk').textContent=t('copy_fail','복사 실패');})}
 }
 
 // ── mode switch ──
@@ -256,8 +354,18 @@ document.getElementById('mFree').onclick=function(){
 document.getElementById('submit').onclick=submit;
 document.getElementById('guess').addEventListener('keydown',function(e){if(e.key==='Enter')submit()});
 
+// re-render dynamic UI on language switch
+document.addEventListener('mt:lang',function(){
+  if(!cur) return;
+  renderQ(); renderTries();
+  if(done){
+    var lastWin=tries.length&&tries[tries.length-1].win;
+    renderReveal(lastWin);
+  }
+});
+
 if(!DATA.length){
-  document.getElementById('q').innerHTML='<div class="name">데이터를 불러오지 못했습니다.</div>';
+  document.getElementById('q').innerHTML='<div class="name">'+t('no_data','데이터를 불러오지 못했습니다.')+'</div>';
 } else { pick(); }
 })();
 </script>

@@ -9,42 +9,85 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"Percentage Calculator", lead:"The four percentage calculations people use most. Results update as you type.",
+ c1_h:"1. What is X% of a total?", lbl_total:"Total value", lbl_pct:"Percent (%)",
+ c2_h:"2. This value is what % of the total?", lbl_part:"Part value", lbl_total2:"Total value",
+ c3_h:"3. How much did it rise or fall? (rate of change)", lbl_before:"Before", lbl_after:"After",
+ c4_h:"4. Discounted price", lbl_list:"List price", lbl_disc:"Discount rate (%)",
+ faq_h:"How is the rate of change calculated?",
+ faq_p:"(After − Before) ÷ Before × 100. For example, if rent rose from 500,000 to 550,000 won, that is (550,000−500,000)÷500,000×100 = a 10% increase. A decrease is shown as a negative number.",
+ r_of:" of ", r_is:"", r_isof:" is ", r_of_total:" of ", r_up:"increase", r_down:"decrease",
+ r_price:"Discounted price ", r_off:" off)",
+ links_all:"All tools"
+},
+ja:{
+ h1:"パーセント計算", lead:"最もよく使うパーセント計算4種。入力するとすぐ計算されます。",
+ c1_h:"1. 全体の何%はいくら？", lbl_total:"全体の値", lbl_pct:"パーセント (%)",
+ c2_h:"2. この値は全体の何%？", lbl_part:"部分の値", lbl_total2:"全体の値",
+ c3_h:"3. どれだけ増減した？（変化率）", lbl_before:"変更前の値", lbl_after:"変更後の値",
+ c4_h:"4. 割引価格の計算", lbl_list:"定価", lbl_disc:"割引率 (%)",
+ faq_h:"変化率はどう計算しますか",
+ faq_p:"（変更後の値 − 変更前の値）÷ 変更前の値 × 100 です。例えば家賃が50万ウォンから55万ウォンになった場合、（55−50）÷50×100 = 10%の値上げです。下がった場合はマイナスで表示されます。",
+ r_of:"の ", r_is:"", r_isof:"は ", r_of_total:"の ", r_up:"増加", r_down:"減少",
+ r_price:"割引価格 ", r_off:" 割引)",
+ links_all:"すべてのツール"
+},
+zh:{
+ h1:"百分比计算器", lead:"最常用的4种百分比计算。输入即刻计算。",
+ c1_h:"1. 总数的百分之几是多少？", lbl_total:"总数值", lbl_pct:"百分比 (%)",
+ c2_h:"2. 这个值是总数的百分之几？", lbl_part:"部分值", lbl_total2:"总数值",
+ c3_h:"3. 上涨或下跌了多少？（变化率）", lbl_before:"变化前的值", lbl_after:"变化后的值",
+ c4_h:"4. 折后价计算", lbl_list:"原价", lbl_disc:"折扣率 (%)",
+ faq_h:"变化率如何计算？",
+ faq_p:"（变化后的值 − 变化前的值）÷ 变化前的值 × 100。例如房租从50万韩元涨到55万韩元，即（55−50）÷50×100 = 上涨10%。下跌则显示为负数。",
+ r_of:"的 ", r_is:"", r_isof:"是 ", r_of_total:"的 ", r_up:"增加", r_down:"减少",
+ r_price:"折后价 ", r_off:" 优惠)",
+ links_all:"全部工具"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html">연봉계산</a><a href="/char-count.html">글자수</a><a href="/dday.html">디데이</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/salary.html" data-i18n="c_salary_t">연봉계산</a><a href="/char-count.html" data-i18n="c_char_t">글자수</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a></nav></header>
 <main>
-<h1>퍼센트 계산기</h1>
-<p class="lead">가장 많이 쓰는 퍼센트 계산 4가지. 입력하면 바로 계산됩니다.</p>
-<div class="card"><b>1. 전체의 몇 %는 얼마?</b>
-<div class="row"><div><label>전체 값</label><input type="number" id="a1"></div><div><label>퍼센트 (%)</label><input type="number" id="a2"></div></div>
+<h1 data-i18n="h1">퍼센트 계산기</h1>
+<p class="lead" data-i18n="lead">가장 많이 쓰는 퍼센트 계산 4가지. 입력하면 바로 계산됩니다.</p>
+<div class="card"><b data-i18n="c1_h">1. 전체의 몇 %는 얼마?</b>
+<div class="row"><div><label data-i18n="lbl_total">전체 값</label><input type="number" id="a1"></div><div><label data-i18n="lbl_pct">퍼센트 (%)</label><input type="number" id="a2"></div></div>
 <div class="result" id="ra">—</div></div>
-<div class="card"><b>2. 이 값은 전체의 몇 %?</b>
-<div class="row"><div><label>부분 값</label><input type="number" id="b1"></div><div><label>전체 값</label><input type="number" id="b2"></div></div>
+<div class="card"><b data-i18n="c2_h">2. 이 값은 전체의 몇 %?</b>
+<div class="row"><div><label data-i18n="lbl_part">부분 값</label><input type="number" id="b1"></div><div><label data-i18n="lbl_total2">전체 값</label><input type="number" id="b2"></div></div>
 <div class="result" id="rb">—</div></div>
-<div class="card"><b>3. 얼마나 오르거나 내렸나? (변화율)</b>
-<div class="row"><div><label>이전 값</label><input type="number" id="c1"></div><div><label>이후 값</label><input type="number" id="c2"></div></div>
+<div class="card"><b data-i18n="c3_h">3. 얼마나 오르거나 내렸나? (변화율)</b>
+<div class="row"><div><label data-i18n="lbl_before">이전 값</label><input type="number" id="c1"></div><div><label data-i18n="lbl_after">이후 값</label><input type="number" id="c2"></div></div>
 <div class="result" id="rc">—</div></div>
-<div class="card"><b>4. 할인가 계산</b>
-<div class="row"><div><label>정가</label><input type="number" id="e1"></div><div><label>할인율 (%)</label><input type="number" id="e2"></div></div>
+<div class="card"><b data-i18n="c4_h">4. 할인가 계산</b>
+<div class="row"><div><label data-i18n="lbl_list">정가</label><input type="number" id="e1"></div><div><label data-i18n="lbl_disc">할인율 (%)</label><input type="number" id="e2"></div></div>
 <div class="result" id="re">—</div></div>
 <div class="faq">
-<h2>변화율 계산은 어떻게 하나요</h2>
-<p>(이후 값 − 이전 값) ÷ 이전 값 × 100 입니다. 예를 들어 월세가 50만원에서 55만원이 됐다면 (55−50)÷50×100 = 10% 인상입니다. 내렸다면 음수로 표시됩니다.</p>
+<h2 data-i18n="faq_h">변화율 계산은 어떻게 하나요</h2>
+<p data-i18n="faq_p">(이후 값 − 이전 값) ÷ 이전 값 × 100 입니다. 예를 들어 월세가 50만원에서 55만원이 됐다면 (55−50)÷50×100 = 10% 인상입니다. 내렸다면 음수로 표시됩니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/salary.html">연봉 실수령액</a><a href="/bmi.html">BMI</a></div><p>ⓒ 모두도구</p></footer>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/salary.html" data-i18n="c_salary_t">연봉 실수령액</a><a href="/bmi.html" data-i18n="c_bmi_t">BMI</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
 <script>
 function n(id){return parseFloat(document.getElementById(id).value)}
 function f(x){return isFinite(x)?(Math.round(x*100)/100).toLocaleString():'—'}
+function T(k,ko){return window.t?window.t(k,ko):ko}
 function upd(){
 var A=document.getElementById('ra'),B=document.getElementById('rb'),C=document.getElementById('rc'),E=document.getElementById('re');
-A.innerHTML=(!isNaN(n('a1'))&&!isNaN(n('a2')))?n('a1')+'의 '+n('a2')+'% = <strong>'+f(n('a1')*n('a2')/100)+'</strong>':'—';
-B.innerHTML=(!isNaN(n('b1'))&&!isNaN(n('b2'))&&n('b2')!==0)?n('b1')+'은(는) '+n('b2')+'의 <strong>'+f(n('b1')/n('b2')*100)+'%</strong>':'—';
-if(!isNaN(n('c1'))&&!isNaN(n('c2'))&&n('c1')!==0){var ch=(n('c2')-n('c1'))/n('c1')*100;C.innerHTML='<strong>'+f(ch)+'%</strong> '+(ch>=0?'증가':'감소')}else C.innerHTML='—';
-E.innerHTML=(!isNaN(n('e1'))&&!isNaN(n('e2')))?'할인가 <strong>'+f(n('e1')*(1-n('e2')/100))+'</strong> ('+f(n('e1')*n('e2')/100)+' 할인)':'—';
+A.innerHTML=(!isNaN(n('a1'))&&!isNaN(n('a2')))?n('a1')+T('r_of','의 ')+n('a2')+'% = <strong>'+f(n('a1')*n('a2')/100)+'</strong>':'—';
+B.innerHTML=(!isNaN(n('b1'))&&!isNaN(n('b2'))&&n('b2')!==0)?n('b1')+T('r_isof','은(는) ')+n('b2')+T('r_of_total','의 ')+'<strong>'+f(n('b1')/n('b2')*100)+'%</strong>':'—';
+if(!isNaN(n('c1'))&&!isNaN(n('c2'))&&n('c1')!==0){var ch=(n('c2')-n('c1'))/n('c1')*100;C.innerHTML='<strong>'+f(ch)+'%</strong> '+(ch>=0?T('r_up','증가'):T('r_down','감소'))}else C.innerHTML='—';
+E.innerHTML=(!isNaN(n('e1'))&&!isNaN(n('e2')))?T('r_price','할인가 ')+'<strong>'+f(n('e1')*(1-n('e2')/100))+'</strong> ('+f(n('e1')*n('e2')/100)+T('r_off',' 할인)')+'':'—';
 }
 document.querySelectorAll('input').forEach(function(i){i.addEventListener('input',upd)});
+document.addEventListener('mt:lang',upd);
 </script>
 </body>
 </html>

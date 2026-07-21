@@ -3,46 +3,105 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>이미지 용량 줄이기 — 업로드 없이 브라우저에서 사진 압축</title>
+<title data-i18n="title_tag">이미지 용량 줄이기 — 업로드 없이 브라우저에서 사진 압축</title>
 <meta name="description" content="사진을 서버에 올리지 않고 브라우저 안에서 바로 압축합니다. 품질·크기 조절, JPG/WebP 변환, 즉시 다운로드. 개인정보 걱정 없는 무료 이미지 압축.">
 <link rel="canonical" href="https://modutools.vercel.app/image-compress.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ title_tag:"Image Compressor — Shrink photos in your browser, no upload",
+ h1:"Image Compressor", lead:"Your photos are never sent to a server — compression happens entirely inside this browser.",
+ nav_yt:"YouTube Thumbnail", nav_char:"Character Count",
+ lbl_pick:"Select an image (JPG · PNG · WebP)",
+ lbl_quality_pre:"Quality (", lbl_quality_post:"%)",
+ lbl_maxw:"Max width (px)", lbl_fmt:"Output format", opt_webp:"WebP (smaller)",
+ btn_go:"Compress",
+ note:"Great for résumé photos, forum attachments, messenger profile pics — anywhere with a size limit. Your original stays untouched.",
+ faq_h1:"Are you sure nothing is uploaded?",
+ faq_p1:"Yes. This page uses the HTML5 canvas to redraw and compress the image entirely on your device. Even with the network tab open, there is no image upload request. You can safely shrink sensitive images like ID cards or contracts without any leak risk.",
+ faq_h2:"What quality should I use?",
+ faq_p2:"For on-screen use, 70–80% cuts size dramatically with almost no visible difference. For print, 90% or higher is recommended. Choosing WebP is usually 20–30% smaller than JPG at the same quality.",
+ alert_pick:"Please select an image.", alert_fail:"Compression failed — try a different format.",
+ res_orig:"Original", res_reduce:"% smaller", res_nochange:"no change",
+ btn_download:"Download",
+ footer_note:"ⓒ ModuTools"
+},
+ja:{
+ title_tag:"画像圧縮 — アップロードなしでブラウザ内で写真を圧縮",
+ h1:"画像圧縮", lead:"写真はサーバーに送信されません — 圧縮はすべてこのブラウザ内で処理されます。",
+ nav_yt:"YouTubeサムネイル", nav_char:"文字数",
+ lbl_pick:"画像を選択（JPG · PNG · WebP）",
+ lbl_quality_pre:"品質（", lbl_quality_post:"%）",
+ lbl_maxw:"最大横幅（px）", lbl_fmt:"出力形式", opt_webp:"WebP（より小さい）",
+ btn_go:"圧縮する",
+ note:"履歴書写真、掲示板の添付、メッセンジャーのプロフィールなど、容量制限のある場所に便利です。元画像はそのまま残ります。",
+ faq_h1:"本当にサーバーに上がりませんか",
+ faq_p1:"はい。このページはHTML5キャンバス機能で、あなたの端末内だけで画像を描き直して圧縮します。ネットワークタブを開いても画像送信リクエストはありません。身分証や契約書のような機密画像も外部流出の心配なく縮小できます。",
+ faq_h2:"品質はどれくらいにすべきですか",
+ faq_p2:"画面用なら70〜80%で、見た目の差はほとんどなく容量を大きく削減できます。印刷用なら90%以上を推奨します。WebPを選ぶと、同じ品質でJPGより概ね20〜30%小さくなります。",
+ alert_pick:"画像を選択してください。", alert_fail:"圧縮に失敗しました — 別の形式をお試しください。",
+ res_orig:"元画像", res_reduce:"%削減", res_nochange:"変化なし",
+ btn_download:"ダウンロード",
+ footer_note:"ⓒ モドゥツール"
+},
+zh:{
+ title_tag:"图片压缩 — 无需上传，在浏览器内压缩照片",
+ h1:"图片压缩", lead:"照片不会发送到服务器 — 压缩全部在本浏览器内完成。",
+ nav_yt:"YouTube缩略图", nav_char:"字数",
+ lbl_pick:"选择图片（JPG · PNG · WebP）",
+ lbl_quality_pre:"质量（", lbl_quality_post:"%）",
+ lbl_maxw:"最大宽度（px）", lbl_fmt:"输出格式", opt_webp:"WebP（更小）",
+ btn_go:"压缩",
+ note:"适合简历照片、论坛附件、聊天头像等有容量限制的场景。原图保持不变。",
+ faq_h1:"真的不会上传到服务器吗",
+ faq_p1:"是的。本页面使用HTML5画布功能，仅在您的设备内重新绘制并压缩图片。即使打开网络面板也看不到任何图片上传请求。身份证、合同等敏感图片也能安全压缩，无外泄风险。",
+ faq_h2:"质量该设多少",
+ faq_p2:"屏幕用途设70~80%，肉眼几乎无差别，容量却大幅减小。打印用途建议90%以上。选择WebP在同等质量下通常比JPG小20~30%。",
+ alert_pick:"请选择图片。", alert_fail:"压缩失败 — 请尝试其他格式。",
+ res_orig:"原图", res_reduce:"%减小", res_nochange:"无变化",
+ btn_download:"下载",
+ footer_note:"ⓒ 全民工具"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/youtube-thumbnail.html">유튜브 썸네일</a><a href="/char-count.html">글자수</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/youtube-thumbnail.html" data-i18n="nav_yt">유튜브 썸네일</a><a href="/char-count.html" data-i18n="nav_char">글자수</a></nav></header>
 <main>
-<h1>이미지 용량 줄이기</h1>
-<p class="lead">사진이 서버로 전송되지 않습니다 — 압축은 전부 이 브라우저 안에서 처리됩니다.</p>
+<h1 data-i18n="h1">이미지 용량 줄이기</h1>
+<p class="lead" data-i18n="lead">사진이 서버로 전송되지 않습니다 — 압축은 전부 이 브라우저 안에서 처리됩니다.</p>
 <div class="card">
-<label>이미지 선택 (JPG·PNG·WebP)</label>
+<label data-i18n="lbl_pick">이미지 선택 (JPG·PNG·WebP)</label>
 <input type="file" id="file" accept="image/*">
 <div class="row">
-<div><label>품질 (<span id="qv">75</span>%)</label><input type="range" id="q" min="10" max="100" value="75" style="width:100%"></div>
-<div><label>최대 가로 크기 (px)</label><input type="number" id="maxw" value="1600" min="100"></div>
+<div><label><span data-i18n="lbl_quality_pre">품질 (</span><span id="qv">75</span><span data-i18n="lbl_quality_post">%)</span></label><input type="range" id="q" min="10" max="100" value="75" style="width:100%"></div>
+<div><label data-i18n="lbl_maxw">최대 가로 크기 (px)</label><input type="number" id="maxw" value="1600" min="100"></div>
 </div>
 <div class="row">
-<div><label>출력 형식</label><select id="fmt"><option value="image/jpeg">JPG</option><option value="image/webp">WebP (더 작음)</option></select></div>
+<div><label data-i18n="lbl_fmt">출력 형식</label><select id="fmt"><option value="image/jpeg">JPG</option><option value="image/webp" data-i18n="opt_webp">WebP (더 작음)</option></select></div>
 </div>
-<button id="go">압축하기</button>
+<button id="go" data-i18n="btn_go">압축하기</button>
 <div class="result" id="out" hidden></div>
-<p class="note">이력서 사진, 게시판 첨부, 카톡 프로필 등 용량 제한이 있는 곳에 쓰기 좋습니다. 원본은 그대로 남습니다.</p>
+<p class="note" data-i18n="note">이력서 사진, 게시판 첨부, 카톡 프로필 등 용량 제한이 있는 곳에 쓰기 좋습니다. 원본은 그대로 남습니다.</p>
 </div>
 <div class="faq">
-<h2>정말 서버로 안 올라가나요</h2>
-<p>네. 이 페이지는 HTML5 캔버스 기능으로 사용자의 기기 안에서만 이미지를 다시 그려 압축합니다. 네트워크 탭을 열어봐도 이미지 전송 요청이 없습니다. 신분증·계약서처럼 민감한 이미지도 외부 유출 걱정 없이 줄일 수 있습니다.</p>
-<h2>품질은 얼마로 해야 하나요</h2>
-<p>화면용은 70~80%면 육안 차이가 거의 없이 용량이 크게 줄어듭니다. 인쇄용이라면 90% 이상을 권합니다. WebP를 선택하면 같은 품질에서 JPG보다 대체로 20~30% 더 작아집니다.</p>
+<h2 data-i18n="faq_h1">정말 서버로 안 올라가나요</h2>
+<p data-i18n="faq_p1">네. 이 페이지는 HTML5 캔버스 기능으로 사용자의 기기 안에서만 이미지를 다시 그려 압축합니다. 네트워크 탭을 열어봐도 이미지 전송 요청이 없습니다. 신분증·계약서처럼 민감한 이미지도 외부 유출 걱정 없이 줄일 수 있습니다.</p>
+<h2 data-i18n="faq_h2">품질은 얼마로 해야 하나요</h2>
+<p data-i18n="faq_p2">화면용은 70~80%면 육안 차이가 거의 없이 용량이 크게 줄어듭니다. 인쇄용이라면 90% 이상을 권합니다. WebP를 선택하면 같은 품질에서 JPG보다 대체로 20~30% 더 작아집니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/youtube-thumbnail.html">유튜브 썸네일</a><a href="/percent.html">퍼센트</a></div><p>ⓒ 모두도구</p></footer>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/youtube-thumbnail.html" data-i18n="nav_yt">유튜브 썸네일</a><a href="/percent.html">퍼센트</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
 <script>
 document.getElementById('q').addEventListener('input',function(){document.getElementById('qv').textContent=this.value});
 document.getElementById('go').onclick=function(){
 var f=document.getElementById('file').files[0];
-if(!f){alert('이미지를 선택하세요');return}
+if(!f){alert(window.t('alert_pick','이미지를 선택하세요'));return}
 var img=new Image();
 img.onload=function(){
 var maxw=+document.getElementById('maxw').value||1600;
@@ -54,12 +113,13 @@ cx.drawImage(img,0,0,cv.width,cv.height);
 var fmt=document.getElementById('fmt').value;
 var q=(+document.getElementById('q').value)/100;
 cv.toBlob(function(b){
-if(!b){alert('압축 실패 — 다른 형식을 시도해보세요');return}
+if(!b){alert(window.t('alert_fail','압축 실패 — 다른 형식을 시도해보세요'));return}
 var url=URL.createObjectURL(b);
 var name=f.name.replace(/\.[^.]+$/,'')+(fmt==='image/webp'?'_compressed.webp':'_compressed.jpg');
 var pct=Math.round((1-b.size/f.size)*100);
+var change=pct>0?pct+window.t('res_reduce','% 감소'):window.t('res_nochange','변화 없음');
 var o=document.getElementById('out');o.hidden=false;
-o.innerHTML='원본 '+(f.size/1024).toFixed(0)+'KB → <strong>'+(b.size/1024).toFixed(0)+'KB</strong> ('+(pct>0?pct+'% 감소':'변화 없음')+') · '+cv.width+'×'+cv.height+'px<br><a class="btn" download="'+name+'" href="'+url+'">다운로드</a>';
+o.innerHTML=window.t('res_orig','원본')+' '+(f.size/1024).toFixed(0)+'KB → <strong>'+(b.size/1024).toFixed(0)+'KB</strong> ('+change+') · '+cv.width+'×'+cv.height+'px<br><a class="btn" download="'+name+'" href="'+url+'">'+window.t('btn_download','다운로드')+'</a>';
 },fmt,q);
 URL.revokeObjectURL(img.src);
 };

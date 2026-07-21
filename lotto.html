@@ -3,53 +3,115 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>로또 번호 생성기 — 무작위 조합 무료 뽑기</title>
+<title data-i18n="title_tag">로또 번호 생성기 — 무작위 조합 무료 뽑기</title>
 <meta name="description" content="1~45 중 6개, 완전 무작위 로또 번호를 원하는 게임 수만큼 생성합니다. 고정수·제외수 설정 가능. 무료, 광고 클릭 유도 없음.">
 <link rel="canonical" href="https://modutools.vercel.app/lotto.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ title_tag:"Lotto Number Generator — Free random combinations",
+ h1:"Lotto Number Generator", lead:"Fully random combinations drawn with cryptographic randomness (crypto.getRandomValues).",
+ nav_react:"Reaction", nav_dday:"D-day",
+ lbl_games:"Games", lbl_fix:"Fixed numbers (comma-separated, optional)", lbl_exc:"Excluded numbers (comma-separated, optional)",
+ ph_fix:"e.g. 7, 21", ph_exc:"e.g. 4, 44",
+ btn_go:"Draw numbers",
+ faq_h1:"Does picking frequently-drawn numbers help?",
+ faq_p1:"No. Each lotto draw is an independent event, so numbers that came up often in the past are no more likely in the future. \"Hot number\" marketing has no statistical basis. This generator uses pure randomness with no such gimmicks.",
+ faq_h2:"What are the odds of first prize?",
+ faq_p2:"1 in 8,145,060. It's the same no matter which combination you pick. Please play for fun only.",
+ alert_fix:"Fixed numbers must be 6 or fewer.",
+ game_suffix:"",
+ footer_note:"ⓒ ModuTools · Excessive purchases can harm your household finances."
+},
+ja:{
+ title_tag:"ロト番号生成 — ランダム組合せを無料で",
+ h1:"ロト番号生成", lead:"暗号学的乱数（crypto.getRandomValues）で選ぶ完全ランダムな組合せです。",
+ nav_react:"反応速度", nav_dday:"Dデー",
+ lbl_games:"ゲーム数", lbl_fix:"固定数（カンマ区切り・任意）", lbl_exc:"除外数（カンマ区切り・任意）",
+ ph_fix:"例: 7, 21", ph_exc:"例: 4, 44",
+ btn_go:"番号を選ぶ",
+ faq_h1:"よく出る番号を選ぶと有利ですか",
+ faq_p1:"いいえ。ロトの抽選は毎回独立した事象なので、過去に多く出た番号が今後出やすいということはありません。「よく出る番号」というマーケティングに統計的根拠はありません。このジェネレーターはそうした加工なしに純粋な乱数だけを使います。",
+ faq_h2:"1等の確率は",
+ faq_p2:"814万5,060分の1です。どの組合せを選んでも同じです。娯楽としてお楽しみください。",
+ alert_fix:"固定数は6個以下にしてください。",
+ game_suffix:"",
+ footer_note:"ⓒ モドゥツール · 過度な購入は家計に悪影響を及ぼします。"
+},
+zh:{
+ title_tag:"乐透号码生成 — 免费随机组合",
+ h1:"乐透号码生成", lead:"使用密码学随机数（crypto.getRandomValues）抽取的完全随机组合。",
+ nav_react:"反应速度", nav_dday:"倒数日",
+ lbl_games:"注数", lbl_fix:"固定号码（逗号分隔，可选）", lbl_exc:"排除号码（逗号分隔，可选）",
+ ph_fix:"例: 7, 21", ph_exc:"例: 4, 44",
+ btn_go:"抽号码",
+ faq_h1:"选常出的号码更有利吗",
+ faq_p1:"不会。乐透每期开奖都是独立事件，过去常出的号码今后并不会更容易出现。“热门号码”营销没有统计依据。本生成器不做任何加工，只用纯随机数。",
+ faq_h2:"头奖概率是多少",
+ faq_p2:"814万5060分之1。无论选哪种组合都一样。请仅供娱乐。",
+ alert_fix:"固定号码不超过6个。",
+ game_suffix:"",
+ footer_note:"ⓒ 全民工具 · 过度购买有损家庭经济。"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html">반응속도</a><a href="/dday.html">디데이</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html" data-i18n="nav_react">반응속도</a><a href="/dday.html" data-i18n="nav_dday">디데이</a></nav></header>
 <main>
-<h1>로또 번호 생성기</h1>
-<p class="lead">암호학적 난수(crypto.getRandomValues)로 뽑는 완전 무작위 조합입니다.</p>
+<h1 data-i18n="h1">로또 번호 생성기</h1>
+<p class="lead" data-i18n="lead">암호학적 난수(crypto.getRandomValues)로 뽑는 완전 무작위 조합입니다.</p>
 <div class="card">
 <div class="row">
-<div><label>게임 수</label><input type="number" id="games" value="5" min="1" max="20"></div>
-<div><label>고정수 (쉼표 구분, 선택)</label><input type="text" id="fix" placeholder="예: 7, 21"></div>
-<div><label>제외수 (쉼표 구분, 선택)</label><input type="text" id="exc" placeholder="예: 4, 44"></div>
+<div><label data-i18n="lbl_games">게임 수</label><input type="number" id="games" value="5" min="1" max="20"></div>
+<div><label data-i18n="lbl_fix">고정수 (쉼표 구분, 선택)</label><input type="text" id="fix" placeholder="예: 7, 21" data-i18n-ph="ph_fix"></div>
+<div><label data-i18n="lbl_exc">제외수 (쉼표 구분, 선택)</label><input type="text" id="exc" placeholder="예: 4, 44" data-i18n-ph="ph_exc"></div>
 </div>
-<button id="go">번호 뽑기</button>
+<button id="go" data-i18n="btn_go">번호 뽑기</button>
 <div class="result" id="out" hidden style="line-height:2.2"></div>
 </div>
 <div class="faq">
-<h2>자주 나온 번호를 고르면 유리한가요</h2>
-<p>아니요. 로또 추첨은 매회 독립 사건이라 과거에 많이 나온 번호가 앞으로 더 나올 확률은 없습니다. "잘 나오는 번호" 마케팅은 통계적 근거가 없습니다. 이 생성기는 그런 가공 없이 순수 난수만 씁니다.</p>
-<h2>1등 확률은</h2>
-<p>8,145,060분의 1입니다. 어떤 조합을 고르든 동일합니다. 재미로만 이용하세요.</p>
+<h2 data-i18n="faq_h1">자주 나온 번호를 고르면 유리한가요</h2>
+<p data-i18n="faq_p1">아니요. 로또 추첨은 매회 독립 사건이라 과거에 많이 나온 번호가 앞으로 더 나올 확률은 없습니다. "잘 나오는 번호" 마케팅은 통계적 근거가 없습니다. 이 생성기는 그런 가공 없이 순수 난수만 씁니다.</p>
+<h2 data-i18n="faq_h2">1등 확률은</h2>
+<p data-i18n="faq_p2">8,145,060분의 1입니다. 어떤 조합을 고르든 동일합니다. 재미로만 이용하세요.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/reaction.html">반응속도</a></div><p>ⓒ 모두도구 · 과도한 구매는 가정 경제에 해롭습니다.</p></footer>
+<footer><div class="links"><a href="/">전체 도구</a><a href="/reaction.html" data-i18n="nav_react">반응속도</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 과도한 구매는 가정 경제에 해롭습니다.</p></footer>
 <script>
 function parseNums(id){return document.getElementById(id).value.split(',').map(function(s){return parseInt(s.trim())}).filter(function(n){return n>=1&&n<=45})}
 function rand(n){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n}
+var lastSets=null;
+function renderLotto(){
+if(!lastSets)return;
+var suffix=window.t('game_suffix','조');
+var html='';
+lastSets.forEach(function(set,i){
+html+=String.fromCharCode(65+i)+suffix+': '+set.map(function(n){var c=n<=10?'#fbc400':n<=20?'#69c8f2':n<=30?'#ff7272':n<=40?'#aaa':'#b0d840';return '<span style="display:inline-block;width:34px;height:34px;line-height:34px;border-radius:50%;background:'+c+';color:#fff;text-align:center;font-weight:700;margin:0 3px">'+n+'</span>'}).join('')+'<br>';
+});
+var o=document.getElementById('out');o.hidden=false;o.innerHTML=html;
+}
 document.getElementById('go').onclick=function(){
 var g=Math.min(20,+document.getElementById('games').value||5);
 var fix=parseNums('fix'),exc=parseNums('exc');
-if(fix.length>6){alert('고정수는 6개 이하');return}
-var html='';
+if(fix.length>6){alert(window.t('alert_fix','고정수는 6개 이하'));return}
+var sets=[];
 for(var i=0;i<g;i++){
 var set=fix.slice();
 var pool=[];for(var n=1;n<=45;n++)if(set.indexOf(n)<0&&exc.indexOf(n)<0)pool.push(n);
 while(set.length<6&&pool.length)set.push(pool.splice(rand(pool.length),1)[0]);
 set.sort(function(a,b){return a-b});
-html+=String.fromCharCode(65+i)+'조: '+set.map(function(n){var c=n<=10?'#fbc400':n<=20?'#69c8f2':n<=30?'#ff7272':n<=40?'#aaa':'#b0d840';return '<span style="display:inline-block;width:34px;height:34px;line-height:34px;border-radius:50%;background:'+c+';color:#fff;text-align:center;font-weight:700;margin:0 3px">'+n+'</span>'}).join('')+'<br>';
+sets.push(set);
 }
-var o=document.getElementById('out');o.hidden=false;o.innerHTML=html;
+lastSets=sets;
+renderLotto();
 };
+document.addEventListener('mt:lang',renderLotto);
 </script>
 </body>
 </html>

@@ -9,44 +9,103 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"Korean Take-home Pay Calculator", lead:"Estimates your monthly net pay after Korea's four major insurances and income tax are deducted from your gross salary. (Based on 2026 rates.)",
+ lbl_pay:"Gross annual salary (10,000 KRW)", ph_pay:"e.g. 4000",
+ lbl_taxfree:"Tax-free / month (10,000 KRW, meals etc.)",
+ lbl_fam:"Dependents (including yourself)",
+ lbl_sev:"Severance pay", opt_sev0:"Separate (not included in salary)", opt_sev1:"Included (salary ÷ 13)",
+ go:"Calculate", err_pay:"Please enter your salary.",
+ d1:"National Pension (4.75%)", d2:"National Health Insurance (3.545%)", d3:"Long-term Care (12.95% of health premium)", d4:"Employment Insurance (0.9%)", d5:"Income tax + local income tax (approx.)", d6:"Total monthly deductions",
+ note:"Income tax is an approximation based on the simplified withholding tax table and may differ from your actual payslip by tens of thousands of won. The National Pension applies a ceiling on the standard monthly income.",
+ res_net:"Monthly take-home (est.) ", res_gross:"Monthly gross ", res_minus:" − deductions ",
+ faq_h1:"Why is take-home pay lower than expected?",
+ faq_p1:"Because National Pension (employee share 4.75%, reflecting the 2026 increase), National Health Insurance (3.545%) and its attached Long-term Care premium, Employment Insurance (0.9%), and earned-income and local income taxes are all withheld each month. The higher your salary bracket, the higher the progressive tax rate, so the deduction ratio grows too.",
+ faq_h2:"Why enter a tax-free amount?",
+ faq_p2:"Tax-free items such as a meal allowance (up to 200,000 won/month) are excluded from tax and four-insurance calculations. For the same salary, more tax-free items mean higher take-home pay.",
+ faq_h3:"Is this different from the year-end tax settlement?",
+ faq_p3:"This calculator estimates the amount withheld each month. Once card, medical and housing-related deductions are applied in the year-end settlement, the final tax may change.",
+ links_all:"All tools"
+},
+ja:{
+ h1:"韓国の手取り計算", lead:"税引き前の年収から韓国の4大保険と所得税を差し引いた月の手取り額を推定します。（2026年の料率基準）",
+ lbl_pay:"税引き前の年収（万ウォン）", ph_pay:"例：4000",
+ lbl_taxfree:"非課税額/月（万ウォン、食費など）",
+ lbl_fam:"本人を含む扶養家族数",
+ lbl_sev:"退職金", opt_sev0:"別途（年収に含まない）", opt_sev1:"含む（年収÷13）",
+ go:"計算する", err_pay:"年収を入力してください。",
+ d1:"国民年金 National Pension（4.75%）", d2:"健康保険 National Health Insurance（3.545%）", d3:"長期療養保険 Long-term Care（健康保険料の12.95%）", d4:"雇用保険 Employment Insurance（0.9%）", d5:"所得税 + 地方所得税（概算）", d6:"月の控除合計",
+ note:"所得税は勤労所得の簡易税額表を近似した値で、実際の給与明細と数万ウォン単位の差が生じる場合があります。国民年金には基準所得月額の上限が適用されます。",
+ res_net:"月の手取り（推定） ", res_gross:"月の税引き前 ", res_minus:" − 控除 ",
+ faq_h1:"なぜ手取りが思ったより少ないのですか",
+ faq_p1:"税引き前の年収から、国民年金（本人負担4.75%、2026年の引き上げ分を反映）、健康保険（3.545%）とそれに伴う長期療養保険、雇用保険（0.9%）、そして勤労所得税・地方所得税が毎月源泉徴収されるためです。年収区分が上がるほど所得税の累進区分が高くなり、控除割合も大きくなります。",
+ faq_h2:"非課税額はなぜ入力しますか",
+ faq_p2:"食費（月20万ウォン限度）のような非課税項目は税金と4大保険の算定から除かれます。同じ年収でも非課税項目が多いほど手取りが増えます。",
+ faq_h3:"年末調整とは違いますか",
+ faq_p3:"この計算機は毎月源泉徴収される金額の推定値です。年末調整でカード・医療費・住宅関連の控除が反映されると、最終的な税額は変わることがあります。",
+ links_all:"すべてのツール"
+},
+zh:{
+ h1:"韩国到手工资计算", lead:"从税前年薪中扣除韩国四大保险和所得税后，估算每月实际到手金额。（按2026年费率）",
+ lbl_pay:"税前年薪（万韩元）", ph_pay:"例：4000",
+ lbl_taxfree:"每月非课税额（万韩元，餐费等）",
+ lbl_fam:"含本人的赡养家属人数",
+ lbl_sev:"退职金", opt_sev0:"另计（不含在年薪内）", opt_sev1:"含（年薪÷13）",
+ go:"计算", err_pay:"请输入年薪。",
+ d1:"国民年金 National Pension（4.75%）", d2:"健康保险 National Health Insurance（3.545%）", d3:"长期疗养保险 Long-term Care（健保费的12.95%）", d4:"雇佣保险 Employment Insurance（0.9%）", d5:"所得税 + 地方所得税（约）", d6:"每月扣除合计",
+ note:"所得税为按劳动所得简易税额表估算的数值，与实际工资单可能有数万韩元的差异。国民年金适用基准月收入上限。",
+ res_net:"每月到手（估算） ", res_gross:"每月税前 ", res_minus:" − 扣除 ",
+ faq_h1:"为什么到手工资比想象的少？",
+ faq_p1:"因为每月都会从税前年薪中预扣国民年金（个人负担4.75%，已反映2026年上调部分）、健康保险（3.545%）及随附的长期疗养保险、雇佣保险（0.9%），以及劳动所得税、地方所得税。年薪档次越高，所得税累进区间越高，扣除比例也越大。",
+ faq_h2:"为什么要填非课税额？",
+ faq_p2:"餐费（每月20万韩元上限）等非课税项目不计入税金和四大保险的核算。同样的年薪，非课税项目越多，到手工资越高。",
+ faq_h3:"和年末结算不一样吗？",
+ faq_p3:"本计算器估算的是每月预扣的金额。在年末结算中反映信用卡、医疗费、住房相关扣除后，最终税额可能会有所不同。",
+ links_all:"全部工具"
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 </head>
 <body>
-<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/char-count.html">글자수</a><a href="/dday.html">디데이</a><a href="/reaction.html">반응속도</a></nav></header>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/char-count.html" data-i18n="c_char_t">글자수</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/reaction.html" data-i18n="c_react_t">반응속도</a></nav></header>
 <main>
-<h1>연봉 실수령액 계산기</h1>
-<p class="lead">세전 연봉에서 4대보험과 소득세를 공제한 월 실수령액을 추정합니다. (2026년 요율 기준)</p>
+<h1 data-i18n="h1">연봉 실수령액 계산기</h1>
+<p class="lead" data-i18n="lead">세전 연봉에서 4대보험과 소득세를 공제한 월 실수령액을 추정합니다. (2026년 요율 기준)</p>
 <div class="card">
 <div class="row">
-<div><label>세전 연봉 (만원)</label><input type="number" id="pay" placeholder="예: 4000" min="0"></div>
-<div><label>비과세액/월 (만원, 식대 등)</label><input type="number" id="taxfree" value="20" min="0"></div>
+<div><label data-i18n="lbl_pay">세전 연봉 (만원)</label><input type="number" id="pay" placeholder="예: 4000" data-i18n-ph="ph_pay" min="0"></div>
+<div><label data-i18n="lbl_taxfree">비과세액/월 (만원, 식대 등)</label><input type="number" id="taxfree" value="20" min="0"></div>
 </div>
 <div class="row">
-<div><label>본인 포함 부양가족 수</label><input type="number" id="fam" value="1" min="1"></div>
-<div><label>퇴직금</label><select id="sev"><option value="0">별도 (연봉에 미포함)</option><option value="1">포함 (연봉÷13)</option></select></div>
+<div><label data-i18n="lbl_fam">본인 포함 부양가족 수</label><input type="number" id="fam" value="1" min="1"></div>
+<div><label data-i18n="lbl_sev">퇴직금</label><select id="sev"><option value="0" data-i18n="opt_sev0">별도 (연봉에 미포함)</option><option value="1" data-i18n="opt_sev1">포함 (연봉÷13)</option></select></div>
 </div>
-<button id="go">계산하기</button>
+<button id="go" data-i18n="go">계산하기</button>
 <div class="result" id="out" hidden></div>
 <table id="detail" hidden>
-<tr><th>국민연금 (4.75%)</th><td id="d1"></td></tr>
-<tr><th>건강보험 (3.545%)</th><td id="d2"></td></tr>
-<tr><th>장기요양 (건보료의 12.95%)</th><td id="d3"></td></tr>
-<tr><th>고용보험 (0.9%)</th><td id="d4"></td></tr>
-<tr><th>소득세 + 지방소득세 (근사)</th><td id="d5"></td></tr>
-<tr><th>월 공제 합계</th><td id="d6"></td></tr>
+<tr><th data-i18n="d1">국민연금 (4.75%)</th><td id="d1"></td></tr>
+<tr><th data-i18n="d2">건강보험 (3.545%)</th><td id="d2"></td></tr>
+<tr><th data-i18n="d3">장기요양 (건보료의 12.95%)</th><td id="d3"></td></tr>
+<tr><th data-i18n="d4">고용보험 (0.9%)</th><td id="d4"></td></tr>
+<tr><th data-i18n="d5">소득세 + 지방소득세 (근사)</th><td id="d5"></td></tr>
+<tr><th data-i18n="d6">월 공제 합계</th><td id="d6"></td></tr>
 </table>
-<p class="note">소득세는 근로소득 간이세액표를 근사한 값으로, 실제 급여명세서와 수만원 단위 차이가 날 수 있습니다. 국민연금은 기준소득월액 상한이 적용됩니다.</p>
+<p class="note" data-i18n="note">소득세는 근로소득 간이세액표를 근사한 값으로, 실제 급여명세서와 수만원 단위 차이가 날 수 있습니다. 국민연금은 기준소득월액 상한이 적용됩니다.</p>
 </div>
 <div class="faq">
-<h2>왜 실수령액이 생각보다 적을까요</h2>
-<p>세전 연봉에서 국민연금(본인부담 4.75%, 2026년 인상분 반영), 건강보험(3.545%)과 그에 딸린 장기요양보험, 고용보험(0.9%), 그리고 근로소득세·지방소득세가 매달 원천징수되기 때문입니다. 연봉 구간이 올라갈수록 소득세 누진 구간이 높아져 공제 비율도 커집니다.</p>
-<h2>비과세액은 왜 넣나요</h2>
-<p>식대(월 20만원 한도) 같은 비과세 항목은 세금과 4대보험 산정에서 빠집니다. 같은 연봉이라도 비과세 항목이 많으면 실수령액이 늘어납니다.</p>
-<h2>연말정산과 다른가요</h2>
-<p>이 계산기는 매달 원천징수되는 금액의 추정치입니다. 연말정산에서 카드·의료비·주택 관련 공제가 반영되면 최종 세액은 달라질 수 있습니다.</p>
+<h2 data-i18n="faq_h1">왜 실수령액이 생각보다 적을까요</h2>
+<p data-i18n="faq_p1">세전 연봉에서 국민연금(본인부담 4.75%, 2026년 인상분 반영), 건강보험(3.545%)과 그에 딸린 장기요양보험, 고용보험(0.9%), 그리고 근로소득세·지방소득세가 매달 원천징수되기 때문입니다. 연봉 구간이 올라갈수록 소득세 누진 구간이 높아져 공제 비율도 커집니다.</p>
+<h2 data-i18n="faq_h2">비과세액은 왜 넣나요</h2>
+<p data-i18n="faq_p2">식대(월 20만원 한도) 같은 비과세 항목은 세금과 4대보험 산정에서 빠집니다. 같은 연봉이라도 비과세 항목이 많으면 실수령액이 늘어납니다.</p>
+<h2 data-i18n="faq_h3">연말정산과 다른가요</h2>
+<p data-i18n="faq_p3">이 계산기는 매달 원천징수되는 금액의 추정치입니다. 연말정산에서 카드·의료비·주택 관련 공제가 반영되면 최종 세액은 달라질 수 있습니다.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
-<footer><div class="links"><a href="/">전체 도구</a><a href="/percent.html">퍼센트</a><a href="/age.html">만 나이</a><a href="/char-count.html">글자수</a></div><p>ⓒ 모두도구 · 본 계산은 참고용 추정치이며 실제 급여와 다를 수 있습니다.</p></footer>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/percent.html" data-i18n="c_pct_t">퍼센트</a><a href="/age.html" data-i18n="c_age_t">만 나이</a><a href="/char-count.html" data-i18n="c_char_t">글자수</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 본 계산은 참고용 추정치이며 실제 급여와 다를 수 있습니다.</p></footer>
 <script>
 function tax(annual,fam,pension){ // 연 근로소득 근사 세액 (원)
 var g=annual; // 총급여
@@ -65,8 +124,9 @@ var cap=g<=33000000?740000:(g<=70000000?Math.max(660000,740000-(g-33000000)*0.00
 credit=Math.min(credit,cap);
 return Math.max(0,t-credit);
 }
-document.getElementById('go').onclick=function(){
-var pm=+document.getElementById('pay').value;if(!pm){alert('연봉을 입력하세요');return}
+function T(k,ko){return window.t?window.t(k,ko):ko}
+function calc(){
+var pm=+document.getElementById('pay').value;if(!pm){alert(T('err_pay','연봉을 입력하세요'));return}
 var annual=pm*10000;
 if(document.getElementById('sev').value==='1')annual=annual*12/13;
 var tf=+document.getElementById('taxfree').value*10000;
@@ -84,7 +144,7 @@ var dedSum=np+hi+lt+ei+it+localTax;
 var net=Math.round(mGross-dedSum);
 var f=function(n){return Math.round(n).toLocaleString()+'원'};
 document.getElementById('out').hidden=false;
-document.getElementById('out').innerHTML='월 실수령액 (추정) <strong>'+f(net)+'</strong><br>월 세전 '+f(mGross)+' − 공제 '+f(dedSum);
+document.getElementById('out').innerHTML=T('res_net','월 실수령액 (추정) ')+'<strong>'+f(net)+'</strong><br>'+T('res_gross','월 세전 ')+f(mGross)+T('res_minus',' − 공제 ')+f(dedSum);
 document.getElementById('detail').hidden=false;
 document.getElementById('d1').textContent=f(np);
 document.getElementById('d2').textContent=f(hi);
@@ -92,7 +152,9 @@ document.getElementById('d3').textContent=f(lt);
 document.getElementById('d4').textContent=f(ei);
 document.getElementById('d5').textContent=f(it+localTax);
 document.getElementById('d6').textContent=f(dedSum);
-};
+}
+document.getElementById('go').onclick=calc;
+document.addEventListener('mt:lang',function(){if(!document.getElementById('out').hidden&&+document.getElementById('pay').value)calc();});
 </script>
 </body>
 </html>

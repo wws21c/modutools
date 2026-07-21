@@ -11,6 +11,84 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css">
 <script src="/ads.js" defer></script>
+<script>
+window.I18N_PAGE = {
+en:{
+ h1:"Space Personality Test",
+ lead:"Where you sit in a café, what you do the second you open a hotel room — small habits reveal your spatial character. 12 questions, 8 architectural space types.",
+ qcount:"Q1 / 12", back:"Previous question",
+ r_best:"Where you thrive", r_worst:"Your worst space",
+ r_mate:"Perfect match", r_clash:"Opposite type",
+ share_img:"Save / share result card", share_txt:"Share as text",
+ retry:"Try again", show_all:"See all types",
+ all_h:"The 8 space types",
+ faq_h1:"What is this test?",
+ faq_p1:"It maps how you treat space along three axes — minimal↔maximal, calm↔drama, nature↔city — onto 8 real architectural space characters. It's not a psychological test, just a personality quiz for fun.",
+ faq_h2:"Are the buildings in the type names real?",
+ faq_p2:"Yes. Farnsworth House is Mies van der Rohe's glass minimalist home; the Sagrada Família and Park Güell are Antoni Gaudí; the spiral ramp of the Guggenheim is Frank Lloyd Wright's masterpiece. Brutalism refers to the architectural movement that leaves raw concrete exposed.",
+ faq_h3:"Can I share my result?",
+ faq_p3:"You can save the result card as an image or share it as text with a link. The fun of this test is guessing which type your friends are.",
+ // 동적 문자열
+ rare_prefix:"Rarity: ",
+ result_title:"Space Personality Test",
+ copy_ok:"Copied to clipboard", copy_fail:"Copy failed",
+ card_making:"Building your card...", card_saved:"Saved your result card", card_fail:"Failed to create image",
+ card_mate:"Perfect match · ", card_clash:"Opposite · ",
+ share_line:function(name){return "I'm a “"+name+"”! What space are you? ";},
+ share_line_full:function(name,tag){return "I'm a “"+name+"” ("+tag+")! What space are you? ";},
+ card_filename:function(name){return "space_type_"+name;}
+},
+ja:{
+ h1:"空間タイプ診断",
+ lead:"カフェでどこに座るか、ホテルの部屋を開けた瞬間に何をするか — ささいな習慣が、あなたの空間キャラクターを語ります。12問、結果は8つの建築空間タイプ。",
+ qcount:"Q1 / 12", back:"前の質問",
+ r_best:"心地よい空間", r_worst:"最悪の空間",
+ r_mate:"理想の相棒", r_clash:"相性最悪のタイプ",
+ share_img:"結果カードを保存・共有", share_txt:"テキストで共有",
+ retry:"もう一度", show_all:"ほかのタイプを全部見る",
+ all_h:"8つの空間タイプ",
+ faq_h1:"この診断は何ですか？",
+ faq_p1:"空間との接し方を3つの軸 — ミニマル↔マキシマル、静けさ↔ドラマ、自然↔都市 — で分け、8つの実在する建築空間キャラクターに当てはめます。心理検査ではなく、楽しむための性向テストです。",
+ faq_h2:"タイプ名の建築物は本物ですか？",
+ faq_p2:"はい。ファンズワース邸はミース・ファン・デル・ローエが設計したガラスのミニマル住宅、サグラダ・ファミリアとグエル公園はアントニ・ガウディ、グッゲンハイム美術館の螺旋スロープはフランク・ロイド・ライトの代表作です。ブルータリズムは打ち放しコンクリートをそのまま見せる建築様式を指します。",
+ faq_h3:"結果は共有できますか？",
+ faq_p3:"結果カードを画像として保存したり、リンク付きのテキストで共有したりできます。友達がどのタイプか当てる楽しさが、この診断の核心です。",
+ rare_prefix:"希少度: ",
+ result_title:"空間タイプ診断",
+ copy_ok:"クリップボードにコピーしました", copy_fail:"コピーに失敗しました",
+ card_making:"カードを作成中...", card_saved:"結果カードを保存しました", card_fail:"画像の生成に失敗しました",
+ card_mate:"理想の相棒 · ", card_clash:"相性最悪 · ",
+ share_line:function(name){return "私は「"+name+"」！あなたはどんな空間？ ";},
+ share_line_full:function(name,tag){return "私は「"+name+"」（"+tag+"）！あなたはどんな空間？ ";},
+ card_filename:function(name){return "空間タイプ_"+name;}
+},
+zh:{
+ h1:"空间性格测试",
+ lead:"在咖啡馆坐哪里，打开酒店房门第一件事做什么——细微的习惯，透露出你的空间性格。12道题，8种建筑空间类型。",
+ qcount:"第1题 / 12", back:"上一题",
+ r_best:"最舒服的空间", r_worst:"最糟糕的空间",
+ r_mate:"完美搭档", r_clash:"相克类型",
+ share_img:"保存 / 分享结果卡", share_txt:"以文字分享",
+ retry:"再测一次", show_all:"查看全部类型",
+ all_h:"8种空间类型",
+ faq_h1:"这是什么测试？",
+ faq_p1:"它把你对待空间的方式分为三条轴——极简↔极繁、宁静↔戏剧、自然↔都市——映射到8种真实的建筑空间角色上。这不是心理测验，只是一个图个乐子的性格测试。",
+ faq_h2:"类型名里的建筑是真的吗？",
+ faq_p2:"是的。范斯沃斯住宅是密斯·凡·德·罗设计的玻璃极简住宅；圣家堂与奎尔公园出自安东尼·高迪；古根海姆美术馆的螺旋坡道是弗兰克·劳埃德·赖特的代表作。粗野主义指的是把清水混凝土原样裸露出来的建筑流派。",
+ faq_h3:"结果能分享吗？",
+ faq_p3:"你可以把结果卡存成图片，或带链接以文字分享。猜朋友是哪种类型，正是这个测试的乐趣所在。",
+ rare_prefix:"稀有度: ",
+ result_title:"空间性格测试",
+ copy_ok:"已复制到剪贴板", copy_fail:"复制失败",
+ card_making:"正在生成卡片...", card_saved:"已保存结果卡", card_fail:"图片生成失败",
+ card_mate:"完美搭档 · ", card_clash:"相克 · ",
+ share_line:function(name){return "我是「"+name+"」！你是哪种空间？ ";},
+ share_line_full:function(name,tag){return "我是「"+name+"」（"+tag+"）！你是哪种空间？ ";},
+ card_filename:function(name){return "空间性格_"+name;}
+}
+};
+</script>
+<script src="/i18n.js" defer></script>
 <style>
 .progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:18px}
 .progress i{display:block;height:100%;background:var(--brand);width:0;transition:width .3s}
@@ -52,15 +130,15 @@
 <body>
 <header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/reaction.html">반응속도</a><a href="/lotto.html">로또</a></nav></header>
 <main>
-<h1>나의 공간 성향 테스트</h1>
-<p class="lead">카페에서 어디 앉는지, 호텔방 문 열자마자 뭘 하는지 — 사소한 습관이 당신의 공간 캐릭터를 말해줍니다. 12문항, 결과는 8가지 건축 공간 유형.</p>
+<h1 data-i18n="h1">나의 공간 성향 테스트</h1>
+<p class="lead" data-i18n="lead">카페에서 어디 앉는지, 호텔방 문 열자마자 뭘 하는지 — 사소한 습관이 당신의 공간 캐릭터를 말해줍니다. 12문항, 결과는 8가지 건축 공간 유형.</p>
 
 <div class="card" id="quizCard">
 <div class="progress"><i id="bar"></i></div>
 <div class="qnum" id="qnum">Q1 / 12</div>
 <div class="q" id="qtext"></div>
 <div class="opts" id="opts"></div>
-<div class="rback"><button class="ghost" id="back" style="display:none">이전 질문</button></div>
+<div class="rback"><button class="ghost" id="back" data-i18n="back" style="display:none">이전 질문</button></div>
 </div>
 
 <div class="card hidden" id="resultCard">
@@ -71,36 +149,36 @@
 </div>
 <p class="rdesc" id="rDesc"></p>
 <div class="rgrid">
-<div class="rbox"><div class="k">잘 맞는 공간</div><span id="rBest"></span></div>
-<div class="rbox"><div class="k">최악의 공간</div><span id="rWorst"></span></div>
+<div class="rbox"><div class="k" data-i18n="r_best">잘 맞는 공간</div><span id="rBest"></span></div>
+<div class="rbox"><div class="k" data-i18n="r_worst">최악의 공간</div><span id="rWorst"></span></div>
 </div>
 <div class="rmatch">
-<div class="rbox"><div class="k">환상의 짝꿍</div><b id="rMate"></b></div>
-<div class="rbox bad"><div class="k">상극 유형</div><b id="rClash"></b></div>
+<div class="rbox"><div class="k" data-i18n="r_mate">환상의 짝꿍</div><b id="rMate"></b></div>
+<div class="rbox bad"><div class="k" data-i18n="r_clash">상극 유형</div><b id="rClash"></b></div>
 </div>
 <div class="rare" id="rRare"></div>
 <div class="rshare">
-<button id="shareImg">결과 카드 저장·공유</button>
-<button class="ghost" id="shareTxt">텍스트로 공유</button>
+<button id="shareImg" data-i18n="share_img">결과 카드 저장·공유</button>
+<button class="ghost" id="shareTxt" data-i18n="share_txt">텍스트로 공유</button>
 </div>
 <div class="copied" id="copied"></div>
 <div class="rback" style="justify-content:center">
-<button class="ghost" id="retry">다시 하기</button>
-<button class="ghost" id="showAll">다른 유형 전체 보기</button>
+<button class="ghost" id="retry" data-i18n="retry">다시 하기</button>
+<button class="ghost" id="showAll" data-i18n="show_all">다른 유형 전체 보기</button>
 </div>
 <div class="alltypes hidden" id="allWrap">
-<h2>8가지 공간 유형</h2>
+<h2 data-i18n="all_h">8가지 공간 유형</h2>
 <div class="tlist" id="tlist"></div>
 </div>
 </div>
 
 <div class="faq">
-<h2>이 테스트는 뭔가요?</h2>
-<p>공간을 대하는 습관을 3개의 축 — 미니멀↔맥시멀, 고요함↔드라마, 자연↔도시 — 으로 나눠 8가지 실존 건축 공간 캐릭터에 매핑합니다. 심리검사가 아니라 재미로 보는 성향 테스트예요.</p>
-<h2>유형 이름의 건축물은 진짜인가요?</h2>
-<p>네. 판스워스 하우스는 미스 반 데어 로에가 설계한 유리 미니멀 주택, 사그라다 파밀리아·구엘 공원은 안토니 가우디, 구겐하임 미술관의 나선 램프는 프랭크 로이드 라이트의 대표작입니다. 브루탈리즘은 노출 콘크리트를 그대로 드러내는 건축 사조를 가리켜요.</p>
-<h2>결과를 공유할 수 있나요?</h2>
-<p>결과 카드를 이미지로 저장하거나 링크와 함께 텍스트로 공유할 수 있습니다. 친구가 어떤 유형인지 맞춰보는 재미가 이 테스트의 핵심이에요.</p>
+<h2 data-i18n="faq_h1">이 테스트는 뭔가요?</h2>
+<p data-i18n="faq_p1">공간을 대하는 습관을 3개의 축 — 미니멀↔맥시멀, 고요함↔드라마, 자연↔도시 — 으로 나눠 8가지 실존 건축 공간 캐릭터에 매핑합니다. 심리검사가 아니라 재미로 보는 성향 테스트예요.</p>
+<h2 data-i18n="faq_h2">유형 이름의 건축물은 진짜인가요?</h2>
+<p data-i18n="faq_p2">네. 판스워스 하우스는 미스 반 데어 로에가 설계한 유리 미니멀 주택, 사그라다 파밀리아·구엘 공원은 안토니 가우디, 구겐하임 미술관의 나선 램프는 프랭크 로이드 라이트의 대표작입니다. 브루탈리즘은 노출 콘크리트를 그대로 드러내는 건축 사조를 가리켜요.</p>
+<h2 data-i18n="faq_h3">결과를 공유할 수 있나요?</h2>
+<p data-i18n="faq_p3">결과 카드를 이미지로 저장하거나 링크와 함께 텍스트로 공유할 수 있습니다. 친구가 어떤 유형인지 맞춰보는 재미가 이 테스트의 핵심이에요.</p>
 </div>
 </main>
 <div class="ad-slot"></div>
@@ -110,89 +188,157 @@
 // 3축 점수: m(미니멀- ↔ 맥시멀+), s(고요- ↔ 드라마+), n(자연- ↔ 도시+)
 // 각 옵션이 축에 가감. 최종 부호로 8유형 매핑. key = ''+(m>=0?1:0)+(s>=0?1:0)+(n>=0?1:0)
 var Q=[
- {q:'카페에 들어가면 어디에 앉나요?',o:[
-   {t:'창가 자리. 밖이 보여야 마음이 놓임',d:{n:-2,s:1}},
-   {t:'구석 벽쪽. 등 뒤가 막혀야 안정됨',d:{s:-2,m:-1}},
-   {t:'딱 봤을 때 제일 예쁜 자리. 분위기가 전부',d:{m:2,s:1}}]},
- {q:'이사 갈 집을 처음 보러 갔어요. 뭐부터 확인하죠?',o:[
-   {t:'창문과 채광. 빛이 얼마나 드는지',d:{n:-2,s:-1}},
-   {t:'수납. 짐 들어갈 공간이 충분한지',d:{m:1,n:1}},
-   {t:'전체 구조와 동선. 어떻게 흐르는지',d:{s:2,n:1}}]},
- {q:'호텔방 문을 열자마자 하는 일은?',o:[
-   {t:'커튼부터 활짝. 전망 확인',d:{s:1,n:-1}},
-   {t:'짐 풀고 물건 제자리에 정리',d:{m:-1,s:-2}},
-   {t:'침대에 눕고 조명부터 아늑하게',d:{m:1,s:-1,n:-1}}]},
- {q:'방 벽이 텅 비어 있으면?',o:[
-   {t:'그대로 좋다. 여백이 편하다',d:{m:-2}},
-   {t:'포스터·그림·사진으로 꽉 채운다',d:{m:2}},
-   {t:'식물 몇 개 두면 딱이다',d:{m:1,n:-2}}]},
- {q:'주말 이상적인 하루는?',o:[
-   {t:'집에서 조용히. 아무 데도 안 감',d:{s:-2,n:-1}},
-   {t:'새로운 동네·전시·공간 탐험',d:{s:2,n:1}},
-   {t:'공원·숲·바다. 자연 속에서',d:{n:-2,s:1}}]},
- {q:'좋아하는 조명은?',o:[
-   {t:'해가 드는 자연광이면 충분',d:{n:-2,m:-1}},
-   {t:'간접등 여러 개로 아늑하게',d:{m:1,s:-1}},
-   {t:'포인트 조명으로 극적인 그림자',d:{s:2,m:1}}]},
- {q:'책상 위 상태를 고르면?',o:[
-   {t:'아무것도 없음. 물 한 컵 정도',d:{m:-2,s:-1}},
-   {t:'좋아하는 소품이 잔뜩. 나만의 성',d:{m:2,s:-1}},
-   {t:'식물·향초·아날로그 물건들',d:{m:1,n:-2}}]},
- {q:'건물에서 가장 멋진 순간은?',o:[
-   {t:'단순한 선이 만든 깔끔한 실루엣',d:{m:-2,s:-1}},
-   {t:'올려다볼 때 압도되는 스케일·동선',d:{s:2,n:1}},
-   {t:'거친 재료의 질감이 그대로 드러날 때',d:{n:1,s:1,m:-1}}]},
- {q:'인테리어를 한 단어로 고른다면?',o:[
-   {t:'미니멀 — 적을수록 좋다',d:{m:-2,n:1}},
-   {t:'맥시멀 — 취향을 다 보여준다',d:{m:2}},
-   {t:'내추럴 — 나무·흙·초록',d:{n:-2,m:-1}}]},
- {q:'창밖으로 보고 싶은 풍경은?',o:[
-   {t:'도시의 스카이라인·불빛',d:{n:2,s:1}},
-   {t:'마당·정원·나무',d:{n:-2,s:-1}},
-   {t:'탁 트인 하늘. 높은 곳이 좋다',d:{s:2,n:1}}]},
- {q:'파티 장소를 정한다면?',o:[
-   {t:'루프탑·옥상. 뻥 뚫린 야외',d:{s:2,n:-1,m:1}},
-   {t:'조용한 다이닝. 소수 정예',d:{s:-2,m:-1}},
-   {t:'화려하게 꾸민 실내. 무드가 핵심',d:{m:2,n:1}}]},
- {q:'집에 딱 하나만 둘 수 있다면?',o:[
-   {t:'커다란 창 하나',d:{m:-2,n:-1}},
-   {t:'식물로 가득한 온실 코너',d:{n:-2,m:1}},
-   {t:'나선형 계단 같은 조형적 오브제',d:{s:2,m:1,n:1}}]}
+ {q:'카페에 들어가면 어디에 앉나요?',
+  q_en:'You walk into a café — where do you sit?',q_ja:'カフェに入ったら、どこに座りますか？',q_zh:'走进咖啡馆，你会坐哪里？',o:[
+   {t:'창가 자리. 밖이 보여야 마음이 놓임',t_en:'By the window — I need to see outside to relax.',t_ja:'窓際。外が見えないと落ち着かない。',t_zh:'靠窗——看得到外面才安心。',d:{n:-2,s:1}},
+   {t:'구석 벽쪽. 등 뒤가 막혀야 안정됨',t_en:'A corner against the wall — my back has to be covered.',t_ja:'隅の壁際。背後がふさがっていると安心。',t_zh:'角落靠墙——背后有依靠才踏实。',d:{s:-2,m:-1}},
+   {t:'딱 봤을 때 제일 예쁜 자리. 분위기가 전부',t_en:'The prettiest spot at first glance — vibe is everything.',t_ja:'ぱっと見でいちばん映える席。雰囲気がすべて。',t_zh:'一眼看去最好看的位置——氛围就是一切。',d:{m:2,s:1}}]},
+ {q:'이사 갈 집을 처음 보러 갔어요. 뭐부터 확인하죠?',
+  q_en:'First viewing of a place to move into — what do you check first?',q_ja:'引っ越し先を初めて見に来ました。まず何を確認しますか？',q_zh:'第一次去看要搬进的房子，你先看什么？',o:[
+   {t:'창문과 채광. 빛이 얼마나 드는지',t_en:'Windows and light — how much sun gets in.',t_ja:'窓と採光。どれだけ光が入るか。',t_zh:'窗户和采光——阳光进来多少。',d:{n:-2,s:-1}},
+   {t:'수납. 짐 들어갈 공간이 충분한지',t_en:'Storage — is there room for all my stuff.',t_ja:'収納。荷物が入る空間が足りるか。',t_zh:'收纳——够不够放我的东西。',d:{m:1,n:1}},
+   {t:'전체 구조와 동선. 어떻게 흐르는지',t_en:'Layout and flow — how the space moves.',t_ja:'全体の構造と動線。どう流れるか。',t_zh:'整体格局与动线——空间怎么流动。',d:{s:2,n:1}}]},
+ {q:'호텔방 문을 열자마자 하는 일은?',
+  q_en:'The moment you open a hotel room door, you…',q_ja:'ホテルの部屋のドアを開けた瞬間、まず何をしますか？',q_zh:'一推开酒店房门，你会先做什么？',o:[
+   {t:'커튼부터 활짝. 전망 확인',t_en:'Fling the curtains open — check the view.',t_ja:'まずカーテンを全開。眺めを確認。',t_zh:'先把窗帘拉开——看看景。',d:{s:1,n:-1}},
+   {t:'짐 풀고 물건 제자리에 정리',t_en:'Unpack and put everything in its place.',t_ja:'荷物をほどいて、物を定位置に片づける。',t_zh:'打开行李，把东西各归各位。',d:{m:-1,s:-2}},
+   {t:'침대에 눕고 조명부터 아늑하게',t_en:'Flop on the bed and dim the lights cozy.',t_ja:'ベッドに寝転んで、まず照明をほっこりと。',t_zh:'往床上一躺，先把灯调得温馨。',d:{m:1,s:-1,n:-1}}]},
+ {q:'방 벽이 텅 비어 있으면?',
+  q_en:'A bare, empty wall in your room —',q_ja:'部屋の壁がまっさらだったら？',q_zh:'房间的墙空空如也，你会——',o:[
+   {t:'그대로 좋다. 여백이 편하다',t_en:'Leave it — empty space feels good.',t_ja:'そのままがいい。余白が心地よい。',t_zh:'就这样挺好——留白让人舒服。',d:{m:-2}},
+   {t:'포스터·그림·사진으로 꽉 채운다',t_en:'Fill it up with posters, art, photos.',t_ja:'ポスター・絵・写真でぎっしり埋める。',t_zh:'用海报、画、照片塞满它。',d:{m:2}},
+   {t:'식물 몇 개 두면 딱이다',t_en:'A few plants and it\'s just right.',t_ja:'植物をいくつか置けばちょうどいい。',t_zh:'摆上几盆植物就刚刚好。',d:{m:1,n:-2}}]},
+ {q:'주말 이상적인 하루는?',
+  q_en:'Your ideal weekend day is…',q_ja:'理想の週末の一日は？',q_zh:'理想的周末，是——',o:[
+   {t:'집에서 조용히. 아무 데도 안 감',t_en:'Quiet at home — go nowhere.',t_ja:'家で静かに。どこにも行かない。',t_zh:'安静宅家——哪儿都不去。',d:{s:-2,n:-1}},
+   {t:'새로운 동네·전시·공간 탐험',t_en:'Explore a new neighborhood, exhibit, space.',t_ja:'新しい街・展示・空間を探検。',t_zh:'去探索没去过的街区、展览、空间。',d:{s:2,n:1}},
+   {t:'공원·숲·바다. 자연 속에서',t_en:'Parks, forests, the sea — out in nature.',t_ja:'公園・森・海。自然の中で。',t_zh:'公园、森林、大海——泡在自然里。',d:{n:-2,s:1}}]},
+ {q:'좋아하는 조명은?',
+  q_en:'The lighting you love is…',q_ja:'好きな照明は？',q_zh:'你喜欢的灯光是——',o:[
+   {t:'해가 드는 자연광이면 충분',t_en:'Natural daylight is all I need.',t_ja:'日が差す自然光で十分。',t_zh:'有阳光的自然光就够了。',d:{n:-2,m:-1}},
+   {t:'간접등 여러 개로 아늑하게',t_en:'Several soft indirect lamps, nice and cozy.',t_ja:'間接照明を何個かで、ほっこりと。',t_zh:'几盏间接灯，暖暖的。',d:{m:1,s:-1}},
+   {t:'포인트 조명으로 극적인 그림자',t_en:'Spotlights for dramatic shadows.',t_ja:'スポット照明でドラマチックな影を。',t_zh:'用点光源打出戏剧化的阴影。',d:{s:2,m:1}}]},
+ {q:'책상 위 상태를 고르면?',
+  q_en:'Your desktop, right now, looks like…',q_ja:'あなたの机の上の状態は？',q_zh:'你桌面的状态是——',o:[
+   {t:'아무것도 없음. 물 한 컵 정도',t_en:'Nothing on it — maybe a glass of water.',t_ja:'何もない。せいぜい水一杯。',t_zh:'什么都没有——顶多一杯水。',d:{m:-2,s:-1}},
+   {t:'좋아하는 소품이 잔뜩. 나만의 성',t_en:'Piled with favorite trinkets — my own little castle.',t_ja:'お気に入りの小物がいっぱい。自分だけの城。',t_zh:'堆满心爱的小玩意——我的小城堡。',d:{m:2,s:-1}},
+   {t:'식물·향초·아날로그 물건들',t_en:'Plants, candles, analog things.',t_ja:'植物・アロマキャンドル・アナログな品々。',t_zh:'植物、香薰蜡烛、老派小物。',d:{m:1,n:-2}}]},
+ {q:'건물에서 가장 멋진 순간은?',
+  q_en:'The best moment in a building is…',q_ja:'建物でいちばん素敵な瞬間は？',q_zh:'一栋建筑最动人的瞬间是——',o:[
+   {t:'단순한 선이 만든 깔끔한 실루엣',t_en:'The clean silhouette of simple lines.',t_ja:'シンプルな線が生む端正なシルエット。',t_zh:'简单线条勾出的利落轮廓。',d:{m:-2,s:-1}},
+   {t:'올려다볼 때 압도되는 스케일·동선',t_en:'Looking up and being floored by scale and flow.',t_ja:'見上げたときに圧倒されるスケール・動線。',t_zh:'抬头一看被尺度与动线震撼的那刻。',d:{s:2,n:1}},
+   {t:'거친 재료의 질감이 그대로 드러날 때',t_en:'When raw material texture is left exposed.',t_ja:'荒々しい素材の質感がそのまま現れるとき。',t_zh:'粗糙材料的质感被原样裸露的时候。',d:{n:1,s:1,m:-1}}]},
+ {q:'인테리어를 한 단어로 고른다면?',
+  q_en:'If your interior were one word…',q_ja:'インテリアを一言で選ぶなら？',q_zh:'用一个词形容你的室内风格——',o:[
+   {t:'미니멀 — 적을수록 좋다',t_en:'Minimal — less is more.',t_ja:'ミニマル — 少ないほどいい。',t_zh:'极简——越少越好。',d:{m:-2,n:1}},
+   {t:'맥시멀 — 취향을 다 보여준다',t_en:'Maximal — show off every taste I have.',t_ja:'マキシマル — 好みを全部見せる。',t_zh:'极繁——把我的品味全亮出来。',d:{m:2}},
+   {t:'내추럴 — 나무·흙·초록',t_en:'Natural — wood, earth, green.',t_ja:'ナチュラル — 木・土・緑。',t_zh:'自然——木、土、绿。',d:{n:-2,m:-1}}]},
+ {q:'창밖으로 보고 싶은 풍경은?',
+  q_en:'The view you want out your window is…',q_ja:'窓の外に見たい風景は？',q_zh:'你想从窗外看到的风景是——',o:[
+   {t:'도시의 스카이라인·불빛',t_en:'A city skyline and its lights.',t_ja:'都市のスカイライン・灯り。',t_zh:'城市的天际线与灯火。',d:{n:2,s:1}},
+   {t:'마당·정원·나무',t_en:'A yard, a garden, trees.',t_ja:'庭・ガーデン・木々。',t_zh:'院子、花园、树。',d:{n:-2,s:-1}},
+   {t:'탁 트인 하늘. 높은 곳이 좋다',t_en:'Wide-open sky — I like being up high.',t_ja:'開けた空。高い所がいい。',t_zh:'开阔的天空——我爱待在高处。',d:{s:2,n:1}}]},
+ {q:'파티 장소를 정한다면?',
+  q_en:'If you pick a party venue…',q_ja:'パーティー会場を選ぶなら？',q_zh:'挑派对场地，你会选——',o:[
+   {t:'루프탑·옥상. 뻥 뚫린 야외',t_en:'A rooftop — wide-open outdoors.',t_ja:'ルーフトップ・屋上。開放的な屋外。',t_zh:'露台屋顶——敞开的户外。',d:{s:2,n:-1,m:1}},
+   {t:'조용한 다이닝. 소수 정예',t_en:'A quiet dinner — a small inner circle.',t_ja:'静かなダイニング。少人数の精鋭。',t_zh:'安静的餐叙——三五知己。',d:{s:-2,m:-1}},
+   {t:'화려하게 꾸민 실내. 무드가 핵심',t_en:'A lavishly decorated interior — mood is key.',t_ja:'華やかに飾った室内。ムードが命。',t_zh:'布置得华丽的室内——氛围是关键。',d:{m:2,n:1}}]},
+ {q:'집에 딱 하나만 둘 수 있다면?',
+  q_en:'If you could keep just one thing at home…',q_ja:'家にひとつだけ置けるとしたら？',q_zh:'家里只能留一样东西——',o:[
+   {t:'커다란 창 하나',t_en:'One big window.',t_ja:'大きな窓ひとつ。',t_zh:'一扇大窗。',d:{m:-2,n:-1}},
+   {t:'식물로 가득한 온실 코너',t_en:'A greenhouse corner full of plants.',t_ja:'植物でいっぱいの温室コーナー。',t_zh:'一角摆满植物的温室。',d:{n:-2,m:1}},
+   {t:'나선형 계단 같은 조형적 오브제',t_en:'A sculptural object, like a spiral stair.',t_ja:'螺旋階段のような造形的オブジェ。',t_zh:'像旋转楼梯那样的雕塑感物件。',d:{s:2,m:1,n:1}}]}
 ];
 
 // 유형: key = m s n (1=+, 0=-)
 var T={
  '001':{name:'판스워스 하우스형',tag:'극단의 미니멀리스트',color:'#64748b',
+   name_en:'Farnsworth House',name_ja:'ファンズワース邸型',name_zh:'范斯沃斯住宅型',
+   tag_en:'The extreme minimalist',tag_ja:'極みのミニマリスト',tag_zh:'极致的极简主义者',
    desc:'유리벽 하나로 안과 밖을 지운 미스 반 데어 로에의 걸작처럼, 당신은 "덜어낼수록 좋다"를 몸으로 아는 사람입니다. 물건이 늘어나면 마음이 무거워지고, 비어 있는 벽 앞에서 오히려 편안해져요. 정돈된 선과 조용한 도시적 감각이 당신의 언어입니다.',
+   desc_en:'Like Mies van der Rohe\'s masterpiece, where a single glass wall erases the line between inside and out, you know in your bones that "less is more." Clutter weighs on you; a bare wall is where you finally relax. Clean lines and a quiet urban sense are your native language.',
+   desc_ja:'一枚のガラス壁で内と外を消し去ったミース・ファン・デル・ローエの傑作のように、あなたは「削るほど良い」を体で知っている人です。物が増えると心が重くなり、何もない壁の前でむしろ落ち着く。整った線と静かな都会的センスが、あなたの言葉です。',
+   desc_zh:'就像密斯·凡·德·罗那件用一面玻璃墙抹去内外界线的杰作，你打心底相信"少即是多"。东西一多，心就沉；面对空墙，反倒松了一口气。利落的线条与安静的都市气质，就是你的母语。',
    best:'통유리·화이트톤·미니멀 갤러리',worst:'물건 쌓인 잡화점 같은 공간',
+   best_en:'Full glass, white tones, a minimal gallery',best_ja:'総ガラス・ホワイトトーン・ミニマルなギャラリー',best_zh:'通透玻璃、白色调、极简画廊',
+   worst_en:'A junk-shop stacked with clutter',worst_ja:'物が積み上がった雑貨店のような空間',worst_zh:'堆满杂物、像杂货铺一样的空间',
    mate:'한옥 마당형',clash:'가우디형'},
  '000':{name:'한옥 마당형',tag:'비움에서 채우는 사람',color:'#8a9a5b',
+   name_en:'Hanok Courtyard',name_ja:'韓屋（ハノク）の中庭型',name_zh:'韩屋庭院型',
+   tag_en:'Filled by emptiness',tag_ja:'空けることで満たす人',tag_zh:'以空为满的人',
    desc:'마당이라는 텅 빈 공간이 집의 중심이 되는 한옥처럼, 당신에게 여백은 부족함이 아니라 여유입니다. 자연광과 바람이 드나드는 고요한 공간에서 진짜로 쉬는 타입. 화려함보다 담백함, 채움보다 비움에서 만족을 찾습니다.',
+   desc_en:'Like a hanok, where an empty courtyard becomes the heart of the house, emptiness to you is not lack but ease. You truly rest only in quiet spaces where daylight and breeze pass through. You find satisfaction in restraint over splendor, in emptying over filling.',
+   desc_ja:'中庭という空っぽの空間が家の中心になる韓屋のように、あなたにとって余白は不足ではなくゆとりです。自然光と風が出入りする静かな空間でこそ本当に休まるタイプ。華やかさより淡白さ、満たすことより空けることに満足を見出します。',
+   desc_zh:'就像以空庭为核心的韩屋，留白于你不是欠缺，而是从容。唯有在阳光与清风穿堂而过的静谧空间里，你才能真正歇下来。比起绚烂，你偏爱清淡；比起填满，你在留白中寻得满足。',
    best:'툇마루·자연광 드는 나무집',worst:'창 없는 화려한 지하 공간',
+   best_en:'A wooden house with a veranda and daylight',best_ja:'縁側があり自然光の入る木の家',best_zh:'带檐廊、洒满自然光的木屋',
+   worst_en:'A windowless, gaudy basement',worst_ja:'窓のない華やかな地下空間',worst_zh:'没有窗、装修花哨的地下空间',
    mate:'판스워스 하우스형',clash:'구겐하임형'},
  '100':{name:'온실형',tag:'식물 없인 못 사는 타입',color:'#2f9e44',
+   name_en:'Greenhouse',name_ja:'温室型',name_zh:'温室型',
+   tag_en:'Can\'t live without plants',tag_ja:'植物なしでは生きられない',tag_zh:'离了植物活不了',
    desc:'유리 지붕 아래 초록이 가득한 온실처럼, 당신의 공간에는 살아 있는 것이 있어야 합니다. 식물·나무·자연 소재로 공간을 채우고, 그 안에서 조용히 보내는 시간을 사랑해요. 미니멀은 조금 삭막하고, 흙냄새 나는 풍요로움이 당신의 안식처입니다.',
+   desc_en:'Like a greenhouse full of green under a glass roof, your space has to hold something alive. You fill it with plants, wood and natural materials, and love the quiet hours spent inside. Minimalism feels a touch barren; an earthy abundance is your sanctuary.',
+   desc_ja:'ガラス屋根の下に緑があふれる温室のように、あなたの空間には生きているものが必要です。植物・木・自然素材で空間を満たし、その中で静かに過ごす時間を愛する。ミニマルは少し殺風景で、土の匂いのする豊かさこそがあなたの安らぎです。',
+   desc_zh:'就像玻璃顶下满是绿意的温室，你的空间里必须有活着的东西。你用植物、木头、天然材料把它填满，钟爱在其中静静度过的时光。极简对你略显荒凉，带着泥土气息的丰盈才是你的归处。',
    best:'식물 가득한 선룸·정원 딸린 집',worst:'콘크리트만 있는 무채색 방',
+   best_en:'A sunroom full of plants, a house with a garden',best_ja:'植物でいっぱいのサンルーム・庭付きの家',best_zh:'满是植物的阳光房、带花园的家',
+   worst_en:'A grey room of nothing but concrete',worst_ja:'コンクリートだけの無彩色の部屋',worst_zh:'只有混凝土的灰白房间',
    mate:'북유럽 휘게형',clash:'브루탈리즘형'},
  '101':{name:'가우디형',tag:'곡선 없인 못 사는 낭만파',color:'#e8590c',
+   name_en:'Gaudí',name_ja:'ガウディ型',name_zh:'高迪型',
+   tag_en:'A romantic who needs curves',tag_ja:'曲線なしでは生きられない浪漫派',tag_zh:'没有曲线活不了的浪漫派',
    desc:'직선을 거부하고 자연의 곡선으로 도시를 물들인 안토니 가우디처럼, 당신은 세상이 조금 더 화려하고 극적이길 바랍니다. 취향이 뚜렷하고 공간을 자기 색으로 꽉 채우는 맥시멀리스트. 밋밋한 것을 못 견디고, 어디서든 "나만의 세계"를 만들어냅니다.',
+   desc_en:'Like Antoni Gaudí, who rejected the straight line and dyed a city in nature\'s curves, you wish the world were a little more lavish and dramatic. A maximalist with strong taste who packs a space with their own color. You can\'t stand the bland, and you build "a world of your own" wherever you go.',
+   desc_ja:'直線を拒み、自然の曲線で都市を染めたアントニ・ガウディのように、あなたは世界がもう少し華やかで劇的であってほしいと願います。好みがはっきりしていて、空間を自分の色で埋め尽くすマキシマリスト。平凡が耐えられず、どこでも「自分だけの世界」を作り出します。',
+   desc_zh:'就像拒绝直线、用自然曲线为城市染色的安东尼·高迪，你希望世界能再华丽、再戏剧一点。你是品味鲜明、把空间填满自己色彩的极繁主义者。受不了平淡，走到哪儿都要造出"专属自己的世界"。',
    best:'색과 패턴이 넘치는 무드 공간',worst:'아무 색 없는 텅 빈 흰 방',
+   best_en:'A moody space overflowing with color and pattern',best_ja:'色と模様があふれるムードのある空間',best_zh:'色彩与图案满溢的氛围空间',
+   worst_en:'An empty white room with no color at all',worst_ja:'何の色もない空っぽの白い部屋',worst_zh:'毫无色彩、空荡荡的白房间',
    mate:'구겐하임형',clash:'판스워스 하우스형'},
  '011':{name:'브루탈리즘형',tag:'콘크리트 순정파',color:'#495057',
+   name_en:'Brutalism',name_ja:'ブルータリズム型',name_zh:'粗野主义型',
+   tag_en:'A concrete purist',tag_ja:'コンクリート純情派',tag_zh:'混凝土纯情派',
    desc:'노출 콘크리트를 꾸밈없이 드러내는 브루탈리즘 건축처럼, 당신은 재료의 본모습과 솔직한 질감에 끌립니다. 겉치레보다 구조, 예쁨보다 힘. 거칠어도 정직한 공간에서 편안함을 느끼고, 도시의 묵직한 매스와 그림자를 멋으로 아는 사람입니다.',
+   desc_en:'Like Brutalist architecture that shows raw concrete without dressing it up, you\'re drawn to a material\'s true face and its honest texture. Structure over decoration, force over prettiness. You feel at ease in spaces that are rough but honest, and you read the heavy mass and shadow of the city as beauty.',
+   desc_ja:'打ち放しコンクリートを飾らずに見せるブルータリズム建築のように、あなたは素材の本当の姿と正直な質感に惹かれます。見せかけより構造、可愛さより力。荒くても正直な空間で安らぎを感じ、都市の重厚なマッスと影を格好よさとして読む人です。',
+   desc_zh:'就像把清水混凝土毫不修饰裸露出来的粗野主义建筑，你被材料的本来面目和诚实质感所吸引。比起装饰更看重结构，比起漂亮更看重力量。你在粗糙却诚实的空间里感到自在，把城市厚重的体量与阴影读作一种帅气。',
    best:'노출 콘크리트·인더스트리얼 로프트',worst:'파스텔톤 아기자기한 공간',
+   best_en:'Exposed concrete, an industrial loft',best_ja:'打ち放しコンクリート・インダストリアルなロフト',best_zh:'清水混凝土、工业风loft',
+   worst_en:'A dainty pastel-toned space',worst_ja:'パステルカラーのかわいらしい空間',worst_zh:'粉彩色、小清新的空间',
    mate:'구겐하임형',clash:'온실형'},
  '010':{name:'북유럽 휘게형',tag:'아늑함의 장인',color:'#c2703d',
+   name_en:'Nordic Hygge',name_ja:'北欧ヒュッゲ型',name_zh:'北欧Hygge型',
+   tag_en:'A master of cozy',tag_ja:'心地よさの職人',tag_zh:'温馨的匠人',
    desc:'덴마크의 "휘게(hygge)"를 아는 사람. 크지 않아도 따뜻한 조명, 포근한 담요, 사람의 온기가 있는 공간을 사랑합니다. 자연 소재와 은은한 빛으로 아늑함을 만들고, 그 안에서 좋아하는 사람들과 보내는 시간이 당신에겐 최고의 인테리어예요.',
+   desc_en:'Someone who knows Denmark\'s "hygge." It needn\'t be big — you love warm light, a soft blanket, a space with human warmth in it. You build coziness from natural materials and gentle light, and the hours spent there with people you love are, to you, the finest interior of all.',
+   desc_ja:'デンマークの「ヒュッゲ（hygge）」を知る人。大きくなくても、温かい照明、ふかふかの毛布、人のぬくもりがある空間を愛します。自然素材とやわらかな光で心地よさを作り、その中で好きな人たちと過ごす時間こそ、あなたにとって最高のインテリアです。',
+   desc_zh:'一个懂得丹麦"hygge"的人。不必大，你爱的是温暖的灯光、柔软的毛毯、有人情温度的空间。你用天然材料与柔和的光营造惬意，而在其中与所爱之人共度的时光，才是你心中最好的装潢。',
    best:'우드톤·간접등 가득한 아늑한 거실',worst:'차갑고 휑한 대형 홀',
+   best_en:'A cozy living room of wood tones and soft lamps',best_ja:'ウッドトーンと間接照明にあふれた居心地のいいリビング',best_zh:'木色调、满是间接灯光的温馨客厅',
+   worst_en:'A cold, cavernous grand hall',worst_ja:'冷たくがらんとした大ホール',worst_zh:'又冷又空旷的大厅',
    mate:'온실형',clash:'구겐하임형'},
  '111':{name:'구겐하임형',tag:'동선이 곧 드라마',color:'#7048e8',
+   name_en:'Guggenheim',name_ja:'グッゲンハイム型',name_zh:'古根海姆型',
+   tag_en:'Movement is drama',tag_ja:'動線こそドラマ',tag_zh:'动线即戏剧',
    desc:'하나의 나선 램프를 따라 걸으며 공간을 경험하게 만든 라이트의 구겐하임처럼, 당신에게 공간은 정지된 배경이 아니라 움직이며 펼쳐지는 이야기입니다. 스케일 크고 극적인 동선, 압도되는 순간을 사랑하는 도시형 드라마티스트. 지루한 네모방은 사절!',
+   desc_en:'Like Wright\'s Guggenheim, which makes you experience space by walking a single spiral ramp, space to you is never a static backdrop but a story that unfolds as you move. An urban dramatist who loves big scale, dramatic circulation and overwhelming moments. Boring square rooms? No thanks!',
+   desc_ja:'一本の螺旋スロープを歩きながら空間を体験させるライトのグッゲンハイムのように、あなたにとって空間は静止した背景ではなく、動きながら広がっていく物語です。スケールが大きく劇的な動線、圧倒される瞬間を愛する都会型ドラマティスト。退屈な四角い部屋はお断り！',
+   desc_zh:'就像赖特的古根海姆，让你沿着一道螺旋坡道边走边体验空间——对你而言，空间从不是静止的背景，而是随移动展开的故事。你是热爱宏大尺度、戏剧动线与被震撼瞬间的都市戏剧家。无聊的方盒子房间？谢绝！',
    best:'층고 높은 미술관·조형적 대공간',worst:'변화 없는 작은 사각방',
+   best_en:'A high-ceilinged museum, a sculptural grand space',best_ja:'天井の高い美術館・造形的な大空間',best_zh:'层高高挑的美术馆、有雕塑感的大空间',
+   worst_en:'A small square room that never changes',worst_ja:'変化のない小さな四角い部屋',worst_zh:'一成不变的小方间',
    mate:'가우디형',clash:'한옥 마당형'},
  '110':{name:'옥탑 루프탑형',tag:'하늘이 곧 천장',color:'#1098ad',
+   name_en:'Rooftop',name_ja:'ルーフトップ型',name_zh:'露台型',
+   tag_en:'The sky is the ceiling',tag_ja:'空こそが天井',tag_zh:'天空即天花板',
    desc:'꽉 막힌 실내보다 뻥 뚫린 옥상이 좋은 사람. 야외의 개방감, 바람, 탁 트인 하늘 아래에서 진짜 자유를 느낍니다. 공간을 자기 취향으로 꾸미되 벽에 갇히긴 싫어하는 타입 — 도시 위에서 자연을 누리는, 낮과 밤이 다른 무대의 주인공입니다.',
+   desc_en:'Someone who prefers a wide-open rooftop to a boxed-in interior. You feel real freedom under fresh air, wind, and open sky. You decorate a space to your taste but hate being walled in — the lead of a stage that reads differently by day and night, savoring nature above the city.',
+   desc_ja:'閉ざされた室内より、開けた屋上が好きな人。屋外の開放感、風、広がる空の下でこそ本当の自由を感じます。空間を自分好みに飾りつつも、壁に閉じ込められるのは嫌なタイプ — 都市の上で自然を味わう、昼と夜で違う舞台の主役です。',
+   desc_zh:'比起封闭的室内，你更爱敞开的屋顶。在户外的开阔、清风与无遮的天空下，你才感到真正的自由。你会按自己的喜好布置空间，却讨厌被墙困住——你是在城市之上享受自然、昼夜各有一台戏的主角。',
    best:'루프탑 테라스·전망 좋은 오픈스페이스',worst:'창문 없는 답답한 골방',
+   best_en:'A rooftop terrace, an open space with a view',best_ja:'ルーフトップテラス・眺めのいいオープンスペース',best_zh:'露台平台、视野开阔的开放空间',
+   worst_en:'A stuffy, windowless little box room',worst_ja:'窓のない息苦しい小部屋',worst_zh:'没有窗、憋闷的小隔间',
    mate:'북유럽 휘게형',clash:'판스워스 하우스형'}
 };
 var ORDER=['001','000','100','101','011','010','111','110'];
@@ -205,6 +351,20 @@ var RARE={ // 재미용 희소성 문구 (합=100 느낌)
  '010':'상위 21% — 가장 많은 사람이 공감하는 유형',
  '111':'상위 8% — 드라마 없인 못 사는 소수파',
  '110':'상위 14% — 도시와 하늘을 동시에 원하는 타입'
+};
+var RARE_L={
+ en:{'001':'Top 6% — a rare pure minimalist','000':'Top 11% — the quiet type, trending again',
+  '100':'Top 18% — the plant crowd keeps growing','101':'Top 9% — max personality, a rare romantic',
+  '011':'Top 7% — a concrete devotee with firm taste','010':'Top 21% — the type most people relate to',
+  '111':'Top 8% — a small tribe that can\'t live without drama','110':'Top 14% — wants the city and the sky at once'},
+ ja:{'001':'上位6% — 珍しい純粋ミニマリスト','000':'上位11% — 最近また注目の静けさ派',
+  '100':'上位18% — 植物人口は増え続け中','101':'上位9% — 個性MAX、希少な浪漫派',
+  '011':'上位7% — 好みが確固たるコンクリート愛好家','010':'上位21% — いちばん多くの人が共感するタイプ',
+  '111':'上位8% — ドラマなしでは生きられない少数派','110':'上位14% — 都市と空を同時に求めるタイプ'},
+ zh:{'001':'前6% — 少见的纯粹极简主义者','000':'前11% — 近来重新走红的宁静派',
+  '100':'前18% — 植物人口还在不断增加','101':'前9% — 个性拉满、稀有的浪漫派',
+  '011':'前7% — 品味坚定的混凝土发烧友','010':'前21% — 最多人有共鸣的类型',
+  '111':'前8% — 离了戏剧活不了的少数派','110':'前14% — 想同时拥有城市与天空的类型'}
 };
 
 // 유형별 인라인 SVG 일러스트 (view 24x24)
@@ -222,6 +382,20 @@ function illSvg(key,size){
  return '<svg viewBox="0 0 24 24" width="'+size+'" height="'+size+'">'+ILL[key].replace(/C/g,T[key].color)+'</svg>';
 }
 
+// 다국어 헬퍼: base('q','t','name','desc',...) -> base_en 등 우선, 없으면 KO 원문
+function L(){return window.MT_LANG||'ko';}
+function field(obj,base){
+ var lang=L();
+ if(lang!=='ko'){var v=obj[base+'_'+lang];if(v!=null)return v;}
+ return obj[base];
+}
+function tr(key,ko){return (window.t?window.t(key,ko):ko);}
+function rareText(key){
+ var lang=L();
+ if(lang!=='ko'&&RARE_L[lang]&&RARE_L[lang][key])return RARE_L[lang][key];
+ return RARE[key];
+}
+
 var cur=0,ans=[],m=0,s=0,n=0;
 var qCard=document.getElementById('quizCard'),rCard=document.getElementById('resultCard');
 
@@ -229,11 +403,11 @@ function render(){
  var it=Q[cur];
  document.getElementById('qnum').textContent='Q'+(cur+1)+' / '+Q.length;
  document.getElementById('bar').style.width=(cur/Q.length*100)+'%';
- document.getElementById('qtext').textContent=it.q;
+ document.getElementById('qtext').textContent=field(it,'q');
  var box=document.getElementById('opts');box.innerHTML='';
  it.o.forEach(function(op,idx){
    var b=document.createElement('button');
-   b.className='opt';b.textContent=op.t;
+   b.className='opt';b.textContent=field(op,'t');
    b.onclick=function(){pick(idx)};
    box.appendChild(b);
  });
@@ -264,16 +438,23 @@ function show(key){
  document.getElementById('bar').style.width='100%';
  qCard.classList.add('hidden');rCard.classList.remove('hidden');
  document.getElementById('rIll').innerHTML=illSvg(key,150);
- document.getElementById('rType').textContent=t.name;
- var tag=document.getElementById('rTag');tag.textContent=t.tag;tag.style.background=t.color;
- document.getElementById('rDesc').textContent=t.desc;
- document.getElementById('rBest').textContent=t.best;
- document.getElementById('rWorst').textContent=t.worst;
- document.getElementById('rMate').textContent=t.mate;
- document.getElementById('rClash').textContent=t.clash;
- document.getElementById('rRare').textContent='희소성: '+RARE[key];
+ document.getElementById('rType').textContent=field(t,'name');
+ var tag=document.getElementById('rTag');tag.textContent=field(t,'tag');tag.style.background=t.color;
+ document.getElementById('rDesc').textContent=field(t,'desc');
+ document.getElementById('rBest').textContent=field(t,'best');
+ document.getElementById('rWorst').textContent=field(t,'worst');
+ document.getElementById('rMate').textContent=mateName(t.mate);
+ document.getElementById('rClash').textContent=mateName(t.clash);
+ document.getElementById('rRare').textContent=tr('rare_prefix','희소성: ')+rareText(key);
  buildAll();
  window.scrollTo({top:0,behavior:'smooth'});
+}
+// mate/clash 는 KO 타입명으로 저장돼 있음 -> 현재 언어의 타입명으로 치환
+var KO_NAME_TO_KEY={};
+(function(){for(var k in T){KO_NAME_TO_KEY[T[k].name]=k;}})();
+function mateName(koName){
+ var key=KO_NAME_TO_KEY[koName];
+ return key? field(T[key],'name') : koName;
 }
 
 function buildAll(){
@@ -281,7 +462,7 @@ function buildAll(){
  ORDER.forEach(function(key){
    var t=T[key];
    var d=document.createElement('div');d.className='tmini';
-   d.innerHTML=illSvg(key,34)+'<div><div class="n">'+t.name+'</div><div class="s">'+t.tag+'</div></div>';
+   d.innerHTML=illSvg(key,34)+'<div><div class="n">'+field(t,'name')+'</div><div class="s">'+field(t,'tag')+'</div></div>';
    d.style.cursor='pointer';
    d.onclick=function(){show(key)};
    wrap.appendChild(d);
@@ -298,21 +479,35 @@ document.getElementById('retry').onclick=function(){
 };
 
 var URL='https://modutools.vercel.app/space-test.html';
+function shareLineFull(name,tag){
+ var lang=L();
+ if(lang==='en')return 'I\'m a “'+name+'” ('+tag+')! What space are you? ';
+ if(lang==='ja')return '私は「'+name+'」（'+tag+'）！あなたはどんな空間？ ';
+ if(lang==='zh')return '我是「'+name+'」（'+tag+'）！你是哪种空间？ ';
+ return '나는 「'+name+'」('+tag+')! 너는 어떤 공간이야? ';
+}
+function shareLine(name){
+ var lang=L();
+ if(lang==='en')return 'I\'m a “'+name+'”! What space are you? ';
+ if(lang==='ja')return '私は「'+name+'」！あなたはどんな空間？ ';
+ if(lang==='zh')return '我是「'+name+'」！你是哪种空间？ ';
+ return '나는 「'+name+'」! 너는? ';
+}
 document.getElementById('shareTxt').onclick=function(){
- var t=T[curKey];
- var msg='나는 「'+t.name+'」('+t.tag+')! 너는 어떤 공간이야? '+URL;
+ var t=T[curKey];var nm=field(t,'name'),tg=field(t,'tag');
+ var msg=shareLineFull(nm,tg)+URL;
  if(navigator.share){navigator.share({text:msg}).catch(function(){})}
  else{copy(msg)}
 };
 function copy(text){
  if(navigator.clipboard&&navigator.clipboard.writeText){
-   navigator.clipboard.writeText(text).then(function(){note('클립보드에 복사됐어요')}).catch(fallbackCopy.bind(null,text));
+   navigator.clipboard.writeText(text).then(function(){note(tr('copy_ok','클립보드에 복사됐어요'))}).catch(fallbackCopy.bind(null,text));
  }else{fallbackCopy(text)}
 }
 function fallbackCopy(text){
  var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
  document.body.appendChild(ta);ta.select();
- try{document.execCommand('copy');note('클립보드에 복사됐어요')}catch(e){note('복사에 실패했어요')}
+ try{document.execCommand('copy');note(tr('copy_ok','클립보드에 복사됐어요'))}catch(e){note(tr('copy_fail','복사에 실패했어요'))}
  document.body.removeChild(ta);
 }
 function note(msg){document.getElementById('copied').textContent=msg}
@@ -329,7 +524,7 @@ function drawCard(){
  g.fillStyle=t.color;g.fillRect(0,0,W,10);
  // 브랜드
  g.fillStyle=t.color;g.font='700 26px sans-serif';g.textAlign='center';
- g.fillText('나의 공간 성향 테스트',W/2,66);
+ g.fillText(tr('result_title','나의 공간 성향 테스트'),W/2,66);
  // 일러스트 (SVG를 이미지로)
  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="220" height="220">'+ILL[curKey].replace(/C/g,t.color).replace(/var\(--card\)/g,'#ffffff')+'</svg>';
  var img=new Image();
@@ -341,22 +536,23 @@ function drawCard(){
  img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 function finishCard(g,t,W,cv){
+ var nm=field(t,'name'),tg=field(t,'tag'),ds=field(t,'desc');
  g.textAlign='center';
  g.fillStyle='#1a1d24';g.font='800 42px sans-serif';
- g.fillText(t.name,W/2,395);
+ g.fillText(nm,W/2,395);
  // 태그 pill
  g.font='700 20px sans-serif';
- var tw=g.measureText(t.tag).width;
+ var tw=g.measureText(tg).width;
  g.fillStyle=t.color;roundRect(g,W/2-tw/2-18,415,tw+36,38,19);g.fill();
- g.fillStyle='#ffffff';g.fillText(t.tag,W/2,441);
+ g.fillStyle='#ffffff';g.fillText(tg,W/2,441);
  // 설명 wrap
  g.fillStyle='#3a3f4a';g.font='400 20px sans-serif';
- wrapText(g,t.desc,W/2,500,W-90,29,5);
+ wrapText(g,ds,W/2,500,W-90,29,5);
  // 매칭
  g.font='700 19px sans-serif';g.fillStyle=t.color;
- g.fillText('환상의 짝꿍 · '+t.mate,W/2,678);
+ g.fillText(tr('card_mate','환상의 짝꿍 · ')+mateName(t.mate),W/2,678);
  g.fillStyle='#dc2626';
- g.fillText('상극 · '+t.clash,W/2,708);
+ g.fillText(tr('card_clash','상극 · ')+mateName(t.clash),W/2,708);
  // 하단
  g.fillStyle='#9aa3b2';g.font='500 18px sans-serif';
  g.fillText('modutools.vercel.app/space-test.html',W/2,762);
@@ -367,33 +563,58 @@ function roundRect(g,x,y,w,h,r){
  g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();
 }
 function wrapText(g,text,x,y,maxW,lh,maxLines){
- var chars=text.split(''),line='',lines=[];
- for(var i=0;i<chars.length;i++){
-   var test=line+chars[i];
-   if(g.measureText(test).width>maxW&&line){lines.push(line);line=chars[i]}
-   else line=test;
+ var line='',lines=[];
+ // 공백이 있으면(영어 등) 단어 단위 줄바꿈, 없으면(CJK) 글자 단위
+ if(/ /.test(text)){
+   var words=text.split(' ');
+   for(var w=0;w<words.length;w++){
+     var test=line?line+' '+words[w]:words[w];
+     if(g.measureText(test).width>maxW&&line){lines.push(line);line=words[w]}
+     else line=test;
+   }
+ }else{
+   var chars=text.split('');
+   for(var i=0;i<chars.length;i++){
+     var t2=line+chars[i];
+     if(g.measureText(t2).width>maxW&&line){lines.push(line);line=chars[i]}
+     else line=t2;
+   }
  }
  if(line)lines.push(line);
  lines=lines.slice(0,maxLines);
  lines.forEach(function(ln,i){g.fillText(ln,x,y+i*lh)});
 }
+function cardFilename(name){
+ var lang=L();
+ if(lang==='ja')return '空間タイプ_'+name;
+ if(lang==='zh')return '空间性格_'+name;
+ if(lang==='en')return 'space_type_'+name;
+ return '공간성향_'+name;
+}
 function exportCard(cv,t){
+ var nm=field(t,'name');
  cv.toBlob(function(blob){
-   if(!blob){note('이미지 생성 실패');return}
-   var file=new File([blob],'공간성향_'+t.name+'.png',{type:'image/png'});
+   if(!blob){note(tr('card_fail','이미지 생성 실패'));return}
+   var file=new File([blob],cardFilename(nm)+'.png',{type:'image/png'});
    if(navigator.canShare&&navigator.canShare({files:[file]})){
-     navigator.share({files:[file],text:'나는 「'+t.name+'」! 너는? '+URL}).catch(function(){});
+     navigator.share({files:[file],text:shareLine(nm)+URL}).catch(function(){});
    }else{
      var a=document.createElement('a');a.href=URL_(blob);a.download=file.name;
      document.body.appendChild(a);a.click();document.body.removeChild(a);
      setTimeout(function(){revoke(a.href)},1000);
-     note('결과 카드를 저장했어요');
+     note(tr('card_saved','결과 카드를 저장했어요'));
    }
  },'image/png');
 }
 function URL_(b){return (window.URL||window.webkitURL).createObjectURL(b)}
 function revoke(u){(window.URL||window.webkitURL).revokeObjectURL(u)}
-document.getElementById('shareImg').onclick=function(){note('카드 만드는 중...');drawCard()};
+document.getElementById('shareImg').onclick=function(){note(tr('card_making','카드 만드는 중...'));drawCard()};
+
+// 언어 전환 시: 진행 중인 퀴즈/결과 화면 재렌더
+document.addEventListener('mt:lang',function(){
+ if(!rCard.classList.contains('hidden')&&curKey){show(curKey);}
+ else{render();}
+});
 
 render();
 </script>
