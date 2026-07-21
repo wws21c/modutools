@@ -80,10 +80,10 @@ zh:{
 <div class="ad-slot"></div>
 <footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/salary.html" data-i18n="c_salary_t">연봉 실수령액</a><a href="/age.html" data-i18n="c_age_t">만 나이</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/percent.html" data-i18n="c_pct_t">퍼센트</a></div><p data-i18n="footer_note">ⓒ 모두도구</p></footer>
 <script>
-var t=document.getElementById('txt');
+var ta=document.getElementById('txt');
 function uChar(){return window.t?window.t('unit_char','자'):'자';}
 function uByte(){return window.t?window.t('unit_byte','byte'):'byte';}
-function cnt(){var v=t.value;
+function cnt(){var v=ta.value;
 document.getElementById('c1').textContent=v.length.toLocaleString()+uChar();
 document.getElementById('c2').textContent=v.replace(/\s/g,'').length.toLocaleString()+uChar();
 var b2=0;for(var ch of v){b2+=ch.charCodeAt(0)>127?2:1}
@@ -91,8 +91,8 @@ document.getElementById('c3').textContent=b2.toLocaleString()+uByte();
 document.getElementById('c4').textContent=new Blob([v]).size.toLocaleString()+uByte();
 var w=v.trim()?v.trim().split(/\s+/).length:0;var l=v?v.split('\n').length:0;
 document.getElementById('c5').textContent=w.toLocaleString()+' / '+l.toLocaleString();}
-t.addEventListener('input',cnt);
-document.getElementById('clear').onclick=function(){t.value='';cnt();t.focus();};
+ta.addEventListener('input',cnt);
+document.getElementById('clear').onclick=function(){ta.value='';cnt();ta.focus();};
 document.addEventListener('mt:lang',cnt);
 </script>
 </body>
