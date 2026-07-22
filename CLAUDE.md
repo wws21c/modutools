@@ -7,8 +7,14 @@
 
 ## 구조
 - 도구 10: char-count·salary·age·dday·percent·image-compress·bmi·lotto·youtube-thumbnail·reaction
+- 학부모 도구 2 (2026-07-22 신설, 3타깃 재편 = 학부모만 실공백 판정): phone-contract(스마트폰 사용 계약서 생성기 — 폼→인쇄, 양방향 계약)·child-safety(우리 동네 어린이 안전지도 — 어린이보호구역 Leaflet 지도+CCTV/경찰서 + 학폭 공시 링크아웃)
 - 게임 6: city(미니시티)·apt(집값 맞히기)·map(여기 어디?)·archi(오늘의 건축물)·space-test(공간 성향)·scale(높이 여행) — 데일리 훅 = KST 날짜 FNV 해시, 공유 = 스포일러 없는 이모지+클립보드, 스트릭 = localStorage
-- 데이터 파일: apt-data.js(실거래 40건, 전 건 src 출처 — 보도 기준 참고용)·map-data.js(시군구 251, CC BY 4.0 southkorea-maps)·archi-data.js(건축물 61, hints+hints_en)·scale-data.js(44노드 실측치)
+- 데이터 파일: apt-data.js(실거래 40건, 전 건 src 출처 — 보도 기준 참고용)·map-data.js(시군구 251, CC BY 4.0 southkorea-maps)·archi-data.js(건축물 61, hints+hints_en)·scale-data.js(44노드 실측치)·data/childzones.json(어린이보호구역 — 現 광진구 64건 샘플, 전국 스왑 대기)
+
+## child-safety 데이터 파이프 (★ 미완 = 원석씨 클릭 1건 대기)
+- 現 상태 = 서울 광진구 64건 샘플만 로드(라이브 작동하나 전국 아님). Leaflet 1.9.4 + OSM 타일(키 불필요, SRI 무결성 해시 박음).
+- **전국 스왑 절차**: ① 원석씨가 data.go.kr 15012891 "활용신청"(자동승인) → serviceKey 발급 ② `PUBLIC_DATA_KEY=... python3 build_childzones.py` 실행(전국 ~16,800건 배치) ③ commit+push. 기존 .env.mcp의 PUBLIC_DATA_KEY는 이 API 미등록(resultCode 30) = 별도 활용신청 필수.
+- **학폭 심의 = 링크아웃만** (재게시 금지 판정): 일괄 다운로드 목록에 심의 결과 없음(예방교육 실적뿐)·개별 학교 캡차·OpenAPI 15098092=공공누리 3유형 변경금지 → 학교명→학교알리미 공식 검색어 복사+페이지 오픈으로 대체. 검증보고서 = WIP `webtools_experiment/docs/검토보고서/2026-07-22_학부모_안전조회툴_법규검증_국내외.md`
 
 ## 스타일 (WWA v8.4)
 - `style.css` 단일 SSOT: Pretendard(CDN @import, 시스템 폰트 fallback 금지—generic만) + Source Code Pro(수치) + WWA Slate `#2C3A47` 단일 브랜드색 + Slate Scale 다크모드. 임의 색·폰트 추가 금지.
