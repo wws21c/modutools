@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title data-i18n="title_tag">스마트폰 사용 계약서 만들기 — 자녀와 함께 쓰는 우리 집 약속 (무료 인쇄)</title>
+<meta name="description" content="자녀 스마트폰 사용 규칙을 가족이 함께 고르고 인쇄용 계약서로 만들어 주는 무료 도구. 사용 시간·안전 약속에 보호자의 약속까지 — 서로 서명하는 양방향 약속서. 가입 없이 브라우저에서 바로.">
+<link rel="canonical" href="https://modutools.vercel.app/phone-contract.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<style>
+.opt-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.opt-list label{display:flex;gap:8px;align-items:flex-start;font-size:.93rem;cursor:pointer}
+.opt-list input{margin-top:4px}
+.contract{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;margin-top:18px}
+.contract h2{text-align:center;font-size:1.3rem;margin-bottom:4px;letter-spacing:-.01em}
+.contract .c-intro{text-align:center;font-size:.93rem;color:var(--sub);margin-bottom:18px}
+.contract h3{font-size:.98rem;margin:16px 0 6px}
+.contract ol{padding-left:22px;font-size:.93rem}
+.contract ol li{margin-bottom:4px}
+.contract p{font-size:.93rem}
+.c-sign{display:flex;gap:24px;flex-wrap:wrap;margin-top:26px}
+.c-sign>div{flex:1;min-width:160px;font-size:.9rem}
+.c-sign .line{border-bottom:1px solid var(--ink);min-height:34px;margin-bottom:4px}
+@media print{
+ header,footer,.no-print,.ad-slot,.lang-switch{display:none!important}
+ main{max-width:none;padding:0}
+ body{background:#fff}
+ .contract{border:none;border-radius:0;padding:10px;margin:0;background:#fff}
+}
+</style>
+<script>
+window.I18N_PAGE = {
+en:{
+ title_tag:"Family Phone Contract Maker — a printable agreement you write with your child",
+ h1:"Family Phone Contract Maker",
+ lead:"Pick the rules together with your child and print a contract you both sign. Not a one-way rulebook — parents make promises too. Nothing you type leaves your browser.",
+ lbl_child:"Child's name", ph_child:"e.g. Mina",
+ lbl_parent:"Parent (as your child calls you)", ph_parent:"e.g. Mom, Dad",
+ lbl_grade:"School age (fills suggested times — adjust freely)",
+ g_e1:"Lower elementary", g_e2:"Upper elementary", g_m:"Middle school", g_h:"High school",
+ lbl_wd:"Weekday screen time / day", lbl_we:"Weekend screen time / day",
+ opt_family:"As agreed by the family",
+ lbl_night:"Phone-off time at night", lbl_place:"Where the phone sleeps",
+ pl_parent:"handed to a parent", pl_living:"charging in the living room", pl_out:"kept outside my room",
+ sec_rules:"Choose the child's promises",
+ r3:"No phone at the table during meals.",
+ r4:"Homework and chores come before screen time.",
+ r5:"I ask before installing new apps or paying for anything.",
+ r6:"I never post personal info — my name, school, address or photos.",
+ r7:"I don't reply to strangers online; I tell my parents instead.",
+ r8:"I don't send or forward mean messages, even as a joke.",
+ r9:"If I see something scary or weird, I can tell my parents without getting in trouble.",
+ r10:"I don't look at the screen while walking or crossing the street.",
+ sec_promise:"Choose the parent's promises",
+ p1:"I won't use my phone at the table during meals either.",
+ p2:"I won't secretly check your phone — if I'm worried, we'll look together.",
+ p3:"Even if I'm upset, I'll talk first instead of grabbing the phone away.",
+ p4:"Whatever you show me, I'll listen to the end before reacting.",
+ p5:"For 30 minutes before bed, I'll put my phone down and spend time with you.",
+ lbl_custom:"Our family's own rules (one per line)", ph_custom:"e.g. Phone-free family walk every Sunday",
+ lbl_penalty:"If the promise is broken", ph_penalty:"e.g. Screen time is 30 minutes shorter the next day. After three times, we hold a family meeting.",
+ lbl_reward:"If the promise is kept", ph_reward:"e.g. 30 extra minutes on the weekend, or a reward the family agreed on.",
+ lbl_dur:"Contract period", dur1:"1 month", dur3:"3 months", dur6:"6 months",
+ btn_go:"Create the contract", btn_print:"Print",
+ note_edit:"Tip: tap any sentence in the contract to edit it before printing.",
+ note_suggest:"Suggested times are just a starting point — what matters is deciding together.",
+ c_title:"Our Family Phone Promise",
+ c_intro:"{child} and {parent} trust each other and promise the following.",
+ c_s1:"Time promise", c_s2:"Use promise", c_s3:"Safety promise", c_s4:"{parent}'s promise",
+ c_s5:"If the promise is broken", c_s6:"If the promise is kept", c_s7:"Period", c_s8:"Our family's own rules",
+ c_r1:"Daily screen time: {wd} on weekdays, {we} on weekends.",
+ c_r2:"After {t} at night, the phone is {place}.",
+ c_dur:"We keep this promise until {date}, then decide the next one together.",
+ c_child:"Child", c_parent:"Parent", c_sign:"(signature)", c_date:"Date",
+ u_h:"h", u_m:"min",
+ alert_name:"Please enter the child's name and the parent's name.",
+ faq_h1:"Why a contract instead of just rules?",
+ faq_p1:"Rules imposed one-way are easy to resent and easy to break. A contract the child helps write — with promises on the parent's side too — turns screen time from a punishment topic into an agreement both sides own. The signing itself tells your child they are treated as a partner.",
+ faq_h2:"How to use it well",
+ faq_p2:"Fill it in together, out loud, letting the child pick some rules. Print two copies — one on the fridge, one in the child's room. When the period ends, renegotiate: loosen what worked, discuss what didn't. Revisiting the contract matters more than enforcing it perfectly.",
+ faq_h3:"Is anything uploaded?",
+ faq_p3:"No. The contract is assembled entirely in your browser and exists only on this page and your printer. Names and rules are never sent or stored anywhere.",
+ footer_note:"ⓒ ModuTools · Everything runs in your browser. We never store what you enter."
+},
+ja:{
+ title_tag:"スマホ使用契約書メーカー — 子どもと一緒に作る印刷用の約束",
+ h1:"わが家のスマホ契約書メーカー",
+ lead:"ルールを子どもと一緒に選んで、双方がサインする契約書を印刷。一方的な規則ではなく、親も約束します。入力内容はブラウザの外に出ません。",
+ lbl_child:"子どもの名前", ph_child:"例: ミナ",
+ lbl_parent:"保護者（子どもからの呼び方）", ph_parent:"例: ママ、パパ",
+ lbl_grade:"学齢（推奨時間を自動入力 — 自由に調整可）",
+ g_e1:"小学校低学年", g_e2:"小学校高学年", g_m:"中学生", g_h:"高校生",
+ lbl_wd:"平日の1日使用時間", lbl_we:"週末の1日使用時間",
+ opt_family:"家族で決めた分だけ",
+ lbl_night:"夜にスマホを終える時刻", lbl_place:"夜のスマホの置き場所",
+ pl_parent:"保護者に預ける", pl_living:"リビングで充電する", pl_out:"自分の部屋の外に置く",
+ sec_rules:"子どもの約束を選ぶ",
+ r3:"食事中はスマホを見ません。",
+ r4:"宿題とやるべきことを先に終えてから使います。",
+ r5:"新しいアプリの入手や課金は、先に許可をもらいます。",
+ r6:"名前・学校・住所・写真などの個人情報は載せません。",
+ r7:"知らない人からの連絡には返事せず、親に知らせます。",
+ r8:"意地悪なメッセージは、冗談でも送りません・転送しません。",
+ r9:"怖いもの・変なものを見たら、怒られずに話せます。",
+ r10:"歩きながら・横断歩道では画面を見ません。",
+ sec_promise:"保護者の約束を選ぶ",
+ p1:"私も食事中はスマホを見ません。",
+ p2:"こっそりスマホを見ません — 心配なときは一緒に見ます。",
+ p3:"腹が立っても、いきなり取り上げずにまず話します。",
+ p4:"何を見せられても、まず最後まで聞きます。",
+ p5:"寝る前の30分は、私もスマホを置いてあなたと過ごします。",
+ lbl_custom:"わが家だけのルール（1行に1つ）", ph_custom:"例: 日曜はスマホなしで家族散歩",
+ lbl_penalty:"約束を守れなかったとき", ph_penalty:"例: 翌日の使用時間を30分減らします。3回続いたら家族会議で決め直します。",
+ lbl_reward:"約束を守れたとき", ph_reward:"例: 週末に30分追加、または家族で決めたごほうび。",
+ lbl_dur:"契約期間", dur1:"1か月", dur3:"3か月", dur6:"6か月",
+ btn_go:"契約書を作る", btn_print:"印刷する",
+ note_edit:"ヒント: 契約書の文章はタップでそのまま編集できます。",
+ note_suggest:"提案時間はあくまで出発点 — 大事なのは一緒に決めることです。",
+ c_title:"わが家のスマホ約束",
+ c_intro:"{child}と{parent}は、お互いを信じて次のとおり約束します。",
+ c_s1:"時間の約束", c_s2:"使い方の約束", c_s3:"安全の約束", c_s4:"{parent}の約束",
+ c_s5:"約束を守れなかったとき", c_s6:"約束を守れたとき", c_s7:"期間", c_s8:"わが家だけのルール",
+ c_r1:"1日の使用時間は平日{wd}、週末{we}にします。",
+ c_r2:"夜{t}以降は、スマホは{place}。",
+ c_dur:"この約束は{date}まで守り、その後は家族で決め直します。",
+ c_child:"子ども", c_parent:"保護者", c_sign:"（サイン）", c_date:"日付",
+ u_h:"時間", u_m:"分",
+ alert_name:"子どもの名前と保護者の呼び方を入力してください。",
+ faq_h1:"なぜルールではなく契約書？",
+ faq_p1:"一方的に決めたルールは反発されやすく破られやすいもの。子ども自身が選び、親の側にも約束がある契約は、スマホ時間を「叱る話題」から「双方の合意」に変えます。サインすること自体が、子どもを対等な相手として扱うメッセージになります。",
+ faq_h2:"上手な使い方",
+ faq_p2:"声に出して一緒に記入し、いくつかは子どもに選ばせましょう。2部印刷して冷蔵庫と子ども部屋に。期間が終わったら再交渉 — うまくいった項目は緩め、だめだった項目は話し合う。完璧に守らせることより、見直し続けることが大切です。",
+ faq_h3:"入力内容は送信される？",
+ faq_p3:"いいえ。契約書はすべてブラウザ内で組み立てられ、このページとプリンターにしか存在しません。名前もルールもどこにも送信・保存されません。",
+ footer_note:"ⓒ モドゥツール · すべての処理はブラウザ内で完結し、入力内容は保存されません。"
+},
+zh:{
+ title_tag:"家庭手机使用契约生成器 — 和孩子一起写的可打印约定",
+ h1:"家庭手机契约生成器",
+ lead:"和孩子一起挑选规则，打印一份双方签名的契约。不是单方面的规定 — 家长也要做出承诺。您输入的内容不会离开浏览器。",
+ lbl_child:"孩子的名字", ph_child:"例: 美娜",
+ lbl_parent:"家长（孩子对您的称呼）", ph_parent:"例: 妈妈、爸爸",
+ lbl_grade:"学龄（自动填入建议时长 — 可自由调整）",
+ g_e1:"小学低年级", g_e2:"小学高年级", g_m:"初中生", g_h:"高中生",
+ lbl_wd:"工作日每天使用时长", lbl_we:"周末每天使用时长",
+ opt_family:"按家庭商定的时长",
+ lbl_night:"晚上停用手机的时刻", lbl_place:"夜间手机放在哪里",
+ pl_parent:"交给家长保管", pl_living:"在客厅充电", pl_out:"放在自己房间外",
+ sec_rules:"选择孩子的承诺",
+ r3:"吃饭时不看手机。",
+ r4:"先完成作业和该做的事，再使用手机。",
+ r5:"安装新应用或付费前，先征得同意。",
+ r6:"不在网上发布个人信息 — 名字、学校、住址、照片。",
+ r7:"不回复陌生人的信息，并告诉家长。",
+ r8:"不发送、不转发伤人的话，开玩笑也不行。",
+ r9:"看到可怕或奇怪的内容，可以告诉家长而不会挨骂。",
+ r10:"走路时、过马路时不看屏幕。",
+ sec_promise:"选择家长的承诺",
+ p1:"吃饭时我也不看手机。",
+ p2:"我不会偷看你的手机 — 担心的时候我们一起看。",
+ p3:"就算生气，我也先沟通，不会突然没收手机。",
+ p4:"无论你给我看什么，我都先听完再回应。",
+ p5:"睡前30分钟，我也放下手机陪你。",
+ lbl_custom:"我们家自己的规则（每行一条）", ph_custom:"例: 周日全家不带手机散步",
+ lbl_penalty:"没能遵守约定时", ph_penalty:"例: 第二天使用时间减少30分钟。连续三次则召开家庭会议重新商定。",
+ lbl_reward:"遵守约定时", ph_reward:"例: 周末追加30分钟，或家庭商定的奖励。",
+ lbl_dur:"契约期限", dur1:"1个月", dur3:"3个月", dur6:"6个月",
+ btn_go:"生成契约书", btn_print:"打印",
+ note_edit:"提示: 点击契约中的句子即可直接修改后再打印。",
+ note_suggest:"建议时长只是起点 — 重要的是一起商定。",
+ c_title:"我们家的手机约定",
+ c_intro:"{child}和{parent}彼此信任，约定如下。",
+ c_s1:"时间约定", c_s2:"使用约定", c_s3:"安全约定", c_s4:"{parent}的承诺",
+ c_s5:"没能遵守约定时", c_s6:"遵守约定时", c_s7:"期限", c_s8:"我们家自己的规则",
+ c_r1:"每天使用时长: 工作日{wd}，周末{we}。",
+ c_r2:"晚上{t}之后，手机{place}。",
+ c_dur:"这份约定遵守到{date}，之后由全家一起重新商定。",
+ c_child:"孩子", c_parent:"家长", c_sign:"（签名）", c_date:"日期",
+ u_h:"小时", u_m:"分",
+ alert_name:"请输入孩子的名字和家长的称呼。",
+ faq_h1:"为什么是契约而不是规定？",
+ faq_p1:"单方面定下的规定容易引起反感、容易被打破。让孩子参与挑选、家长也要承诺的契约，把手机时间从『挨骂的话题』变成『双方的共识』。签名这件事本身，就是把孩子当作平等伙伴的信号。",
+ faq_h2:"怎么用效果最好",
+ faq_p2:"出声朗读、一起填写，让孩子自己挑几条规则。打印两份 — 一份贴冰箱，一份放孩子房间。期限结束后重新协商: 做得好的放宽，做不到的讨论。持续回顾比完美执行更重要。",
+ faq_h3:"内容会被上传吗？",
+ faq_p3:"不会。契约完全在浏览器内生成，只存在于本页面和您的打印机上。名字和规则不会被发送或保存到任何地方。",
+ footer_note:"ⓒ 全民工具 · 所有计算均在浏览器内完成，不会保存您输入的内容。"
+}
+};
+</script>
+<script src="/i18n.js"></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/age.html" data-i18n="c_age_t">만 나이</a></nav></header>
+<main>
+<h1 data-i18n="h1">스마트폰 사용 계약서 만들기</h1>
+<p class="lead" data-i18n="lead">규칙을 자녀와 함께 고르고, 서로 서명하는 계약서로 인쇄하세요. 아이만 지키는 각서가 아니라 부모도 약속하는 양방향 계약입니다. 입력한 내용은 브라우저 밖으로 나가지 않습니다.</p>
+
+<div class="card no-print">
+<div class="row">
+<div><label data-i18n="lbl_child">자녀 이름</label><input type="text" id="child" data-i18n-ph="ph_child" placeholder="예: 민아"></div>
+<div><label data-i18n="lbl_parent">보호자 호칭 (아이가 부르는 대로)</label><input type="text" id="parent" data-i18n-ph="ph_parent" placeholder="예: 엄마, 아빠"></div>
+</div>
+<div class="row" style="margin-top:12px">
+<div><label data-i18n="lbl_grade">학년대 (권장 시간 자동 입력 — 자유 조정)</label>
+<select id="grade">
+<option value="e1" data-i18n="g_e1">초등 저학년</option>
+<option value="e2" selected data-i18n="g_e2">초등 고학년</option>
+<option value="m" data-i18n="g_m">중학생</option>
+<option value="h" data-i18n="g_h">고등학생</option>
+</select></div>
+<div><label data-i18n="lbl_wd">평일 하루 사용 시간</label><select id="wd"></select></div>
+<div><label data-i18n="lbl_we">주말 하루 사용 시간</label><select id="we"></select></div>
+</div>
+<p class="note" data-i18n="note_suggest">권장 시간은 출발점일 뿐입니다 — 함께 정하는 과정이 핵심이에요.</p>
+<div class="row" style="margin-top:6px">
+<div><label data-i18n="lbl_night">밤에 스마트폰 끄는 시각</label><input type="time" id="night" value="21:00"></div>
+<div><label data-i18n="lbl_place">밤에 스마트폰 두는 곳</label>
+<select id="place">
+<option value="pl_parent" data-i18n="pl_parent">부모님께 맡겨요</option>
+<option value="pl_living" selected data-i18n="pl_living">거실에서 충전해요</option>
+<option value="pl_out" data-i18n="pl_out">내 방 밖에 두어요</option>
+</select></div>
+<div><label data-i18n="lbl_dur">약속 기간</label>
+<select id="dur">
+<option value="1" data-i18n="dur1">1개월</option>
+<option value="3" selected data-i18n="dur3">3개월</option>
+<option value="6" data-i18n="dur6">6개월</option>
+</select></div>
+</div>
+
+<label style="margin-top:16px" data-i18n="sec_rules">자녀의 약속 고르기</label>
+<div class="opt-list" id="rules">
+<label><input type="checkbox" value="r3" checked><span data-i18n="r3">식사 중에는 스마트폰을 보지 않아요.</span></label>
+<label><input type="checkbox" value="r4" checked><span data-i18n="r4">숙제와 할 일을 먼저 끝내고 사용해요.</span></label>
+<label><input type="checkbox" value="r5" checked><span data-i18n="r5">새 앱 설치와 유료 결제는 먼저 허락을 받아요.</span></label>
+<label><input type="checkbox" value="r6" checked><span data-i18n="r6">이름·학교·주소·사진 같은 개인정보는 올리지 않아요.</span></label>
+<label><input type="checkbox" value="r7" checked><span data-i18n="r7">모르는 사람의 연락에는 답하지 않고 부모님께 알려요.</span></label>
+<label><input type="checkbox" value="r8" checked><span data-i18n="r8">기분 나쁜 말은 장난으로라도 보내지도, 옮기지도 않아요.</span></label>
+<label><input type="checkbox" value="r9" checked><span data-i18n="r9">무섭거나 이상한 걸 보면 혼나지 않고 말할 수 있어요.</span></label>
+<label><input type="checkbox" value="r10" checked><span data-i18n="r10">걸으면서, 횡단보도에서는 화면을 보지 않아요.</span></label>
+</div>
+
+<label style="margin-top:16px" data-i18n="sec_promise">보호자의 약속 고르기</label>
+<div class="opt-list" id="promises">
+<label><input type="checkbox" value="p1" checked><span data-i18n="p1">나도 식사 중에는 스마트폰을 보지 않을게.</span></label>
+<label><input type="checkbox" value="p2" checked><span data-i18n="p2">네 폰을 몰래 보지 않을게 — 걱정될 땐 함께 볼게.</span></label>
+<label><input type="checkbox" value="p3" checked><span data-i18n="p3">화가 나도 갑자기 폰을 빼앗지 않고 먼저 이야기할게.</span></label>
+<label><input type="checkbox" value="p4"><span data-i18n="p4">네가 무엇을 보여줘도 화부터 내지 않고 끝까지 들을게.</span></label>
+<label><input type="checkbox" value="p5"><span data-i18n="p5">자기 전 30분은 나도 폰을 내려놓고 너와 보낼게.</span></label>
+</div>
+
+<div style="margin-top:16px"><label data-i18n="lbl_custom">우리 가족만의 약속 (한 줄에 하나)</label>
+<textarea id="custom" style="min-height:70px" data-i18n-ph="ph_custom" placeholder="예: 일요일엔 폰 없이 가족 산책하기"></textarea></div>
+
+<div class="row" style="margin-top:12px">
+<div><label data-i18n="lbl_penalty">약속을 지키지 못했을 때</label>
+<textarea id="penalty" style="min-height:70px" data-i18n-ph="ph_penalty" placeholder="예: 다음 날 사용 시간을 30분 줄여요. 세 번 반복되면 가족회의에서 다시 정해요."></textarea></div>
+<div><label data-i18n="lbl_reward">약속을 잘 지켰을 때</label>
+<textarea id="reward" style="min-height:70px" data-i18n-ph="ph_reward" placeholder="예: 주말에 30분 추가, 또는 가족이 정한 보상을 받아요."></textarea></div>
+</div>
+
+<button id="go" data-i18n="btn_go">계약서 만들기</button>
+</div>
+
+<div id="result" hidden>
+<p class="note no-print" data-i18n="note_edit">팁: 계약서 문장을 누르면 인쇄 전에 바로 고칠 수 있어요.</p>
+<div class="contract" id="contract" contenteditable="true"></div>
+<button id="print" class="no-print" data-i18n="btn_print">인쇄하기</button>
+</div>
+
+<div class="faq">
+<h2 data-i18n="faq_h1">왜 규칙이 아니라 계약서인가요</h2>
+<p data-i18n="faq_p1">일방적으로 정해진 규칙은 반발을 사기 쉽고 그만큼 쉽게 깨집니다. 아이가 직접 고르고 부모 쪽에도 약속이 있는 계약은 스마트폰 시간을 "혼나는 주제"에서 "서로의 합의"로 바꿉니다. 서명이라는 행위 자체가 아이를 대등한 상대로 대한다는 메시지가 됩니다.</p>
+<h2 data-i18n="faq_h2">잘 쓰는 법</h2>
+<p data-i18n="faq_p2">소리 내어 같이 채우고, 몇 가지는 아이가 고르게 하세요. 두 부 인쇄해서 한 부는 냉장고에, 한 부는 아이 방에. 기간이 끝나면 재협상하세요 — 잘 지켜진 건 풀어주고, 안 된 건 이야기하고. 완벽하게 지키게 하는 것보다 계속 들여다보는 게 중요합니다.</p>
+<h2 data-i18n="faq_h3">입력한 내용이 어디로 가나요</h2>
+<p data-i18n="faq_p3">아무 데도 가지 않습니다. 계약서는 전부 브라우저 안에서 만들어지고 이 페이지와 프린터에만 존재합니다. 이름도 규칙도 어디에도 전송·저장되지 않습니다.</p>
+</div>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/dday.html" data-i18n="c_dday_t">디데이</a><a href="/age.html" data-i18n="c_age_t">만 나이</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 모든 처리는 브라우저에서만 이루어지며 입력값을 저장하지 않습니다.</p></footer>
+<script>
+var KO={
+ r3:"식사 중에는 스마트폰을 보지 않아요.",
+ r4:"숙제와 할 일을 먼저 끝내고 사용해요.",
+ r5:"새 앱 설치와 유료 결제는 먼저 허락을 받아요.",
+ r6:"이름·학교·주소·사진 같은 개인정보는 올리지 않아요.",
+ r7:"모르는 사람의 연락에는 답하지 않고 부모님께 알려요.",
+ r8:"기분 나쁜 말은 장난으로라도 보내지도, 옮기지도 않아요.",
+ r9:"무섭거나 이상한 걸 보면 혼나지 않고 말할 수 있어요.",
+ r10:"걸으면서, 횡단보도에서는 화면을 보지 않아요.",
+ p1:"나도 식사 중에는 스마트폰을 보지 않을게.",
+ p2:"네 폰을 몰래 보지 않을게 — 걱정될 땐 함께 볼게.",
+ p3:"화가 나도 갑자기 폰을 빼앗지 않고 먼저 이야기할게.",
+ p4:"네가 무엇을 보여줘도 화부터 내지 않고 끝까지 들을게.",
+ p5:"자기 전 30분은 나도 폰을 내려놓고 너와 보낼게.",
+ pl_parent:"부모님께 맡겨요", pl_living:"거실에서 충전해요", pl_out:"내 방 밖에 두어요",
+ penalty:"다음 날 사용 시간을 30분 줄여요. 세 번 반복되면 가족회의에서 다시 정해요.",
+ reward:"주말에 30분 추가, 또는 가족이 정한 보상을 받아요."
+};
+var GRADE={e1:{wd:60,we:90},e2:{wd:90,we:120},m:{wd:120,we:180},h:{wd:0,we:0}};
+var DUR_OPTS=[30,60,90,120,150,180,0];
+var lastData=null;
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function fmtDur(min){
+ if(!min)return window.t('opt_family','가족이 정한 만큼');
+ var h=Math.floor(min/60),m=min%60,s='';
+ if(h)s+=h+window.t('u_h','시간');
+ if(m)s+=(s?' ':'')+m+window.t('u_m','분');
+ return s;
+}
+function fillDurSelect(sel,val){
+ sel.innerHTML='';
+ DUR_OPTS.forEach(function(min){
+  var o=document.createElement('option');
+  o.value=min;o.textContent=fmtDur(min);
+  if(min===val)o.selected=true;
+  sel.appendChild(o);
+ });
+}
+function fmtDate(d){
+ var lang=window.MT_LANG||'ko';
+ var y=d.getFullYear(),m=d.getMonth()+1,dd=d.getDate();
+ if(lang==='en'){return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1]+' '+dd+', '+y}
+ if(lang==='ja'||lang==='zh')return y+'年'+m+'月'+dd+'日';
+ return y+'년 '+m+'월 '+dd+'일';
+}
+function tpl(key,ko,vars){
+ var s=window.t(key,ko);
+ for(var k in vars)s=s.split('{'+k+'}').join(vars[k]);
+ return s;
+}
+function koJosa(word,withB,withoutB){ /* 받침 유무로 와/과·은/는 선택 */
+ var c=word.charCodeAt(word.length-1);
+ if(c<0xAC00||c>0xD7A3)return withoutB;
+ return (c-0xAC00)%28?withB:withoutB;
+}
+
+var wdSel=document.getElementById('wd'),weSel=document.getElementById('we');
+fillDurSelect(wdSel,90);fillDurSelect(weSel,120);
+document.getElementById('grade').addEventListener('change',function(){
+ var g=GRADE[this.value];
+ fillDurSelect(wdSel,g.wd);fillDurSelect(weSel,g.we);
+});
+
+function checkedVals(id){
+ return Array.prototype.slice.call(document.querySelectorAll('#'+id+' input:checked')).map(function(c){return c.value});
+}
+function renderContract(){
+ if(!lastData)return;
+ var d=lastData;
+ var child=esc(d.child),parent=esc(d.parent);
+ var end=new Date();end.setMonth(end.getMonth()+d.dur);
+ var timeRules=[
+  tpl('c_r1','하루 사용 시간은 평일 {wd}, 주말 {we}으로 해요.',{wd:fmtDur(d.wd),we:fmtDur(d.we)}),
+  tpl('c_r2','밤 {t} 이후에는 스마트폰을 {place}.',{t:d.night,place:window.t(d.place,KO[d.place])})
+ ];
+ var useRules=d.rules.filter(function(r){return ['r3','r4','r5','r10'].indexOf(r)>=0});
+ var safeRules=d.rules.filter(function(r){return ['r6','r7','r8','r9'].indexOf(r)>=0});
+ function ol(keys){return '<ol>'+keys.map(function(k){return '<li>'+esc(window.t(k,KO[k]))+'</li>'}).join('')+'</ol>'}
+ function olRaw(items){return '<ol>'+items.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol>'}
+ var h='<h2>'+esc(window.t('c_title','우리 집 스마트폰 약속'))+'</h2>';
+ var introKo=child+koJosa(d.child,'과','와')+' '+parent+koJosa(d.parent,'은','는')+' 서로를 믿고 아래와 같이 약속합니다.';
+ h+='<p class="c-intro">'+((window.MT_LANG||'ko')==='ko'?introKo:tpl('c_intro','',{child:child,parent:parent}))+'</p>';
+ h+='<h3>1. '+esc(window.t('c_s1','시간 약속'))+'</h3>'+olRaw(timeRules);
+ if(useRules.length)h+='<h3>2. '+esc(window.t('c_s2','사용 약속'))+'</h3>'+ol(useRules);
+ if(safeRules.length)h+='<h3>3. '+esc(window.t('c_s3','안전 약속'))+'</h3>'+ol(safeRules);
+ if(d.promises.length)h+='<h3>4. '+tpl('c_s4','{parent}의 약속',{parent:parent})+'</h3>'+ol(d.promises);
+ if(d.custom.length)h+='<h3>5. '+esc(window.t('c_s8','우리 가족만의 약속'))+'</h3>'+olRaw(d.custom);
+ h+='<h3>'+esc(window.t('c_s5','약속을 지키지 못했을 때'))+'</h3><p>'+esc(d.penalty)+'</p>';
+ h+='<h3>'+esc(window.t('c_s6','약속을 잘 지켰을 때'))+'</h3><p>'+esc(d.reward)+'</p>';
+ h+='<h3>'+esc(window.t('c_s7','약속 기간'))+'</h3><p>'+tpl('c_dur','이 약속은 {date}까지 지키고, 그 다음은 가족이 함께 다시 정해요.',{date:fmtDate(end)})+'</p>';
+ h+='<div class="c-sign">';
+ h+='<div><div class="line"></div>'+esc(window.t('c_child','자녀'))+' '+child+' '+esc(window.t('c_sign','(서명)'))+'</div>';
+ h+='<div><div class="line"></div>'+esc(window.t('c_parent','보호자'))+' '+parent+' '+esc(window.t('c_sign','(서명)'))+'</div>';
+ h+='<div><div class="line" style="border:0;min-height:34px;display:flex;align-items:flex-end">'+fmtDate(new Date())+'</div>'+esc(window.t('c_date','날짜'))+'</div>';
+ h+='</div>';
+ document.getElementById('contract').innerHTML=h;
+ document.getElementById('result').hidden=false;
+}
+
+document.getElementById('go').onclick=function(){
+ var child=document.getElementById('child').value.trim();
+ var parent=document.getElementById('parent').value.trim();
+ if(!child||!parent){alert(window.t('alert_name','자녀 이름과 보호자 호칭을 입력해 주세요.'));return}
+ lastData={
+  child:child,parent:parent,
+  wd:+wdSel.value,we:+weSel.value,
+  night:document.getElementById('night').value||'21:00',
+  place:document.getElementById('place').value,
+  dur:+document.getElementById('dur').value,
+  rules:checkedVals('rules'),promises:checkedVals('promises'),
+  custom:document.getElementById('custom').value.split('\n').map(function(s){return s.trim()}).filter(Boolean),
+  penalty:document.getElementById('penalty').value.trim()||window.t('ph_penalty',KO.penalty),
+  reward:document.getElementById('reward').value.trim()||window.t('ph_reward',KO.reward)
+ };
+ renderContract();
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+};
+document.getElementById('print').onclick=function(){window.print()};
+document.addEventListener('mt:lang',function(){
+ var wdV=+wdSel.value,weV=+weSel.value;
+ fillDurSelect(wdSel,wdV);fillDurSelect(weSel,weV);
+ renderContract();
+});
+</script>
+</body>
+</html>
