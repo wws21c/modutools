@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title data-i18n="title_tag">우리 동네 어린이 안전지도 — 어린이보호구역·학교 학폭 공시 한눈에</title>
+<meta name="description" content="우리 집·학교 주변 어린이보호구역(스쿨존)을 지도에서 찾고, CCTV 설치·관할 경찰서를 확인하세요. 학교별 학교폭력 심의 공시는 학교알리미 공식 페이지로 바로 연결합니다. 공공데이터 기반, 가입 없이 브라우저에서.">
+<link rel="canonical" href="https://modutools.vercel.app/child-safety.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="/ads.js" defer></script>
+<style>
+#map{height:420px;border-radius:var(--r);border:1px solid var(--line);margin-top:6px;z-index:0}
+.zone-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;max-height:340px;overflow-y:auto}
+.zone-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.9rem;cursor:pointer}
+.zone-item:hover{border-color:var(--brand)}
+.zone-item .zn{font-weight:700}
+.zone-item .zm{color:var(--sub);font-size:.82rem;margin-top:2px}
+.badge{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:20px;margin-left:6px;font-family:var(--mono);vertical-align:middle}
+.badge.on{background:var(--brand);color:#fff}
+.badge.off{background:var(--line);color:var(--sub)}
+.count-note{font-size:.85rem;color:var(--sub);margin-top:10px}
+.tab-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab-row button{margin-top:0;background:transparent;color:var(--brand);border:1px solid var(--brand);padding:8px 16px;font-size:.9rem}
+.tab-row button.active{background:var(--brand);color:#fff}
+@media(prefers-color-scheme:dark){.tab-row button.active{color:#12181E}}
+.src-note{font-size:.76rem;color:var(--sub);margin-top:14px;line-height:1.5}
+</style>
+<script>
+window.I18N_PAGE = {
+en:{
+ title_tag:"Neighborhood Child Safety Map — school zones & school-violence disclosures",
+ h1:"Neighborhood Child Safety Map",
+ lead:"Find child-protection zones (school zones) near your home or school, and check CCTV coverage and the responsible police station. For each school's official school-violence review disclosure, we link straight to the government site.",
+ tab_zone:"School-zone map", tab_school:"School disclosure lookup",
+ lbl_search:"Search by facility or area name", ph_search:"e.g. Gwangjang Elementary, Gwangjin-gu",
+ z_cctv_on:"CCTV", z_cctv_off:"No CCTV",
+ z_police:"Police:", z_cctv_n:"CCTV units:",
+ count_pre:"Showing", count_post:"zones",
+ no_result:"No zones match. Try a broader area name.",
+ sample_note:"Currently loaded: sample data for Gwangjin-gu, Seoul (64 zones). Nationwide data (~16,800 zones) rolls out after data activation.",
+ sh_h:"Check a school's school-violence disclosure",
+ sh_lead:"Every school in Korea must disclose its School Violence Review Committee results on the official Schoolinfo site. Enter a school name — we open the official page and copy the exact search phrase for you.",
+ sh_lbl:"School name", sh_ph:"e.g. Seoul Bongeun Elementary",
+ sh_btn:"Open on Schoolinfo (official)",
+ sh_copied:"Search phrase copied. Paste it into the search box that opens.",
+ sh_why_h:"Why a link instead of a table here?",
+ sh_why_p:"School Violence Review results are official disclosures whose reuse license forbids re-processing, and absolute counts are easily misread — a school that reports more cases may simply be one that handles them properly. So we send you to the authoritative source rather than re-ranking schools.",
+ faq_h1:"What is a child-protection zone (school zone)?",
+ faq_p1:"An area within roughly 300m of schools, kindergartens and daycare centers where vehicle speed is limited to 30km/h and enforcement is stronger. This map shows each zone's location, whether CCTV is installed, and which police station is responsible.",
+ faq_h2:"Where does the data come from?",
+ faq_p2:"Child-protection zones: the national standard dataset on data.go.kr (public, source-attribution license). School master data: NEIS open education portal. School-violence disclosures: the official Schoolinfo site (linked, not re-hosted). Nothing you type is sent anywhere — search runs in your browser.",
+ footer_note:"ⓒ ModuTools · Public-data based. This is reference information, not an official safety certification."
+},
+ja:{
+ title_tag:"わが町の子ども安全マップ — スクールゾーン・学校暴力公示をひと目で",
+ h1:"わが町の子ども安全マップ",
+ lead:"自宅や学校の周りの子ども保護区域（スクールゾーン）を地図で探し、CCTV設置状況と管轄警察署を確認。学校ごとの学校暴力審議公示は、公式サイトへ直接リンクします。",
+ tab_zone:"スクールゾーン地図", tab_school:"学校公示の確認",
+ lbl_search:"施設名・地域名で検索", ph_search:"例: 光壮小学校、広津区",
+ z_cctv_on:"CCTV", z_cctv_off:"CCTVなし",
+ z_police:"警察署:", z_cctv_n:"CCTV台数:",
+ count_pre:"表示中", count_post:"件",
+ no_result:"該当なし。より広い地域名でお試しください。",
+ sample_note:"現在の読み込み: ソウル広津区のサンプルデータ（64件）。全国データ（約16,800件）はデータ有効化後に公開。",
+ sh_h:"学校の学校暴力公示を確認",
+ sh_lead:"韓国の全学校は、学校暴力対策審議委員会の結果を公式サイト（学校アルリミ）で公示する義務があります。学校名を入力すると公式ページを開き、検索語をコピーします。",
+ sh_lbl:"学校名", sh_ph:"例: ソウル奉恩小学校",
+ sh_btn:"学校アルリミで開く（公式）",
+ sh_copied:"検索語をコピーしました。開いた検索欄に貼り付けてください。",
+ sh_why_h:"なぜここでは表ではなくリンク？",
+ sh_why_p:"審議結果は再加工を禁じる利用許諾の公式公示であり、絶対件数は誤読されやすい — 件数が多い学校は、きちんと処理している学校かもしれません。そこで学校を順位付けせず、正式な出典へ案内します。",
+ faq_h1:"子ども保護区域（スクールゾーン）とは？",
+ faq_p1:"学校・幼稚園・保育所の周囲およそ300m以内で、車の速度が30km/hに制限され取り締まりが強化される区域です。各区域の位置・CCTV設置・管轄警察署を表示します。",
+ faq_h2:"データの出典は？",
+ faq_p2:"子ども保護区域: data.go.krの全国標準データ（公共、出典表示）。学校基本情報: NEIS教育情報開放ポータル。学校暴力公示: 公式サイト（リンクのみ、再掲載なし）。入力内容は送信されず、検索はブラウザ内で行われます。",
+ footer_note:"ⓒ モドゥツール · 公共データ基盤。公式の安全認証ではなく参考情報です。"
+},
+zh:{
+ title_tag:"我家附近儿童安全地图 — 校区·学校暴力公示一目了然",
+ h1:"我家附近儿童安全地图",
+ lead:"在地图上查找住家或学校周边的儿童保护区域（校区），确认CCTV设置与管辖警察局。各学校的校园暴力审议公示，直接链接到官方网站。",
+ tab_zone:"校区地图", tab_school:"学校公示查询",
+ lbl_search:"按设施或地区名搜索", ph_search:"例: 光壮小学、广津区",
+ z_cctv_on:"CCTV", z_cctv_off:"无CCTV",
+ z_police:"警察局:", z_cctv_n:"CCTV数量:",
+ count_pre:"显示", count_post:"处",
+ no_result:"无匹配区域。请尝试更大的地区名。",
+ sample_note:"当前载入: 首尔广津区样本数据（64处）。全国数据（约16,800处）将在数据激活后开放。",
+ sh_h:"查询学校的校园暴力公示",
+ sh_lead:"韩国所有学校须在官方网站（学校信息网）公示校园暴力对策审议委员会结果。输入校名，我们会打开官方页面并为您复制搜索词。",
+ sh_lbl:"学校名称", sh_ph:"例: 首尔奉恩小学",
+ sh_btn:"在学校信息网打开（官方）",
+ sh_copied:"已复制搜索词。请粘贴到打开的搜索框中。",
+ sh_why_h:"为什么这里用链接而不是表格？",
+ sh_why_p:"审议结果是禁止再加工的官方公示，且绝对件数容易被误读 — 上报较多的学校，也可能只是处理得更规范。因此我们不对学校排名，而是引导到权威来源。",
+ faq_h1:"什么是儿童保护区域（校区）？",
+ faq_p1:"学校、幼儿园、托儿所周围约300米内，车辆限速30km/h并加强执法的区域。本地图显示各区域位置、CCTV设置及管辖警察局。",
+ faq_h2:"数据来自哪里？",
+ faq_p2:"儿童保护区域: data.go.kr全国标准数据（公共，署名许可）。学校基本信息: NEIS教育信息开放门户。校园暴力公示: 官方网站（仅链接，不转载）。您输入的内容不会外传，搜索在浏览器内完成。",
+ footer_note:"ⓒ 全民工具 · 基于公共数据。此为参考信息，非官方安全认证。"
+}
+};
+</script>
+<script src="/i18n.js"></script>
+</head>
+<body>
+<header><a class="logo" href="/">모두<span>도구</span></a><nav><a href="/phone-contract.html" data-i18n="c_pc_t">스마트폰 계약서</a><a href="/age.html" data-i18n="c_age_t">만 나이</a></nav></header>
+<main>
+<h1 data-i18n="h1">우리 동네 어린이 안전지도</h1>
+<p class="lead" data-i18n="lead">집·학교 주변 어린이보호구역(스쿨존)을 지도에서 찾고 CCTV 설치·관할 경찰서를 확인하세요. 학교별 학교폭력 심의 공시는 학교알리미 공식 페이지로 바로 연결합니다.</p>
+
+<div class="tab-row">
+<button id="tab-zone" class="active" data-i18n="tab_zone">스쿨존 지도</button>
+<button id="tab-school" data-i18n="tab_school">학교 공시 조회</button>
+</div>
+
+<section id="panel-zone">
+<div class="card">
+<label data-i18n="lbl_search">시설·지역명으로 검색</label>
+<input type="text" id="zsearch" data-i18n-ph="ph_search" placeholder="예: 광장초등학교, 광진구">
+<div id="map"></div>
+<p class="count-note" id="zcount"></p>
+<div class="zone-list" id="zlist"></div>
+<p class="count-note" id="sample-note" data-i18n="sample_note">현재 로드: 서울 광진구 샘플 데이터(64건). 전국 데이터(약 16,800건)는 데이터 활성화 후 공개됩니다.</p>
+</div>
+</section>
+
+<section id="panel-school" hidden>
+<div class="card">
+<h2 style="font-size:1.1rem;margin:0 0 6px" data-i18n="sh_h">학교의 학교폭력 심의 공시 확인</h2>
+<p class="lead" data-i18n="sh_lead">전국 모든 학교는 학교폭력대책심의위원회 결과를 학교알리미 공식 사이트에 공시합니다. 학교명을 넣으면 공식 페이지를 열고 검색어를 복사해 드립니다.</p>
+<label data-i18n="sh_lbl">학교명</label>
+<input type="text" id="ssearch" data-i18n-ph="sh_ph" placeholder="예: 서울봉은초등학교">
+<button id="sgo" data-i18n="sh_btn">학교알리미에서 열기 (공식)</button>
+<p class="copy-ok" id="scopied" hidden data-i18n="sh_copied">검색어를 복사했어요. 열린 검색창에 붙여넣으세요.</p>
+<div class="faq" style="margin-top:18px">
+<h2 data-i18n="sh_why_h">여기선 왜 표가 아니라 링크인가요</h2>
+<p data-i18n="sh_why_p">심의 결과는 재가공을 금지하는 이용허락의 공식 공시이고, 절대 건수는 오해되기 쉽습니다 — 건수가 많은 학교가 오히려 제대로 처리하는 학교일 수 있습니다. 그래서 학교를 순위 매기지 않고 공식 출처로 안내합니다.</p>
+</div>
+</div>
+</section>
+
+<div class="faq">
+<h2 data-i18n="faq_h1">어린이보호구역(스쿨존)이란?</h2>
+<p data-i18n="faq_p1">학교·유치원·어린이집 주변 약 300m 이내로, 차량 속도가 30km/h로 제한되고 단속이 강화되는 구역입니다. 이 지도는 각 구역의 위치, CCTV 설치 여부, 관할 경찰서를 보여줍니다.</p>
+<h2 data-i18n="faq_h2">데이터는 어디서 오나요?</h2>
+<p data-i18n="faq_p2">어린이보호구역: data.go.kr 전국 표준데이터(공공, 출처표시 허락). 학교 기본정보: NEIS 교육정보 개방포털. 학교폭력 공시: 학교알리미 공식 사이트(링크만, 재게시 아님). 입력한 내용은 어디로도 전송되지 않으며 검색은 브라우저에서 처리됩니다.</p>
+</div>
+<p class="src-note" id="srcnote"></p>
+</main>
+<div class="ad-slot"></div>
+<footer><div class="links"><a href="/" data-i18n="links_all">전체 도구</a><a href="/phone-contract.html" data-i18n="c_pc_t">스마트폰 계약서</a><a href="/age.html" data-i18n="c_age_t">만 나이</a></div><p data-i18n="footer_note">ⓒ 모두도구 · 공공데이터 기반. 공식 안전 인증이 아닌 참고 정보입니다.</p></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<script>
+var ZONES=[], DATA=null, map=null, layer=null, markerById={};
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+// 탭 전환
+function showTab(which){
+ var z=which==='zone';
+ document.getElementById('panel-zone').hidden=!z;
+ document.getElementById('panel-school').hidden=z;
+ document.getElementById('tab-zone').classList.toggle('active',z);
+ document.getElementById('tab-school').classList.toggle('active',!z);
+ if(z&&map)setTimeout(function(){map.invalidateSize()},50);
+}
+document.getElementById('tab-zone').onclick=function(){showTab('zone')};
+document.getElementById('tab-school').onclick=function(){showTab('school')};
+
+function initMap(){
+ map=L.map('map',{scrollWheelZoom:false}).setView([37.545,127.09],13);
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:19, attribution:'© OpenStreetMap'
+ }).addTo(map);
+ layer=L.layerGroup().addTo(map);
+}
+function cctvBadge(z){
+ if(z.c) return '<span class="badge on">'+window.t('z_cctv_on','CCTV')+' '+z.cn+'</span>';
+ return '<span class="badge off">'+window.t('z_cctv_off','CCTV 없음')+'</span>';
+}
+function render(filter){
+ if(!layer)return;
+ layer.clearLayers(); markerById={};
+ var list=document.getElementById('zlist'); list.innerHTML='';
+ var q=(filter||'').trim().toLowerCase();
+ var shown=ZONES.filter(function(z){
+  if(!q)return true;
+  return (z.n+' '+z.a+' '+z.p).toLowerCase().indexOf(q)>=0;
+ });
+ var bounds=[];
+ shown.forEach(function(z,i){
+  var m=L.marker([z.la,z.lo]).addTo(layer);
+  m.bindPopup('<b>'+esc(z.n)+'</b><br>'+esc(z.a)+'<br>'+window.t('z_police','관할:')+' '+esc(z.p)+'<br>'+cctvBadge(z));
+  markerById[i]=m; bounds.push([z.la,z.lo]);
+  var el=document.createElement('div'); el.className='zone-item';
+  el.innerHTML='<div class="zn">'+esc(z.n)+cctvBadge(z)+'</div><div class="zm">'+esc(z.a)+' · '+esc(z.p)+'</div>';
+  el.onclick=function(){ map.setView([z.la,z.lo],17); m.openPopup(); document.getElementById('map').scrollIntoView({behavior:'smooth',block:'center'}); };
+  list.appendChild(el);
+ });
+ var c=document.getElementById('zcount');
+ if(shown.length===0){ c.textContent=window.t('no_result','해당하는 구역이 없어요. 더 넓은 지역명으로 검색해 보세요.'); }
+ else { c.textContent=window.t('count_pre','표시 중')+' '+shown.length+window.t('count_post','건'); }
+ if(bounds.length){ try{map.fitBounds(bounds,{padding:[30,30],maxZoom:16})}catch(e){} }
+}
+document.getElementById('zsearch').addEventListener('input',function(){render(this.value)});
+
+// 학교알리미 링크아웃 — 재게시 아님(공식 페이지로 안내 + 검색어 복사)
+document.getElementById('sgo').onclick=function(){
+ var name=document.getElementById('ssearch').value.trim();
+ var phrase=(name||'')+' 학교폭력대책심의위원회 심의 결과';
+ if(name){ try{ navigator.clipboard.writeText(phrase); var ok=document.getElementById('scopied'); ok.hidden=false; setTimeout(function(){ok.hidden=true},4000); }catch(e){} }
+ window.open('https://www.schoolinfo.go.kr/ng/go/pnnggo_a01_l2.do','_blank','noopener');
+};
+document.getElementById('ssearch').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('sgo').click()});
+
+function applyDynamic(){
+ render(document.getElementById('zsearch').value);
+ if(DATA){
+  document.getElementById('srcnote').textContent='출처: '+DATA.source+' · '+DATA.license;
+ }
+}
+document.addEventListener('mt:lang',applyDynamic);
+
+// 데이터 로드
+fetch('/data/childzones.json').then(function(r){return r.json()}).then(function(d){
+ DATA=d; ZONES=d.zones||[];
+ initMap(); applyDynamic();
+}).catch(function(){
+ document.getElementById('zcount').textContent='데이터를 불러오지 못했어요.';
+});
+</script>
+</body>
+</html>
